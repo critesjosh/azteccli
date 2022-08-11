@@ -1,0 +1,73 @@
+{
+  "name": "azteccli",
+  "description": "Command line tool for interacting with Aztec.",
+  "version": "0.0.1",
+  "author": "jc@joshcrites.com",
+  "bin": {
+    "azteccli": "./bin/run"
+  },
+  "bugs": "https://github.com/critesjosh/azteccli/issues",
+  "dependencies": {
+    "@aztec/sdk": "2.1.37",
+    "@oclif/command": "^1.8.16",
+    "@oclif/core": "^1",
+    "@oclif/parser": "^3.8.7",
+    "@oclif/plugin-autocomplete": "^1.3.0",
+    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-plugins": "^2.0.1",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "conf-cli": "^0.1.9",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "devDependencies": {
+    "@oclif/test": "^2",
+    "@types/chai": "^4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.9.4",
+    "chai": "^4",
+    "globby": "^11",
+    "mocha": "^9",
+    "oclif": "^3",
+    "shx": "^0.3.3",
+    "ts-node": "^10.2.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "files": [
+    "/bin",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/critesjosh/azteccli",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "oclif": {
+    "bin": "azteccli",
+    "dirname": "azteccli",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins",
+      "@oclif/plugin-autocomplete",
+      "conf-cli"
+    ]
+  },
+  "repository": "critesjosh/azteccli",
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "yarn lint",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif readme && git add README.md"
+  },
+  "types": "dist/index.d.ts"
+}
