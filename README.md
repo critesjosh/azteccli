@@ -1,11 +1,10 @@
-azteccli
-=================
+# azteccli
 
 **This project is in development. Use at your own risk.**
 
 A command line application for interacting with the Aztec protocol.
 
-Does not handle your keys, but connects to Metamask with [Truffle Dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/) or to any wallet that supports [WalletConnect](https://docs.walletconnect.com/).
+Does not handle your keys--connects to Metamask with [Truffle Dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/) or to any wallet that supports [WalletConnect](https://docs.walletconnect.com/).
 
 Uses [conf-cli](https://github.com/natzcam/conf-cli) for setting and getting the wallet config. Set wallet with `azteccli conf wallet metamask|walletconnect`.
 
@@ -13,9 +12,12 @@ Uses [conf-cli](https://github.com/natzcam/conf-cli) for setting and getting the
 
 1. [Install Nodejs](https://nodejs.org/en/download/)
 2. [Install Truffle](https://trufflesuite.com/docs/truffle/getting-started/installation/) or wallet that supports [WalletConnect](https://walletconnect.com).
-3. Install azteccli, `npm i -g azteccli`.
+3. Install azteccli. `$ npm i -g azteccli`.
+4. Set metamask. `$ azteccli conf wallet metamask`.
+5. Start [Truffle dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/). `$ truffle dashboard`
+6. Run a command: `$ azteccli history`
 
-## Capabilities:
+## Capabilities
 
 - Connect to Metamask or other wallet via WalletConnect (enables hardware wallet support)
 - Lookup your Aztec tx history
@@ -33,51 +35,37 @@ Uses [conf-cli](https://github.com/natzcam/conf-cli) for setting and getting the
 TODO:
 
 - defi interactions
-- add spending keys
-- use custom messages to derive aztec keys (test)
+- create new spending keys
 - migrate aztec account
 - recover aztec account
 
-
- # Usage
-
-  <!-- usage -->
-```sh-session
-$ npm install -g azteccli
-$ azteccli COMMAND
-running command...
-$ azteccli (--version)
-azteccli/0.0.2 linux-x64 node-v16.16.0
-$ azteccli --help [COMMAND]
-USAGE
-  $ azteccli COMMAND
-...
-```
-<!-- usagestop -->
-
-  # Commands
+## Commands
 
   <!-- commands -->
-* [`azteccli accountinfo`](#azteccli-accountinfo)
-* [`azteccli autocomplete [SHELL]`](#azteccli-autocomplete-shell)
-* [`azteccli balance`](#azteccli-balance)
-* [`azteccli conf [KEY] [VALUE]`](#azteccli-conf-key-value)
-* [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
-* [`azteccli getfees`](#azteccli-getfees)
-* [`azteccli help [COMMAND]`](#azteccli-help-command)
-* [`azteccli history`](#azteccli-history)
-* [`azteccli plugins`](#azteccli-plugins)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
-* [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
-* [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
-* [`azteccli plugins:update`](#azteccli-pluginsupdate)
-* [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
-* [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
-* [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
+- [azteccli](#azteccli)
+  - [Getting started](#getting-started)
+  - [Capabilities](#capabilities)
+  - [Commands](#commands)
+  - [`azteccli accountinfo`](#azteccli-accountinfo)
+  - [`azteccli autocomplete [SHELL]`](#azteccli-autocomplete-shell)
+  - [`azteccli balance`](#azteccli-balance)
+  - [`azteccli conf [KEY] [VALUE]`](#azteccli-conf-key-value)
+  - [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
+  - [`azteccli getfees`](#azteccli-getfees)
+  - [`azteccli help [COMMAND]`](#azteccli-help-command)
+  - [`azteccli history`](#azteccli-history)
+  - [`azteccli plugins`](#azteccli-plugins)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
+  - [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
+  - [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
+  - [`azteccli plugins:update`](#azteccli-pluginsupdate)
+  - [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
+  - [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
+  - [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
 
 ## `azteccli accountinfo`
 
