@@ -1,4 +1,4 @@
-import { CliUx, Flags } from "@oclif/core";
+import { CliUx } from "@oclif/core";
 import { Command } from "@oclif/core";
 import {
   createAztecSdk,
@@ -33,39 +33,7 @@ export abstract class BaseCommand extends Command {
   protected accountKeys: AztecAccountKeys | null = null;
   protected aztecAccount: AztecSdkUser | null = null;
 
-  static flags = {
-    // customSignerMessage: Flags.string({
-    //   description: "Custom message to sign to derive an Aztec signing key.",
-    //   exclusive: ["useAccountKeySigner", "signingKey"],
-    // }),
-    // customAccountMessage: Flags.string({
-    //   char: "m",
-    //   description: "Custom message to sign to derive an Aztec account key",
-    //   exclusive: ["accountKey"],
-    // }),
-    // accountKey: Flags.string({
-    //   char: "k",
-    //   description:
-    //     "An Aztec account private key to use instead of deriving one from an Ethereum wallet.",
-    //   exclusive: ["customAccountMessage"],
-    // }),
-    // useAccountKeySigner: Flags.boolean({
-    //   description:
-    //     "Create the Aztec signer from the account key and not a registered spending key. Use this if you have funds associated with your account key and not a spending key.",
-    //   default: false,
-    //   exclusive: ["signingKey", "customSignerMessage"],
-    // }),
-    // spendingKeyRequired: Flags.boolean({
-    //   description:
-    //     "Should the recipient be required to have a registered spending key?",
-    //   default: false,
-    // }),
-    // signingKey: Flags.string({
-    //   exclusive: ["useAccountKeySigner", "customSignerMessage"],
-    //   description:
-    //     "An Aztec signing private key to use instead of deriving one from an Ethereum wallet.",
-    // }),
-  };
+  static flags = {};
 
   async init() {
     // await this.setConfig();
