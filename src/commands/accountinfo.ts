@@ -3,8 +3,7 @@ import { BaseCommand } from "../base";
 import { Flags } from "../flags";
 
 export default class AccountInfo extends BaseCommand {
-  static description =
-    "Print total balance, spendable balance associated with the privacy account and spendable balance associated with spending keys.";
+  static description = "Print Grupmkin address public key.";
 
   static flags = {
     ...BaseCommand.flags,
@@ -20,7 +19,7 @@ export default class AccountInfo extends BaseCommand {
 
   static enableJsonFlag = true;
 
-  public async run(): Promise<{ publicKey: string}> {
+  public async run(): Promise<{ publicKey: string }> {
     let accountKeys = await this.getAccountKeys();
 
     this.log(
@@ -29,6 +28,6 @@ export default class AccountInfo extends BaseCommand {
     );
 
     await this.sdk.destroy();
-    return { publicKey: accountKeys!.publicKey.toString()}
+    return { publicKey: accountKeys!.publicKey.toString() };
   }
 }
