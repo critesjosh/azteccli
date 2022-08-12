@@ -20,7 +20,7 @@ export default class AccountInfo extends BaseCommand {
   static enableJsonFlag = true;
 
   public async run(): Promise<{ publicKey: string }> {
-    let accountKeys = await this.getAccountKeys();
+    const accountKeys = await this.getAccountKeysAndSyncAccount();
 
     this.log(
       "Aztec account public key (GrumpkinAddress)",

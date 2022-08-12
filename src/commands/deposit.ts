@@ -2,6 +2,10 @@ import { AssetValue, GrumpkinAddress, TxSettlementTime } from "@aztec/sdk";
 // import { Flags } from "@oclif/core";
 import { Flags } from "../flags";
 import { BaseCommand } from "../base";
+import {
+  parseTime,
+  parseAztecRecipient,
+} from "../utils";
 
 export default class Deposit extends BaseCommand {
   static description = "Deposit funds to aztec.";
@@ -12,7 +16,7 @@ export default class Deposit extends BaseCommand {
     "azteccli deposit 1 -a dai -t instant",
     "azteccli deposit 1 -a eth -r 0x20e4fee0dace3d58b5d30a1fcd2ec682581e92ccd1b23f9a25b007097c86cd61033293008cb23cc99c07a6c9f6e7d9edd6a46373f7f01b9e7c2b67464690066f",
     "azteccli deposit 1 -m 'custom account key derivation message'",
-    "azteccli deposit 1 --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9"
+    "azteccli deposit 1 --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9",
   ];
 
   static flags = {
@@ -22,23 +26,27 @@ export default class Deposit extends BaseCommand {
     time: Flags.time,
     customAccountMessage: Flags.customAccountMessage,
     accountKey: Flags.accountKey,
-    spendingKeyRequired: Flags.spendingKeyRequired
+    spendingKeyRequired: Flags.spendingKeyRequired,
   };
 
   static args = [{ name: "amount", required: true }];
 
   public async run(): Promise<void> {
-    const { args, flags } = await this.parse();
-    await this.getAccountKeys();
+    const { args } = await this.parse()
+    let accountKeys = await this.getAccountKeysAndSyncAccount();
     // defaults to next rollup
-    let settlementTime = this.parseTime(flags.time)
+    let settlementTime = parseTime(this.flags.time);
     // defaults to the users account
-    let recipient = await this.parseAztecRecipient(this.sdk, flags.recipient)
+    let recipient = await parseAztecRecipient(
+      this.flags.recipient,
+      accountKeys!,
+      this.sdk
+    );
 
     const tokenQuantity = BigInt((args.amount as number) * 10 ** 18);
-    
+
     const tokenAssetId = this.sdk!.getAssetIdBySymbol(
-      flags.asset.toUpperCase()
+      this.flags.asset.toUpperCase()
     );
 
     const tokenDepositFee = (await this.sdk!.getDepositFees(tokenAssetId))[
@@ -55,7 +63,7 @@ export default class Deposit extends BaseCommand {
       tokenAssetValue,
       tokenDepositFee,
       recipient,
-      flags.spendingKeyRequired
+      this.flags.spendingKeyRequired
     );
     await tokenDepositController.createProof();
     await tokenDepositController.sign();

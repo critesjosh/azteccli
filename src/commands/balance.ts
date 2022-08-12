@@ -18,7 +18,7 @@ export default class Balance extends BaseCommand {
   ];
 
   public async run(): Promise<void> {
-    let accountKeys = await this.getAccountKeys();
+    let accountKeys = await this.getAccountKeysAndSyncAccount();
 
     let balance = this.sdk.fromBaseUnits(
       await this.sdk.getBalance(
