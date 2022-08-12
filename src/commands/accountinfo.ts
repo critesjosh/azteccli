@@ -27,7 +27,6 @@ export default class AccountInfo extends BaseCommand {
       accountKeys!.publicKey.toString()
     );
 
-    await this.sdk.destroy();
     return { publicKey: accountKeys!.publicKey.toString() };
   }
 }

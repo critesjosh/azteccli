@@ -24,8 +24,6 @@ export default class GetFees extends BaseCommand {
 
     this.logFees("deposit", flags.asset, depositFees)
     this.logFees("withdraw", flags.asset, withdrawFees)
-
-    await this.sdk.destroy()
   }
 
   public async logFees(action: string, asset: string, fees: AssetValue[]){

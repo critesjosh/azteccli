@@ -1,11 +1,7 @@
-import {
-  AssetValue,
-  EthAddress,
-  TxSettlementTime,
-} from "@aztec/sdk";
-// import { flags } from "@oclif/core";
-import { Flags } from "../flags"
+import { AssetValue, EthAddress, TxSettlementTime } from "@aztec/sdk";
+import { Flags } from "../flags";
 import { BaseCommand } from "../base";
+import { parseTime } from "../utils";
 
 export default class Withdraw extends BaseCommand {
   static description = "Withdraw funds from the Aztec network.";
@@ -29,18 +25,18 @@ export default class Withdraw extends BaseCommand {
   static args = [{ name: "amount" }];
 
   public async run(): Promise<void> {
-    const { args, flags } = await this.parse();
-    let settlementTime = this.parseTime(flags.time);
-    let recipient: EthAddress = EthAddress.fromString(flags.recipient);
+    const { time, asset, recipient } = this.flags;
+    const { amount } = this.args;
 
-    const accountKeys = await this.getAccountKeys();
+    let settlementTime = parseTime(time);
+    let to = EthAddress.fromString(recipient);
+
+    const accountKeys = await this.getAccountKeysAndSyncAccount();
     const signer = await this.getSigner();
 
-    const tokenQuantity = BigInt((args.amount as number) * 10 ** 18);
-    const tokenAssetId = this.sdk!.getAssetIdBySymbol(
-      flags.asset.toUpperCase()
-    );
-    const tokenTransferFee = (await this.sdk!.getWithdrawFees(tokenAssetId))[
+    const tokenQuantity = BigInt((amount as number) * 10 ** 18);
+    const tokenAssetId = this.sdk.getAssetIdBySymbol(asset.toUpperCase());
+    const tokenTransferFee = (await this.sdk.getWithdrawFees(tokenAssetId))[
       settlementTime
     ];
     const tokenAssetValue: AssetValue = {
@@ -48,17 +44,15 @@ export default class Withdraw extends BaseCommand {
       value: tokenQuantity,
     };
     const tokenWithdrawController = this.sdk!.createWithdrawController(
-      accountKeys!.publicKey,
+      accountKeys.publicKey,
       signer,
       tokenAssetValue,
       tokenTransferFee,
-      recipient
+      to
       // optional feePayer
     );
 
     let txId = await tokenWithdrawController.send();
     this.log("Aztec txId", txId.toString());
-
-    await this.sdk.destroy();
   }
 }

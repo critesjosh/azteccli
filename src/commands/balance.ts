@@ -57,7 +57,5 @@ export default class Balance extends BaseCommand {
       "Pending registered account zkETH Balance: ",
       pendingSpendingKeySum
     );
-
-    await this.sdk.destroy();
   }
 }

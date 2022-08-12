@@ -32,7 +32,7 @@ export default class History extends BaseCommand {
   }
 
   public async run(): Promise<{ txs: any }> {
-    const accountKeys = await this.getAccountKeys();
+    const accountKeys = await this.getAccountKeysAndSyncAccount();
     let txs = await this.sdk.getUserTxs(accountKeys!.publicKey);
 
     txs.map((tx) => {
@@ -58,16 +58,6 @@ export default class History extends BaseCommand {
         this.log(this.pad("Output value B:"), tx.outputValueB);
       }
     });
-
-    await this.sdk.destroy();
     return { txs };
   }
 }
-
-// function toObject() {
-//   return JSON.parse(JSON.stringify(this, (key, value) =>
-//       typeof value === 'bigint'
-//           ? value.toString()
-//           : value // return everything else unchanged
-//   ));
-// }

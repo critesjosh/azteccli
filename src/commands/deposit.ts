@@ -2,10 +2,7 @@ import { AssetValue, GrumpkinAddress, TxSettlementTime } from "@aztec/sdk";
 // import { Flags } from "@oclif/core";
 import { Flags } from "../flags";
 import { BaseCommand } from "../base";
-import {
-  parseTime,
-  parseAztecRecipient,
-} from "../utils";
+import { parseTime, parseAztecRecipient } from "../utils";
 
 export default class Deposit extends BaseCommand {
   static description = "Deposit funds to aztec.";
@@ -32,18 +29,18 @@ export default class Deposit extends BaseCommand {
   static args = [{ name: "amount", required: true }];
 
   public async run(): Promise<void> {
-    const { args } = await this.parse()
+    // const { args } = await this.parse()
     let accountKeys = await this.getAccountKeysAndSyncAccount();
     // defaults to next rollup
     let settlementTime = parseTime(this.flags.time);
     // defaults to the users account
     let recipient = await parseAztecRecipient(
       this.flags.recipient,
-      accountKeys!,
+      accountKeys,
       this.sdk
     );
 
-    const tokenQuantity = BigInt((args.amount as number) * 10 ** 18);
+    const tokenQuantity = BigInt((this.args.amount as number) * 10 ** 18);
 
     const tokenAssetId = this.sdk!.getAssetIdBySymbol(
       this.flags.asset.toUpperCase()
@@ -76,7 +73,5 @@ export default class Deposit extends BaseCommand {
     }
     let txId = await tokenDepositController.send();
     this.log("Aztec txId", txId.toString());
-
-    await this.sdk.destroy();
   }
 }

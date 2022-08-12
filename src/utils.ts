@@ -148,7 +148,7 @@ export async function parseAztecRecipient(
       return GrumpkinAddress.fromString(input);
     }
   } else {
-    return accountKeys!.publicKey;
+    return accountKeys.publicKey;
   }
 }
 
@@ -199,7 +199,7 @@ export async function getDefaultSigner(
   ethereumAccount: EthAddress
 ): Promise<SchnorrSigner> {
   if (
-    (await sdk.isAccountRegistered(accountKeys.publicKey)) &&
+    !(await sdk.isAccountRegistered(accountKeys.publicKey)) &&
     !flags.accountKeySigner
   ) {
     CliUx.ux.action.start("awaiting user signature");
@@ -207,6 +207,6 @@ export async function getDefaultSigner(
     CliUx.ux.action.stop();
     return await sdk.createSchnorrSigner(privateKey);
   } else {
-    return await sdk.createSchnorrSigner(accountKeys!.privateKey);
+    return await sdk.createSchnorrSigner(accountKeys.privateKey);
   }
 }

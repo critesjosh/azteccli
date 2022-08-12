@@ -31,7 +31,6 @@ export type AztecAccountKeys = {
 };
 
 export abstract class BaseCommand extends Command {
-  // public requireSynced = true;
   public sdk!: AztecSdk;
   public ethereumProvider!: EthereumProvider;
   public ethereumAccount!: EthAddress;
@@ -39,13 +38,15 @@ export abstract class BaseCommand extends Command {
   public chainId!: number;
   protected accountKeys: AztecAccountKeys | null = null;
   public flags: any;
-  // protected aztecAccount: AztecSdkUser | null = null;
+  public args: any;
+  protected aztecAccount: AztecSdkUser | null = null;
 
   static flags = {};
 
   async init() {
     const { args, flags } = await this.parse();
     this.flags = flags;
+    this.args = args;
 
     if (config.get("wallet") === "walletconnect") {
       let wcProvider = await createWalletconnectProvider(
@@ -92,6 +93,7 @@ export abstract class BaseCommand extends Command {
   }
 
   async getSigner(): Promise<SchnorrSigner> {
+    console.log(this.flags)
     if (this.flags.signingKey) {
       return await this.sdk.createSchnorrSigner(
         Buffer.from(this.flags.signingKey as string)
@@ -122,7 +124,17 @@ export abstract class BaseCommand extends Command {
       this.ethereumProvider,
       this.ethereumAccount
     );
-    await getAndSyncAccount(this.sdk, this.accountKeys);
+    this.aztecAccount = await getAndSyncAccount(this.sdk, this.accountKeys);
     return this.accountKeys;
+  }
+
+  async finally(arg: Error | undefined) {
+    try {
+      await this.sdk.destroy();
+    } catch (error) {
+      this.log(`Failed to close the connection: ${error}`)
+    }
+    
+    return super.finally(arg);
   }
 }

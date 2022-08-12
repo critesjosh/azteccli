@@ -2,6 +2,7 @@ import { AssetValue, GrumpkinAddress, TxSettlementTime } from "@aztec/sdk";
 import { BaseCommand } from "../base";
 // import { Flags} from "@oclif/core";
 import { Flags } from "../flags";
+import { parseAztecRecipient, parseTime } from "../utils";
 
 export default class Transfer extends BaseCommand {
   static description = "Transfer funds on the Aztec network.";
@@ -26,43 +27,42 @@ export default class Transfer extends BaseCommand {
   static args = [{ name: "amount", required: true }];
 
   public async run(): Promise<void> {
-    const { args, flags } = await this.parse();
-    let settlementTime = this.parseTime(flags.time);
-    let recipient: GrumpkinAddress = await this.parseAztecRecipient(
-      this.sdk,
-      flags.recipient
+    const { time, recipient, asset, spendingKeyRequired } = this.flags
+    const { amount } = this.args
+
+    let settlementTime = parseTime(time);
+
+    const accountKeys = await this.getAccountKeysAndSyncAccount();
+
+    let to = await parseAztecRecipient(
+      recipient,
+      accountKeys,
+      this.sdk
     );
 
-    if (flags.time === "instant") {
-      settlementTime = TxSettlementTime.INSTANT;
-    }
-
-    const accountKeys = await this.getAccountKeys();
     const signer = await this.getSigner();
 
-    const tokenQuantity = BigInt((args.amount as number) * 10 ** 18);
-    const tokenAssetId = this.sdk!.getAssetIdBySymbol(
-      flags.asset.toUpperCase()
+    const tokenQuantity = BigInt((amount as number) * 10 ** 18);
+    const tokenAssetId = this.sdk.getAssetIdBySymbol(
+      asset.toUpperCase()
     );
-    const tokenTransferFee = (await this.sdk!.getTransferFees(tokenAssetId))[
+    const tokenTransferFee = (await this.sdk.getTransferFees(tokenAssetId))[
       settlementTime
     ];
     const tokenAssetValue: AssetValue = {
       assetId: tokenAssetId,
       value: tokenQuantity,
     };
-    const tokenTransferController = this.sdk!.createTransferController(
-      accountKeys!.publicKey,
+    const tokenTransferController = this.sdk.createTransferController(
+      accountKeys.publicKey,
       signer,
       tokenAssetValue,
       tokenTransferFee,
-      recipient,
-      flags.spendingKeyRequired
+      to,
+      spendingKeyRequired
     );
 
     let txId = await tokenTransferController.send();
     this.log("Aztec txId", txId.toString());
-
-    await this.sdk.destroy();
   }
 }

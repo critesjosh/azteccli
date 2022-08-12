@@ -1,7 +1,9 @@
-import { EthAddress, GrumpkinAddress, TxSettlementTime } from "@aztec/sdk";
+import { EthAddress, GrumpkinAddress, SchnorrSigner, TxSettlementTime } from "@aztec/sdk";
 import { Flags } from "../flags";
 import { flags } from "@oclif/command";
 import { BaseCommand } from "../base";
+import { CLIError } from "@oclif/core/lib/errors";
+import { parseTime } from "../utils";
 
 export default class Register extends BaseCommand {
   static description = "Register a new aztec account.";
@@ -28,6 +30,7 @@ export default class Register extends BaseCommand {
         "optional alternative ethereum depositor to pay fees if you're not paying with the account you're currently logged in with",
       required: false,
     }),
+    asset: Flags.asset(),
     customAccountMessage: Flags.customAccountMessage,
     accountKey: Flags.accountKey,
     useAccountKeySigner: Flags.useAccountKeySigner,
@@ -45,49 +48,54 @@ export default class Register extends BaseCommand {
   ];
 
   public async run(): Promise<void> {
-    const { args, flags } = await this.parse();
-    const accountKeys = await this.getAccountKeys();
+    const { alias, ttpPubKey, time, asset } = this.flags;
+    const { deposit } = this.args;
 
-    if (await this.sdk.isAliasRegistered(flags.alias, true)) {
-      throw new Error("Alias is already registered.");
+    if (await this.sdk.isAliasRegistered(alias, true)) {
+      throw new CLIError("Alias is already registered.");
     }
+
+    const accountKeys = await this.getAccountKeysAndSyncAccount();
+
+    if(await this.sdk.isAccountRegistered(accountKeys.publicKey)){
+      throw new CLIError("Account is already registered.")
+    }
+
+    const depositor = this.flags.depositor
+      ? EthAddress.fromString(this.flags.depositor)
+      : this.ethereumAccount;
 
     let recoveryPublicKey = undefined;
-    let depositor = this.ethereumAccount;
 
-    if (flags.depositor) {
-      depositor = EthAddress.fromString(flags.depositor);
-    }
-
-    if (flags.ttpPubKey) {
+    if (ttpPubKey) {
       let recoveryPayloads = await this.sdk.generateAccountRecoveryData(
-        accountKeys!.publicKey,
-        flags.alias,
-        [GrumpkinAddress.fromString(flags.ttpPubKey)]
+        accountKeys.publicKey,
+        alias,
+        [GrumpkinAddress.fromString(ttpPubKey)]
       );
       recoveryPublicKey = recoveryPayloads[0].recoveryPublicKey;
     } else {
       this.log("Recovery public key not set for this account.");
     }
 
-    let settlementTime = this.parseTime(flags.time);
+    let settlementTime = await parseTime(time);
 
     const signer = await this.getSigner();
 
-    const tokenQuantity = BigInt((args.deposit as number) * 10 ** 18);
-    const assetId = this.sdk!.getAssetIdBySymbol(flags.asset.toUpperCase());
-    const deposit = { assetId, value: tokenQuantity };
+    const tokenQuantity = BigInt((deposit as number) * 10 ** 18);
+    const assetId = this.sdk.getAssetIdBySymbol(asset.toUpperCase());
+    const depositValue = { assetId, value: tokenQuantity };
     const txFee = (await this.sdk.getRegisterFees(deposit))[settlementTime];
 
     const controller = await this.sdk.createRegisterController(
-      accountKeys!.publicKey,
-      flags.alias,
-      accountKeys!.privateKey,
+      accountKeys.publicKey,
+      alias,
+      accountKeys.privateKey,
       signer.getPublicKey(),
-      recoveryPublicKey,
-      deposit,
+      recoveryPublicKey, // defaults to nothing
+      depositValue,
       txFee,
-      depositor
+      depositor // defaults to the logged in Ethereum accounts
       // optional feePayer requires an Aztec Signer to pay the fee
     );
 
@@ -101,7 +109,5 @@ export default class Register extends BaseCommand {
     let txId = await controller.send();
 
     console.log("Register tx id: ", txId.toString());
-
-    await this.sdk.destroy();
   }
 }
