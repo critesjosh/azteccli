@@ -1,6 +1,12 @@
-import { UserDefiClaimTx, UserDefiTx, UserPaymentTx } from "@aztec/sdk";
+import {
+  UserAccountTx,
+  UserDefiClaimTx,
+  UserDefiTx,
+  UserPaymentTx,
+} from "@aztec/sdk";
 import { BaseCommand } from "../base";
 import { Flags } from "../flags";
+import networkConfig from "../network_config";
 
 (BigInt.prototype as any).toJSON = function () {
   return this.toString();
@@ -31,14 +37,16 @@ export default class History extends BaseCommand {
     return text.padEnd(20, " ");
   }
 
-  public async run(): Promise<{ txs: any }> {
+  public async run(): Promise<{ txsWithUrl: any }> {
     const accountKeys = await this.getAccountKeysAndSyncAccount();
     let txs = await this.sdk.getUserTxs(accountKeys!.publicKey);
 
-    txs.map((tx) => {
+    let txsWithUrl = txs.map((tx) => {
+      const url = `${networkConfig[this.chainId].explorerUrl}tx/${tx.txId?.toString()}`
       this.log("----------------");
       this.log(this.pad("Tx Type:"), tx.constructor.name);
       this.log(this.pad("Transaction Id:"), tx.txId?.toString());
+      this.log(this.pad("Explorer Url:"), url)
       this.log(this.pad("Settled:"), tx.settled?.toUTCString());
       if (tx instanceof UserDefiTx) {
         this.log(this.pad("Deposit Value:"), tx.depositValue);
@@ -57,7 +65,12 @@ export default class History extends BaseCommand {
         this.log(this.pad("Output value A:"), tx.outputValueA);
         this.log(this.pad("Output value B:"), tx.outputValueB);
       }
+      return {
+        ...tx,
+        url
+      };
     });
-    return { txs };
+
+    return { txsWithUrl };
   }
 }
