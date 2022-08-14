@@ -10,7 +10,6 @@ import {
   AztecSdkUser,
   GrumpkinAddress,
   SchnorrSigner,
-  TxSettlementTime,
 } from "@aztec/sdk";
 import { ethers } from "ethers";
 import { JsonRpcSigner } from "@ethersproject/providers";
@@ -23,6 +22,7 @@ import {
   getAccountKeys,
   getAndSyncAccount,
   getDefaultSigner,
+  mergeConfigWithFlags,
 } from "./utils";
 
 export type AztecAccountKeys = {
@@ -45,7 +45,7 @@ export abstract class BaseCommand extends Command {
 
   async init() {
     const { args, flags } = await this.parse();
-    this.flags = flags;
+    this.flags = mergeConfigWithFlags(config, flags);
     this.args = args;
 
     if (config.get("wallet") === "walletconnect") {

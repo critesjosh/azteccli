@@ -210,3 +210,25 @@ export async function getDefaultSigner(
     return await sdk.createSchnorrSigner(accountKeys.privateKey);
   }
 }
+
+export function mergeConfigWithFlags(config: any, flags: any) {
+  const configKeys = [
+    "customAccountMessage",
+    "accountKey",
+    "useAccountKeySigner",
+    "signingKey",
+    "customSignerMessage",
+  ];
+
+  let flagsWithConfig = flags;
+
+  configKeys.map((key) => {
+    if (flags[key]) return;
+    const configValue = config.get(key);
+    if (configValue) {
+      flags[key] = configValue;
+    }
+  });
+
+  return flagsWithConfig;
+}

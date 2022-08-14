@@ -17,6 +17,33 @@ Uses [conf-cli](https://github.com/natzcam/conf-cli) for setting and getting the
 5. Start [Truffle dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/). `$ truffle dashboard`
 6. Run a command: (ie`$ azteccli history`)
 
+## Config
+
+You can save some account information that is passed to commands as flags in the config so you don't have to enter every time. These flags can be saved in the config:
+
+- `accountKey`
+- `signingKey`
+- `customAccountMessage`
+- `customSignerMessage`
+- `useAccountKeySigner`
+
+Some examples:
+
+```shell
+azteccli conf accountKey f91a55b3338cb19acd3ac14ce79ed2d034249e3810404145cd484989c09262e4
+azteccli conf customAccountMessage "This is a new message to sign with my Ethereum wallet to derive a new set of Account Keys." 
+azteccli conf accountKey -d # deletes the saved accountKey value
+```
+
+This information is saved in a file on your machine so it will persist until you delete it or change it.
+
+Flag info overrides config info. So if information is passed to a command via a flag and there is corresponding information saved in the config file, the info passed via the flag will be used. For example, if accountKey `abc` is saved in the config and accountKey `123` is passed via a flag, accountKey `123` will be used.
+
+To remove an item from the config, run `azteccli conf {KEY} -d`. For example, `azteccli conf accountKey -d` will remove the saved accountKey from the config file.
+
+Be careful with what information you save in this file, particularly account keys or signing keys. I recommend only saving private keys for testnet accounts.
+
+
 ## Capabilities
 
 - Connect to Metamask or other wallet via WalletConnect (enables hardware wallet support)
@@ -44,6 +71,7 @@ TODO:
   <!-- commands -->
 - [azteccli](#azteccli)
   - [Getting started](#getting-started)
+  - [Config](#config)
   - [Capabilities](#capabilities)
   - [Commands](#commands)
   - [`azteccli accountinfo`](#azteccli-accountinfo)

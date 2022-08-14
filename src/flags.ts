@@ -1,4 +1,3 @@
-import { AztecSdk, GrumpkinAddress, TxSettlementTime } from "@aztec/sdk";
 import { flags } from "@oclif/command";
 import { CLIError } from "@oclif/errors";
 import { ParseFn } from "@oclif/parser/lib/args";
@@ -10,10 +9,6 @@ const parseAddress: ParseFn<string> = (input: string) => {
   } else {
     throw new CLIError(`${input} is not a valid address`);
   }
-};
-
-const parseSigningKey: ParseFn<Buffer> = (input: string) => {
-  return Buffer.from(input);
 };
 
 export const Flags = {
