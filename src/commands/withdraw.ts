@@ -2,6 +2,7 @@ import { AssetValue, EthAddress, TxSettlementTime } from "@aztec/sdk";
 import { Flags } from "../flags";
 import { BaseCommand } from "../base";
 import { parseTime } from "../utils";
+import networkConfig from "../network_config";
 
 export default class Withdraw extends BaseCommand {
   static description = "Withdraw funds from the Aztec network.";
@@ -53,6 +54,6 @@ export default class Withdraw extends BaseCommand {
     );
 
     let txId = await tokenWithdrawController.send();
-    this.log("Aztec txId", txId.toString());
+    this.log('View transaction on the block explorer', `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`)
   }
 }

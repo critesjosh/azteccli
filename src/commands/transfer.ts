@@ -2,6 +2,7 @@ import { AssetValue, GrumpkinAddress, TxSettlementTime } from "@aztec/sdk";
 import { BaseCommand } from "../base";
 // import { Flags} from "@oclif/core";
 import { Flags } from "../flags";
+import networkConfig from "../network_config";
 import { parseAztecRecipient, parseTime } from "../utils";
 
 export default class Transfer extends BaseCommand {
@@ -63,6 +64,6 @@ export default class Transfer extends BaseCommand {
     );
 
     let txId = await tokenTransferController.send();
-    this.log("Aztec txId", txId.toString());
+    this.log('View transaction on the block explorer', `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`)
   }
 }

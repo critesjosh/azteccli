@@ -4,6 +4,7 @@ import { flags } from "@oclif/command";
 import { BaseCommand } from "../base";
 import { CLIError } from "@oclif/core/lib/errors";
 import { parseTime } from "../utils";
+import networkConfig from "../network_config";
 
 export default class Register extends BaseCommand {
   static description = "Register a new aztec account.";
@@ -108,6 +109,6 @@ export default class Register extends BaseCommand {
     await controller.sign();
     let txId = await controller.send();
 
-    console.log("Register tx id: ", txId.toString());
+    this.log('View transaction on the block explorer', `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`)
   }
 }

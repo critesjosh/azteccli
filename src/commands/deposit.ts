@@ -3,6 +3,7 @@ import { AssetValue, GrumpkinAddress, TxSettlementTime } from "@aztec/sdk";
 import { Flags } from "../flags";
 import { BaseCommand } from "../base";
 import { parseTime, parseAztecRecipient } from "../utils";
+import networkConfig from "../network_config";
 
 export default class Deposit extends BaseCommand {
   static description = "Deposit funds to aztec.";
@@ -72,6 +73,6 @@ export default class Deposit extends BaseCommand {
       await tokenDepositController.awaitDepositFundsToContract();
     }
     let txId = await tokenDepositController.send();
-    this.log("Aztec txId", txId.toString());
+    this.log('View transaction on the block explorer', `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`)
   }
 }
