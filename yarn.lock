@@ -48,7 +48,7 @@
   integrity sha512-0Daru8FUGyrjYK9I9oCoDJBCxD/QFP48Jd4cGCgzNbGzLmIcXQoPxu64NW9aLkgJoLpxjdaX44zfnBIM/i+BQQ==
   dependencies:
     "@aztec/barretenberg" "2.1.37"
-    "@aztec/bridge-clients" "2.1.37"
+    "@aztec/bridge-clients" "0.1.50"
     "@ethersproject/experimental" "5.5.0"
     "@openzeppelin/contracts" "4.6.0"
     "@openzeppelin/contracts-upgradeable" "4.6.0"
