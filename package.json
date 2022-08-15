@@ -50,6 +50,11 @@
   "license": "MIT",
   "main": "dist/index.js",
   "oclif": {
+    "update":{
+      "s3":{
+        "bucket": "azteccli"
+      }
+    },
     "bin": "azteccli",
     "dirname": "azteccli",
     "commands": "./dist/commands",
