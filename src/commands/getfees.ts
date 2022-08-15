@@ -15,15 +15,13 @@ export default class GetFees extends BaseCommand {
   }
 
   public async run(): Promise<void> {
-    const { flags } = await this.parse();
-
-    const tokenAssetId = this.sdk!.getAssetIdBySymbol(flags.asset.toUpperCase());
+    const tokenAssetId = this.sdk!.getAssetIdBySymbol(this.flags.asset.toUpperCase());
 
     const depositFees = await this.sdk.getDepositFees(tokenAssetId)
     const withdrawFees = await this.sdk.getWithdrawFees(tokenAssetId)
 
-    this.logFees("deposit", flags.asset, depositFees)
-    this.logFees("withdraw", flags.asset, withdrawFees)
+    this.logFees("deposit", this.flags.asset, depositFees)
+    this.logFees("withdraw", this.flags.asset, withdrawFees)
   }
 
   public async logFees(action: string, asset: string, fees: AssetValue[]){
