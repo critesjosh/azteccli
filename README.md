@@ -43,7 +43,6 @@ To remove an item from the config, run `azteccli conf {KEY} -d`. For example, `a
 
 Be careful with what information you save in this file, particularly account keys or signing keys. I recommend only saving private keys for testnet accounts.
 
-
 ## Capabilities
 
 - Connect to Metamask or other wallet via WalletConnect (enables hardware wallet support)
@@ -69,26 +68,31 @@ TODO:
 ## Commands
 
   <!-- commands -->
-* [`azteccli accountinfo`](#azteccli-accountinfo)
-* [`azteccli autocomplete [SHELL]`](#azteccli-autocomplete-shell)
-* [`azteccli balance`](#azteccli-balance)
-* [`azteccli conf [KEY] [VALUE]`](#azteccli-conf-key-value)
-* [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
-* [`azteccli getfees`](#azteccli-getfees)
-* [`azteccli help [COMMAND]`](#azteccli-help-command)
-* [`azteccli history`](#azteccli-history)
-* [`azteccli plugins`](#azteccli-plugins)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
-* [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
-* [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
-* [`azteccli plugins:update`](#azteccli-pluginsupdate)
-* [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
-* [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
-* [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
+- [azteccli](#azteccli)
+  - [Getting started](#getting-started)
+  - [Config](#config)
+  - [Capabilities](#capabilities)
+  - [Commands](#commands)
+  - [`azteccli accountinfo`](#azteccli-accountinfo)
+  - [`azteccli autocomplete [SHELL]`](#azteccli-autocomplete-shell)
+  - [`azteccli balance`](#azteccli-balance)
+  - [`azteccli conf [KEY] [VALUE]`](#azteccli-conf-key-value)
+  - [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
+  - [`azteccli getfees`](#azteccli-getfees)
+  - [`azteccli help [COMMAND]`](#azteccli-help-command)
+  - [`azteccli history`](#azteccli-history)
+  - [`azteccli plugins`](#azteccli-plugins)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
+  - [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
+  - [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
+  - [`azteccli plugins:update`](#azteccli-pluginsupdate)
+  - [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
+  - [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
+  - [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
 
 ## `azteccli accountinfo`
 

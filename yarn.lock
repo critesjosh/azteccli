@@ -61,7 +61,7 @@
     ethers "5.5.1"
     typescript "^4.4.4"
 
-"@aztec/bridge-clients@2.1.37":
+"@aztec/bridge-clients@0.1.50", "@aztec/bridge-clients@2.1.37":
   version "0.1.50"
   resolved "https://registry.yarnpkg.com/@aztec/bridge-clients/-/bridge-clients-0.1.50.tgz#662c3d5b52658108911d54ac903ff88cc24a0102"
   integrity sha512-25MMZ1rty3GZ3Z6vir4BLXqamhfmmqQpdDBoco28Sao+IFUtFfqP939RsCo8SGsGryKYHWPf/7c/u3SO2fnOlA==
