@@ -8,7 +8,7 @@
   },
   "bugs": "https://github.com/critesjosh/azteccli/issues",
   "dependencies": {
-    "@aztec/sdk": "2.1.37",
+    "@aztec/sdk": "2.1.38",
     "@oclif/command": "^1.8.16",
     "@oclif/core": "^1",
     "@oclif/parser": "^3.8.7",
@@ -18,9 +18,6 @@
     "@walletconnect/web3-provider": "^1.7.8",
     "conf-cli": "^0.1.9",
     "qrcode-terminal": "^0.12.0"
-  },
-  "overrides": {
-    "@aztec/bridge-clients": "0.1.50"
   },
   "devDependencies": {
     "@oclif/test": "^2",
