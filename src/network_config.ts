@@ -13,8 +13,8 @@ let networkConfig: Config = {
     explorerUrl: "https://aztec-connect-prod-explorer.aztec.network/",
   },
   677868: {
-    rollupProvider: "https://api.aztec.network/aztec-connect-dev/falafel/",
-    explorerUrl: "https://aztec-connect-dev-explorer.aztec.network/",
+    rollupProvider: "https://api.aztec.network/aztec-connect-testnet/falafel/",
+    explorerUrl: "https://aztec-connect-testnet-explorer.aztec.network/",
   },
 };
 
