@@ -17,12 +17,17 @@ export default class Transfer extends BaseCommand {
 
   static flags = {
     ...BaseCommand.flags,
+    asset: Flags.asset(),
     time: Flags.time,
     recipient: Flags.recipient({
       required: true,
     }),
     customAccountMessage: Flags.customAccountMessage,
     accountKey: Flags.accountKey,
+    useAccountKeySigner: Flags.useAccountKeySigner,
+    signingKey: Flags.signingKey,
+    customSignerMessage: Flags.customSignerMessage,
+    spendingKeyRequired: Flags.spendingKeyRequired,
   };
 
   static args = [{ name: "amount", required: true }];
@@ -54,6 +59,7 @@ export default class Transfer extends BaseCommand {
       assetId: tokenAssetId,
       value: tokenQuantity,
     };
+
     const tokenTransferController = this.sdk.createTransferController(
       accountKeys.publicKey,
       signer,
@@ -63,6 +69,7 @@ export default class Transfer extends BaseCommand {
       spendingKeyRequired
     );
 
+    await tokenTransferController.createProof()
     let txId = await tokenTransferController.send();
     this.log('View transaction on the block explorer', `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`)
   }
