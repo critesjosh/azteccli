@@ -142,12 +142,17 @@ export async function parseAztecRecipient(
   sdk: AztecSdk
 ): Promise<GrumpkinAddress> {
   if (input) {
-    if (await sdk.isAliasRegistered(input)) {
-      return (await sdk.getAccountPublicKey(input))!;
-    } else {
-      return GrumpkinAddress.fromString(input);
+    try{
+      if (await sdk.isAliasRegistered(input)) {
+        return (await sdk.getAccountPublicKey(input))!;
+      } else {
+        return GrumpkinAddress.fromString(input);
+      }
+    } catch {
+      throw new CLIError(`Recipient ${input} is not a recognized alias or public key.`)
     }
   } else {
+    // default recipient is the users account
     return accountKeys.publicKey;
   }
 }
@@ -199,7 +204,7 @@ export async function getDefaultSigner(
   ethereumAccount: EthAddress
 ): Promise<SchnorrSigner> {
   if (
-    !(await sdk.isAccountRegistered(accountKeys.publicKey)) &&
+    // (await sdk.isAccountRegistered(accountKeys.publicKey)) &&
     !flags.accountKeySigner
   ) {
     CliUx.ux.action.start("awaiting user signature");
