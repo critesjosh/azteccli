@@ -21,6 +21,10 @@ export default class Withdraw extends BaseCommand {
     }),
     customAccountMessage: Flags.customAccountMessage,
     accountKey: Flags.accountKey,
+    useAccountKeySigner: Flags.useAccountKeySigner,
+    signingKey: Flags.signingKey,
+    customSignerMessage: Flags.customSignerMessage,
+    spendingKeyRequired: Flags.spendingKeyRequired,
   };
 
   static args = [{ name: "amount" }];
