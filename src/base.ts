@@ -92,13 +92,15 @@ export abstract class BaseCommand extends Command {
     CliUx.ux.action.stop();
   }
 
-  async getSigner(): Promise<SchnorrSigner> {
-    console.log(this.flags)
-    if (this.flags.signingKey) {
+  async getSigner(
+    signingKey: string | undefined = this.flags.signingKey,
+    customSignerMessage: string | undefined = this.flags.customSignerMessage
+  ): Promise<SchnorrSigner> {
+    if (signingKey) {
       return await this.sdk.createSchnorrSigner(
         Buffer.from(this.flags.signingKey as string)
       );
-    } else if (this.flags.customSignerMessage) {
+    } else if (customSignerMessage) {
       return await createNewSignerFromMessage(
         this.flags.customSignerMessage,
         this.ethSigner,
@@ -132,9 +134,9 @@ export abstract class BaseCommand extends Command {
     try {
       await this.sdk.destroy();
     } catch (error) {
-      this.log(`Failed to close the connection: ${error}`)
+      this.log(`Failed to close the connection: ${error}`);
     }
-    
+
     return super.finally(arg);
   }
 }
