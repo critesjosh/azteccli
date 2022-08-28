@@ -13,7 +13,8 @@ Uses [conf-cli](https://github.com/natzcam/conf-cli) for setting and getting the
 1. [Install Nodejs](https://nodejs.org/en/download/)
 2. [Install Truffle](https://trufflesuite.com/docs/truffle/getting-started/installation/) or wallet that supports [WalletConnect](https://walletconnect.com).
 3. Install azteccli. `$ yarn global add azteccli`.
-   1. Add the yarn install location to your PATH if it isn't already. `export PATH="$(yarn global bin):$PATH"`
+   1. You may be prompted to select an `@aztec/bridge-clients` version. Select the highest version number.
+   2. Add the yarn install location to your PATH if it isn't already. `export PATH="$(yarn global bin):$PATH"`
 4. Set metamask. `$ azteccli conf wallet metamask`.
 5. Start [Truffle dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/). `$ truffle dashboard`
 6. Run a command: (ie`$ azteccli history`)
