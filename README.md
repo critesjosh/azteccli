@@ -561,7 +561,7 @@ Register a new aztec account.
 
 ```
 USAGE
-  $ azteccli register [DEPOSIT] -a <value> [--ttpPubKey <value>] [--depositor <value>] [-a eth|dai] [-m
+  $ azteccli register [DEPOSIT] --alias <value> [--ttpPubKey <value>] [--depositor <value>] [-a eth|dai] [-m
     <value> | -k <value>] [--useAccountKeySigner | --signingKey <value> | --customSignerMessage <value>]
     [--spendingKeyRequired]
 
@@ -569,12 +569,12 @@ ARGUMENTS
   DEPOSIT  amount to deposit with registration (can be 0)
 
 FLAGS
-  -a, --alias=<value>                 (required) alias to register
   -a, --asset=<option>                [default: eth]
                                       <options: eth|dai>
   -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
                                       wallet.
   -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
+  --alias=<value>                     (required) alias to register
   --customSignerMessage=<value>       Custom message to sign to derive an Aztec signing key.
   --depositor=<value>                 optional alternative ethereum depositor to pay fees if you're not paying with the
                                       account you're currently logged in with
