@@ -66,4 +66,8 @@ export const Flags = {
     options: ["eth", "dai"],
     default: "eth",
   }),
+  logSdk: flags.boolean({
+    description: "verbose Aztec SDK logging",
+    default: false
+  })
 };

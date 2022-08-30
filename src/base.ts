@@ -25,6 +25,7 @@ import {
   mergeConfigWithFlags,
 } from "./utils";
 import { CLIError } from "@oclif/core/lib/errors";
+import { Flags } from "./flags";
 
 export type AztecAccountKeys = {
   publicKey: GrumpkinAddress;
@@ -42,7 +43,9 @@ export abstract class BaseCommand extends Command {
   public args: any;
   protected aztecAccount: AztecSdkUser | null = null;
 
-  static flags = {};
+  static flags = {
+    logSdk: Flags.logSdk,
+  };
 
   async init() {
     const { args, flags } = await this.parse();
@@ -69,9 +72,11 @@ export abstract class BaseCommand extends Command {
         this.ethereumAccount = EthAddress.fromString(
           await this.ethSigner!.getAddress()
         );
-      } catch (error:any) {
-        this.log(error)
-        throw new CLIError("Make sure to start Truffle dashboard before running a command when Metamask is the specified wallet.");
+      } catch (error: any) {
+        this.log(error);
+        throw new CLIError(
+          "Make sure to start Truffle dashboard before running a command when Metamask is the specified wallet."
+        );
       }
     }
 
@@ -84,11 +89,13 @@ export abstract class BaseCommand extends Command {
 
     CliUx.ux.action.start("setting up the SDK");
 
+    let debug = this.flags.logSdk ? "bb:*" : "";
+
     this.sdk = await createAztecSdk(this.ethereumProvider, {
       serverUrl: networkConfig[this.chainId].rollupProvider,
       pollInterval: 10000,
       // memoryDb: true,
-      debug: "bb:*",
+      debug,
       flavour: SdkFlavour.PLAIN,
       minConfirmation: 1, // ETH block confirmations
     });
@@ -115,8 +122,8 @@ export abstract class BaseCommand extends Command {
         this.ethereumAccount,
         this.sdk
       );
-    } else if (useAccountKeySigner){
-      return await this.sdk.createSchnorrSigner(this.accountKeys!.privateKey)
+    } else if (useAccountKeySigner) {
+      return await this.sdk.createSchnorrSigner(this.accountKeys!.privateKey);
     } else {
       return await getDefaultSigner(
         this.flags,
