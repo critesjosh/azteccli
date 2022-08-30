@@ -1,7 +1,7 @@
 {
   "name": "azteccli",
   "description": "Command line tool for interacting with Aztec.",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "author": "jc@joshcrites.com",
   "bin": {
     "azteccli": "./bin/run"
@@ -10,7 +10,7 @@
   "dependencies": {
     "@aztec/sdk": "2.1.38",
     "@oclif/command": "^1.8.16",
-    "@oclif/core": "1.13.10",
+    "@oclif/core": "^1",
     "@oclif/parser": "^3.8.7",
     "@oclif/plugin-autocomplete": "^1.3.0",
     "@oclif/plugin-help": "^5",
@@ -31,7 +31,7 @@
     "shx": "^0.3.3",
     "ts-node": "^10.2.1",
     "tslib": "^2.3.1",
-    "typescript": "^4.4.3"
+    "typescript": "4.5.5"
   },
   "engines": {
     "node": ">=12.0.0"
