@@ -19,6 +19,7 @@ export default class Withdraw extends BaseCommand {
       description: "Ethereum account address to withdraw to.",
       required: true,
     }),
+    asset: Flags.asset(),
     customAccountMessage: Flags.customAccountMessage,
     accountKey: Flags.accountKey,
     useAccountKeySigner: Flags.useAccountKeySigner,
@@ -57,6 +58,7 @@ export default class Withdraw extends BaseCommand {
       // optional feePayer
     );
 
+    await tokenWithdrawController.createProof()
     let txId = await tokenWithdrawController.send();
     this.log('View transaction on the block explorer', `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`)
   }
