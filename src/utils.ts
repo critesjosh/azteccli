@@ -157,29 +157,6 @@ export async function parseAztecRecipient(
   }
 }
 
-export async function getSigner(
-  flags: any,
-  accountKeys: AztecAccountKeys,
-  ethSigner: JsonRpcSigner,
-  ethereumProvider: EthereumProvider,
-  ethereumAccount: EthAddress,
-  sdk: AztecSdk
-): Promise<SchnorrSigner> {
-  if (flags.signingKey as string) {
-    return await sdk.createSchnorrSigner(Buffer.from(flags.signingKey));
-  } else if (flags.customSignerMessage) {
-    return await createNewSignerFromMessage(
-      flags.customSignerMessage,
-      ethSigner,
-      ethereumProvider,
-      ethereumAccount,
-      sdk
-    );
-  } else {
-    return await getDefaultSigner(flags, sdk, accountKeys, ethereumAccount);
-  }
-}
-
 export async function createNewSignerFromMessage(
   message: string,
   ethSigner: JsonRpcSigner | null,

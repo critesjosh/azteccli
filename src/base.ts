@@ -100,7 +100,8 @@ export abstract class BaseCommand extends Command {
 
   async getSigner(
     signingKey: string | undefined = this.flags.signingKey,
-    customSignerMessage: string | undefined = this.flags.customSignerMessage
+    customSignerMessage: string | undefined = this.flags.customSignerMessage,
+    useAccountKeySigner: boolean = this.flags.useAccountKeySigner
   ): Promise<SchnorrSigner> {
     if (signingKey) {
       return await this.sdk.createSchnorrSigner(
@@ -114,6 +115,8 @@ export abstract class BaseCommand extends Command {
         this.ethereumAccount,
         this.sdk
       );
+    } else if (useAccountKeySigner){
+      return await this.sdk.createSchnorrSigner(this.accountKeys!.privateKey)
     } else {
       return await getDefaultSigner(
         this.flags,
