@@ -214,3 +214,7 @@ export function mergeConfigWithFlags(config: any, flags: any) {
 
   return flagsWithConfig;
 }
+
+export function pad(text: string) {
+  return text.padEnd(20, " ");
+}

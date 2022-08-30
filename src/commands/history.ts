@@ -1,5 +1,4 @@
 import {
-  UserAccountTx,
   UserDefiClaimTx,
   UserDefiTx,
   UserPaymentTx,
@@ -7,6 +6,7 @@ import {
 import { BaseCommand } from "../base";
 import { Flags } from "../flags";
 import networkConfig from "../network_config";
+import { pad } from "../utils"
 
 (BigInt.prototype as any).toJSON = function () {
   return this.toString();
@@ -33,10 +33,6 @@ export default class History extends BaseCommand {
 
   static enableJsonFlag = true;
 
-  private pad(text: string) {
-    return text.padEnd(20, " ");
-  }
-
   public async run(): Promise<{ txsWithUrl: any }> {
     const accountKeys = await this.getAccountKeysAndSyncAccount();
     let txs = await this.sdk.getUserTxs(accountKeys!.publicKey);
@@ -44,26 +40,26 @@ export default class History extends BaseCommand {
     let txsWithUrl = txs.map((tx) => {
       const url = `${networkConfig[this.chainId].explorerUrl}tx/${tx.txId?.toString()}`
       this.log("----------------");
-      this.log(this.pad("Tx Type:"), tx.constructor.name);
-      this.log(this.pad("Transaction Id:"), tx.txId?.toString());
-      this.log(this.pad("Explorer Url:"), url)
-      this.log(this.pad("Settled:"), tx.settled?.toUTCString());
+      this.log(pad("Tx Type:"), tx.constructor.name);
+      this.log(pad("Transaction Id:"), tx.txId?.toString());
+      this.log(pad("Explorer Url:"), url)
+      this.log(pad("Settled:"), tx.settled?.toUTCString());
       if (tx instanceof UserDefiTx) {
-        this.log(this.pad("Deposit Value:"), tx.depositValue);
+        this.log(pad("Deposit Value:"), tx.depositValue);
         this.log("Interaction result:");
         console.dir(tx.interactionResult);
       }
       if (tx instanceof UserPaymentTx) {
-        this.log(this.pad("Value:"), tx.value);
-        this.log(this.pad("Fee:"), tx.fee);
+        this.log(pad("Value:"), tx.value);
+        this.log(pad("Fee:"), tx.fee);
       }
       if (tx instanceof UserDefiClaimTx) {
-        this.log(this.pad("DefiTxId:"), tx.defiTxId.toString());
+        this.log(pad("DefiTxId:"), tx.defiTxId.toString());
         this.log("Bridge:");
-        this.log(this.pad("Deposit value:"), tx.depositValue);
-        this.log(this.pad("Success?:"), tx.success);
-        this.log(this.pad("Output value A:"), tx.outputValueA);
-        this.log(this.pad("Output value B:"), tx.outputValueB);
+        this.log(pad("Deposit value:"), tx.depositValue);
+        this.log(pad("Success?:"), tx.success);
+        this.log(pad("Output value A:"), tx.outputValueA);
+        this.log(pad("Output value B:"), tx.outputValueB);
       }
       return {
         ...tx,
