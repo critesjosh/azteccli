@@ -120,7 +120,7 @@ EXAMPLES
   $ azteccli accountinfo --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/accountinfo.ts](https://github.com/critesjosh/azteccli/blob/v0.0.13/dist/commands/accountinfo.ts)_
+_See code: [dist/commands/accountinfo.ts](https://github.com/critesjosh/azteccli/blob/v0.0.14/dist/commands/accountinfo.ts)_
 
 ## `azteccli autocomplete [SHELL]`
 
@@ -176,7 +176,7 @@ EXAMPLES
   $ azteccli balance --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/balance.ts](https://github.com/critesjosh/azteccli/blob/v0.0.13/dist/commands/balance.ts)_
+_See code: [dist/commands/balance.ts](https://github.com/critesjosh/azteccli/blob/v0.0.14/dist/commands/balance.ts)_
 
 ## `azteccli conf [KEY] [VALUE]`
 
@@ -242,7 +242,7 @@ EXAMPLES
   $ azteccli deposit 1 --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/deposit.ts](https://github.com/critesjosh/azteccli/blob/v0.0.13/dist/commands/deposit.ts)_
+_See code: [dist/commands/deposit.ts](https://github.com/critesjosh/azteccli/blob/v0.0.14/dist/commands/deposit.ts)_
 
 ## `azteccli getfees`
 
@@ -263,7 +263,7 @@ EXAMPLES
   aztec-cli getfees
 ```
 
-_See code: [dist/commands/getfees.ts](https://github.com/critesjosh/azteccli/blob/v0.0.13/dist/commands/getfees.ts)_
+_See code: [dist/commands/getfees.ts](https://github.com/critesjosh/azteccli/blob/v0.0.14/dist/commands/getfees.ts)_
 
 ## `azteccli help [COMMAND]`
 
@@ -312,7 +312,7 @@ EXAMPLES
   $ azteccli history --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/history.ts](https://github.com/critesjosh/azteccli/blob/v0.0.13/dist/commands/history.ts)_
+_See code: [dist/commands/history.ts](https://github.com/critesjosh/azteccli/blob/v0.0.14/dist/commands/history.ts)_
 
 ## `azteccli plugins`
 
@@ -598,7 +598,7 @@ EXAMPLES
   $ azteccli register --alias testooor --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9 --signingKey 0c5e934c191d9b0ad2bd07d5042414efc4a1523b465648918a678cbd6fb5b241
 ```
 
-_See code: [dist/commands/register.ts](https://github.com/critesjosh/azteccli/blob/v0.0.13/dist/commands/register.ts)_
+_See code: [dist/commands/register.ts](https://github.com/critesjosh/azteccli/blob/v0.0.14/dist/commands/register.ts)_
 
 ## `azteccli transfer AMOUNT`
 
@@ -639,7 +639,7 @@ EXAMPLES
   $ azteccli transfer 1 -r theiralias --asset dai --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9 --signingKey 0c5e934c191d9b0ad2bd07d5042414efc4a1523b465648918a678cbd6fb5b241
 ```
 
-_See code: [dist/commands/transfer.ts](https://github.com/critesjosh/azteccli/blob/v0.0.13/dist/commands/transfer.ts)_
+_See code: [dist/commands/transfer.ts](https://github.com/critesjosh/azteccli/blob/v0.0.14/dist/commands/transfer.ts)_
 
 ## `azteccli withdraw [AMOUNT]`
 
@@ -674,5 +674,5 @@ EXAMPLES
   $ azteccli withdraw 1 -r 0x2e782B05290A7fFfA137a81a2bad2446AD0DdFEB --customAccountMessage 'custom account derivation message' --customSignerMessage 'custom signer derivation message'
 ```
 
-_See code: [dist/commands/withdraw.ts](https://github.com/critesjosh/azteccli/blob/v0.0.13/dist/commands/withdraw.ts)_
+_See code: [dist/commands/withdraw.ts](https://github.com/critesjosh/azteccli/blob/v0.0.14/dist/commands/withdraw.ts)_
 <!-- commandsstop -->
