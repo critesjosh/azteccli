@@ -24,6 +24,7 @@ import {
   getDefaultSigner,
   mergeConfigWithFlags,
 } from "./utils";
+import { CLIError } from "@oclif/core/lib/errors";
 
 export type AztecAccountKeys = {
   publicKey: GrumpkinAddress;
@@ -59,14 +60,19 @@ export abstract class BaseCommand extends Command {
       });
       this.ethereumAccount = EthAddress.fromString(accounts[0]);
     } else {
-      let ethersProvider = new ethers.providers.JsonRpcProvider(
-        "http://localhost:24012/rpc"
-      );
-      this.ethereumProvider = new EthersAdapter(ethersProvider);
-      this.ethSigner = ethersProvider.getSigner() as JsonRpcSigner;
-      this.ethereumAccount = EthAddress.fromString(
-        await this.ethSigner!.getAddress()
-      );
+      try {
+        let ethersProvider = new ethers.providers.JsonRpcProvider(
+          "http://localhost:24012/rpc"
+        );
+        this.ethereumProvider = new EthersAdapter(ethersProvider);
+        this.ethSigner = ethersProvider.getSigner() as JsonRpcSigner;
+        this.ethereumAccount = EthAddress.fromString(
+          await this.ethSigner!.getAddress()
+        );
+      } catch (error:any) {
+        this.log(error)
+        throw new CLIError("Make sure to start Truffle dashboard before running a command when Metamask is the specified wallet.");
+      }
     }
 
     this.chainId = parseInt(
