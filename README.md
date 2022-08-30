@@ -647,10 +647,12 @@ Withdraw funds from the Aztec network.
 
 ```
 USAGE
-  $ azteccli withdraw [AMOUNT] -r <value> [-m <value> | -k <value>] [--useAccountKeySigner | --signingKey
-    <value> | --customSignerMessage <value>] [--spendingKeyRequired]
+  $ azteccli withdraw [AMOUNT] -r <value> [-a eth|dai] [-m <value> | -k <value>] [--useAccountKeySigner |
+    --signingKey <value> | --customSignerMessage <value>] [--spendingKeyRequired]
 
 FLAGS
+  -a, --asset=<option>                [default: eth]
+                                      <options: eth|dai>
   -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
                                       wallet.
   -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
