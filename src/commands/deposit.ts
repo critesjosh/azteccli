@@ -30,21 +30,23 @@ export default class Deposit extends BaseCommand {
   static args = [{ name: "amount", required: true }];
 
   public async run(): Promise<void> {
-    // const { args } = await this.parse()
+    const { time, asset, recipient } = this.flags;
+    const { amount } = this.args;
+    
     let accountKeys = await this.getAccountKeysAndSyncAccount();
     // defaults to next rollup
-    let settlementTime = parseTime(this.flags.time);
+    let settlementTime = parseTime(time);
     // defaults to the users account
-    let recipient = await parseAztecRecipient(
-      this.flags.recipient,
+    let to = await parseAztecRecipient(
+      recipient,
       accountKeys,
       this.sdk
     );
 
-    const tokenQuantity = BigInt((this.args.amount as number) * 10 ** 18);
+    const tokenQuantity = BigInt((amount as number) * 10 ** 18);
 
     const tokenAssetId = this.sdk!.getAssetIdBySymbol(
-      this.flags.asset.toUpperCase()
+      asset.toUpperCase()
     );
 
     const tokenDepositFee = (await this.sdk!.getDepositFees(tokenAssetId))[
@@ -60,7 +62,7 @@ export default class Deposit extends BaseCommand {
       this.ethereumAccount!,
       tokenAssetValue,
       tokenDepositFee,
-      recipient,
+      to,
       this.flags.spendingKeyRequired
     );
     await tokenDepositController.createProof();
