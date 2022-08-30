@@ -59,7 +59,6 @@ export const Flags = {
     description: "Aztec Grumpkin address or registered alias",
   }),
   alias: flags.build({
-    char: "a",
     description: "alias to register",
   }),
   asset: flags.build({
