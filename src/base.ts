@@ -15,7 +15,9 @@ import { ethers } from "ethers";
 import { JsonRpcSigner } from "@ethersproject/providers";
 import { createWalletconnectProvider } from "./wallet_providers/walletconnect_provider";
 const Conf = require("conf");
-const config = new Conf();
+const config = new Conf({
+  projectName: 'azteccli'
+});
 import networkConfig from "./network_config";
 import {
   createNewSignerFromMessage,
