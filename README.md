@@ -96,7 +96,7 @@ TODO:
 
 ## `azteccli accountinfo`
 
-Print Grupmkin address public key.
+Print Grumpkin address public key.
 
 ```
 USAGE
@@ -112,7 +112,7 @@ GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
-  Print Grupmkin address public key.
+  Print Grumpkin address public key.
 
 EXAMPLES
   $ azteccli accountinfo
