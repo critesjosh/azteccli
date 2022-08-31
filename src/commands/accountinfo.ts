@@ -1,4 +1,3 @@
-import { GrumpkinAddress } from "@aztec/sdk";
 import { BaseCommand } from "../base";
 import { Flags } from "../flags";
 
