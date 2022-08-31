@@ -9,12 +9,12 @@ export default class Balance extends BaseCommand {
     ...BaseCommand.flags,
     customAccountMessage: Flags.customAccountMessage,
     accountKey: Flags.accountKey,
-  }
+  };
 
   static examples = [
     "azteccli balance",
     "azteccli balance -m 'custom account key derivation message'",
-    "azteccli balance --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9"
+    "azteccli balance --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9",
   ];
 
   public async run(): Promise<void> {
@@ -47,14 +47,19 @@ export default class Balance extends BaseCommand {
       ),
     });
 
-    this.log("Total zkETH Balance: ", balance);
-    this.log("Spendable base account zkETH Balance: ", spendableAccountSum);
+    const padding = 50;
+
+    this.log(`Total zkETH Balance:`.padEnd(padding, " "), balance);
     this.log(
-      "Spendable registered account zkETH Balance: ",
+      "Spendable base account zkETH Balance:".padEnd(padding, " "),
+      spendableAccountSum
+    );
+    this.log(
+      "Spendable registered account zkETH Balance:".padEnd(padding, " "),
       spendableSpendingKeySum
     );
     this.log(
-      "Pending registered account zkETH Balance: ",
+      "Pending registered account zkETH Balance:".padEnd(padding, " "),
       pendingSpendingKeySum
     );
   }
