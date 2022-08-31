@@ -2,7 +2,7 @@ import { BaseCommand } from "../base";
 import { Flags } from "../flags";
 
 export default class AccountInfo extends BaseCommand {
-  static description = "Print Grupmkin address public key.";
+  static description = "Print Grumpkin address public key.";
 
   static flags = {
     ...BaseCommand.flags,
