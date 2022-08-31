@@ -100,12 +100,13 @@ Print Grupmkin address public key.
 
 ```
 USAGE
-  $ azteccli accountinfo [-m <value> | -k <value>] [--json]
+  $ azteccli accountinfo [--logSdk] [-m <value> | -k <value>] [--json]
 
 FLAGS
   -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
                                       wallet.
   -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
+  --logSdk                            verbose Aztec SDK logging
 
 GLOBAL FLAGS
   --json  Format output as json.
@@ -158,12 +159,13 @@ Print total balance, spendable balance associated with the privacy account and s
 
 ```
 USAGE
-  $ azteccli balance [-m <value> | -k <value>]
+  $ azteccli balance [--logSdk] [-m <value> | -k <value>]
 
 FLAGS
   -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
                                       wallet.
   -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
+  --logSdk                            verbose Aztec SDK logging
 
 DESCRIPTION
   Print total balance, spendable balance associated with the privacy account and spendable balance associated with
@@ -212,8 +214,8 @@ Deposit funds to aztec.
 
 ```
 USAGE
-  $ azteccli deposit [AMOUNT] [-r <value>] [-a eth|dai] [-t next|instant] [-m <value> | -k <value>]
-    [--spendingKeyRequired]
+  $ azteccli deposit [AMOUNT] [--logSdk] [-r <value>] [-a eth|dai] [-t next|instant] [-m <value> | -k
+    <value>] [--spendingKeyRequired]
 
 FLAGS
   -a, --asset=<option>                [default: eth]
@@ -224,6 +226,7 @@ FLAGS
   -r, --recipient=<value>             Aztec Grumpkin address or registered alias
   -t, --time=<option>                 [default: next] transaction time (next is slower + cheaper)
                                       <options: next|instant>
+  --logSdk                            verbose Aztec SDK logging
   --spendingKeyRequired               Should the recipient be required to have a registered spending key?
 
 DESCRIPTION
@@ -251,11 +254,12 @@ Get the current tx fees
 
 ```
 USAGE
-  $ azteccli getfees [-a eth|dai]
+  $ azteccli getfees [--logSdk] [-a eth|dai]
 
 FLAGS
   -a, --asset=<option>  [default: eth] The fee paying asset to fetch the fees for.
                         <options: eth|dai>
+  --logSdk              verbose Aztec SDK logging
 
 DESCRIPTION
   Get the current tx fees
@@ -292,12 +296,13 @@ Get your Aztec tx history
 
 ```
 USAGE
-  $ azteccli history [-m <value> | -k <value>] [--json]
+  $ azteccli history [--logSdk] [-m <value> | -k <value>] [--json]
 
 FLAGS
   -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
                                       wallet.
   -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
+  --logSdk                            verbose Aztec SDK logging
 
 GLOBAL FLAGS
   --json  Format output as json.
@@ -561,8 +566,8 @@ Register a new aztec account.
 
 ```
 USAGE
-  $ azteccli register [DEPOSIT] --alias <value> [--ttpPubKey <value>] [--depositor <value>] [-a eth|dai] [-m
-    <value> | -k <value>] [--useAccountKeySigner | --signingKey <value> | --customSignerMessage <value>]
+  $ azteccli register [DEPOSIT] --alias <value> [--logSdk] [--ttpPubKey <value>] [--depositor <value>] [-a
+    eth|dai] [-m <value> | -k <value>] [--useAccountKeySigner | --signingKey <value> | --customSignerMessage <value>]
     [--spendingKeyRequired]
 
 ARGUMENTS
@@ -578,6 +583,7 @@ FLAGS
   --customSignerMessage=<value>       Custom message to sign to derive an Aztec signing key.
   --depositor=<value>                 optional alternative ethereum depositor to pay fees if you're not paying with the
                                       account you're currently logged in with
+  --logSdk                            verbose Aztec SDK logging
   --signingKey=<value>                An Aztec signing private key to use instead of deriving one from an Ethereum
                                       wallet.
   --spendingKeyRequired               Should the recipient be required to have a registered spending key?
@@ -607,7 +613,7 @@ Transfer funds on the Aztec network.
 
 ```
 USAGE
-  $ azteccli transfer [AMOUNT] -r <value> [-a eth|dai] [-t next|instant] [-m <value> | -k <value>]
+  $ azteccli transfer [AMOUNT] -r <value> [--logSdk] [-a eth|dai] [-t next|instant] [-m <value> | -k <value>]
     [--useAccountKeySigner | --signingKey <value> | --customSignerMessage <value>] [--spendingKeyRequired]
 
 FLAGS
@@ -620,6 +626,7 @@ FLAGS
   -t, --time=<option>                 [default: next] transaction time (next is slower + cheaper)
                                       <options: next|instant>
   --customSignerMessage=<value>       Custom message to sign to derive an Aztec signing key.
+  --logSdk                            verbose Aztec SDK logging
   --signingKey=<value>                An Aztec signing private key to use instead of deriving one from an Ethereum
                                       wallet.
   --spendingKeyRequired               Should the recipient be required to have a registered spending key?
@@ -648,8 +655,8 @@ Withdraw funds from the Aztec network.
 
 ```
 USAGE
-  $ azteccli withdraw [AMOUNT] -r <value> [-a eth|dai] [-m <value> | -k <value>] [--useAccountKeySigner |
-    --signingKey <value> | --customSignerMessage <value>] [--spendingKeyRequired]
+  $ azteccli withdraw [AMOUNT] -r <value> [--logSdk] [-a eth|dai] [-m <value> | -k <value>]
+    [--useAccountKeySigner | --signingKey <value> | --customSignerMessage <value>] [--spendingKeyRequired]
 
 FLAGS
   -a, --asset=<option>                [default: eth]
@@ -659,6 +666,7 @@ FLAGS
   -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
   -r, --recipient=<value>             (required) Ethereum account address to withdraw to.
   --customSignerMessage=<value>       Custom message to sign to derive an Aztec signing key.
+  --logSdk                            verbose Aztec SDK logging
   --signingKey=<value>                An Aztec signing private key to use instead of deriving one from an Ethereum
                                       wallet.
   --spendingKeyRequired               Should the recipient be required to have a registered spending key?
