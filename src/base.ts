@@ -52,7 +52,13 @@ export abstract class BaseCommand extends Command {
     this.flags = mergeConfigWithFlags(config, flags);
     this.args = args;
 
-    if (config.get("wallet") === "walletconnect") {
+    let wallet = config.get("wallet")
+
+    if(!wallet){
+      wallet = (await CliUx.ux.prompt("Do you want to use Metamask or WalletConnect?") as string).toLowerCase()
+    }
+
+    if (wallet === "walletconnect") {
       let wcProvider = await createWalletconnectProvider(
         "c5f107bac5184a2bb4ee5f88f3554ba5"
       );
@@ -87,10 +93,10 @@ export abstract class BaseCommand extends Command {
       16
     );
 
-    CliUx.ux.action.start("setting up the SDK");
+    CliUx.ux.action.start("Setting up the SDK");
 
     let debug = this.flags.logSdk ? "bb:*" : "";
-
+    
     this.sdk = await createAztecSdk(this.ethereumProvider, {
       serverUrl: networkConfig[this.chainId].rollupProvider,
       pollInterval: 10000,
@@ -101,7 +107,6 @@ export abstract class BaseCommand extends Command {
     });
 
     await this.sdk.run();
-
     CliUx.ux.action.stop();
   }
 
