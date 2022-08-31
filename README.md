@@ -2,7 +2,7 @@
 
 **This project is in development. Use at your own risk.**
 
-A command line application for interacting with the Aztec protocol.
+A command line application for interacting with the Aztec protocol. Quick intro on Youtube here: https://youtu.be/JtIC_LMpCCo
 
 Does not handle your keys--connects to [Metamask](https://metamask.io/) with [Truffle Dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/) or to any wallet that supports [WalletConnect](https://docs.walletconnect.com/). **Metamask is the preferred wallet, this has not been tested extensively with wallet connect.**
 
