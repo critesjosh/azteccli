@@ -56,6 +56,7 @@ export abstract class BaseCommand extends Command {
 
     if(!wallet){
       wallet = (await CliUx.ux.prompt("Do you want to use Metamask or WalletConnect?") as string).toLowerCase()
+      this.log("You can save your wallet preference with the command 'azteccli conf wallet metamask|walletconnect'.")
     }
 
     if (wallet === "walletconnect") {
