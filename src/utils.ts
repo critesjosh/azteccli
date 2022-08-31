@@ -85,7 +85,7 @@ export async function getDefaultAccountKeys(
   sdk: AztecSdk,
   ethereumAccount: EthAddress
 ): Promise<AztecAccountKeys> {
-  CliUx.ux.action.start("awaiting user signature");
+  CliUx.ux.action.start("Awaiting user signature");
   const accountKeys = await sdk.generateAccountKeyPair(ethereumAccount);
   CliUx.ux.action.stop();
   return accountKeys;
@@ -99,7 +99,7 @@ export async function signMessageWithEitherWallet(
 ): Promise<string> {
   let signature;
   const providerMessage = `0x${Buffer.from(message, "utf8").toString("hex")}`;
-  CliUx.ux.action.start("awaiting user signature");
+  CliUx.ux.action.start("Awaiting user signature");
   // this is the wallet connect case
   if (ethSigner === null) {
     // TODO: test this
@@ -184,7 +184,7 @@ export async function getDefaultSigner(
     // (await sdk.isAccountRegistered(accountKeys.publicKey)) &&
     !flags.accountKeySigner
   ) {
-    CliUx.ux.action.start("awaiting user signature");
+    CliUx.ux.action.start("Awaiting user signature");
     const { privateKey } = await sdk.generateSpendingKeyPair(ethereumAccount);
     CliUx.ux.action.stop();
     return await sdk.createSchnorrSigner(privateKey);
