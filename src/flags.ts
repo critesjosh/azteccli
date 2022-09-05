@@ -40,8 +40,7 @@ export const Flags = {
   }),
   spendingKeyRequired: flags.boolean({
     description:
-      "Should the recipient be required to have a registered spending key?",
-    default: false,
+      "Should the recipient be required to have a registered spending key?"
   }),
   ethAddress: flags.build({
     parse: parseAddress,

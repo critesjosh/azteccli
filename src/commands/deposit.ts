@@ -30,24 +30,26 @@ export default class Deposit extends BaseCommand {
   static args = [{ name: "amount", required: true }];
 
   public async run(): Promise<void> {
-    const { time, asset, recipient } = this.flags;
+    const { time, asset, recipient, spendingKeyRequired } = this.flags;
     const { amount } = this.args;
-    
+    let useSpendingAccount = spendingKeyRequired;
+
     let accountKeys = await this.getAccountKeysAndSyncAccount();
     // defaults to next rollup
     let settlementTime = parseTime(time);
     // defaults to the users account
-    let to = await parseAztecRecipient(
-      recipient,
-      accountKeys,
-      this.sdk
+    let to = await parseAztecRecipient(recipient, accountKeys, this.sdk);
+
+    const accountRegistered = await this.sdk.isAccountRegistered(
+      accountKeys.publicKey
     );
+    if (spendingKeyRequired === undefined && accountRegistered) {
+      useSpendingAccount = true;
+    }
 
     const tokenQuantity = BigInt((amount as number) * 10 ** 18);
 
-    const tokenAssetId = this.sdk!.getAssetIdBySymbol(
-      asset.toUpperCase()
-    );
+    const tokenAssetId = this.sdk!.getAssetIdBySymbol(asset.toUpperCase());
 
     const tokenDepositFee = (await this.sdk!.getDepositFees(tokenAssetId))[
       settlementTime
@@ -63,7 +65,7 @@ export default class Deposit extends BaseCommand {
       tokenAssetValue,
       tokenDepositFee,
       to,
-      this.flags.spendingKeyRequired
+      useSpendingAccount
     );
     await tokenDepositController.createProof();
     await tokenDepositController.sign();
@@ -75,6 +77,9 @@ export default class Deposit extends BaseCommand {
       await tokenDepositController.awaitDepositFundsToContract();
     }
     let txId = await tokenDepositController.send();
-    this.log('View transaction on the block explorer', `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`)
+    this.log(
+      "View transaction on the block explorer",
+      `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`
+    );
   }
 }
