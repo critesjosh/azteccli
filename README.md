@@ -2,7 +2,11 @@
 
 **This project is in development. Use at your own risk.**
 
-A command line application for interacting with the Aztec protocol. Quick intro on Youtube here: https://youtu.be/JtIC_LMpCCo
+A command line application for interacting with the Aztec protocol. 
+
+Quick intro on Youtube here:
+
+[![Preview](/img/preview.png)](https://youtu.be/Og04qRak-SM)
 
 Does not handle your keys--connects to [Metamask](https://metamask.io/) with [Truffle Dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/) or to any wallet that supports [WalletConnect](https://docs.walletconnect.com/). **Metamask is the preferred wallet, this has not been tested extensively with wallet connect.**
 
@@ -73,26 +77,31 @@ TODO:
 ## Commands
 
   <!-- commands -->
-* [`azteccli accountinfo`](#azteccli-accountinfo)
-* [`azteccli autocomplete [SHELL]`](#azteccli-autocomplete-shell)
-* [`azteccli balance`](#azteccli-balance)
-* [`azteccli conf [KEY] [VALUE]`](#azteccli-conf-key-value)
-* [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
-* [`azteccli getfees`](#azteccli-getfees)
-* [`azteccli help [COMMAND]`](#azteccli-help-command)
-* [`azteccli history`](#azteccli-history)
-* [`azteccli plugins`](#azteccli-plugins)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
-* [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
-* [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
-* [`azteccli plugins:update`](#azteccli-pluginsupdate)
-* [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
-* [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
-* [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
+- [azteccli](#azteccli)
+  - [Getting started](#getting-started)
+  - [Config](#config)
+  - [Capabilities](#capabilities)
+  - [Commands](#commands)
+  - [`azteccli accountinfo`](#azteccli-accountinfo)
+  - [`azteccli autocomplete [SHELL]`](#azteccli-autocomplete-shell)
+  - [`azteccli balance`](#azteccli-balance)
+  - [`azteccli conf [KEY] [VALUE]`](#azteccli-conf-key-value)
+  - [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
+  - [`azteccli getfees`](#azteccli-getfees)
+  - [`azteccli help [COMMAND]`](#azteccli-help-command)
+  - [`azteccli history`](#azteccli-history)
+  - [`azteccli plugins`](#azteccli-plugins)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
+  - [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
+  - [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
+  - [`azteccli plugins:update`](#azteccli-pluginsupdate)
+  - [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
+  - [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
+  - [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
 
 ## `azteccli accountinfo`
 
