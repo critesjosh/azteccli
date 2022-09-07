@@ -6,6 +6,7 @@ import {
   TxSettlementTime,
   GrumpkinAddress,
   SchnorrSigner,
+  DefiSettlementTime,
 } from "@aztec/sdk";
 import { AztecAccountKeys } from "./base";
 import { CliUx } from "@oclif/core";
@@ -128,11 +129,13 @@ export async function getAndSyncAccount(
   return aztecAccount;
 }
 
-export function parseTime(time: string): TxSettlementTime {
+export function parseTime(time: string, defiInteraction: boolean = false): number {
   if (time === "next") {
-    return TxSettlementTime.NEXT_ROLLUP;
+    return defiInteraction ? DefiSettlementTime.NEXT_ROLLUP : TxSettlementTime.NEXT_ROLLUP;
+  } else if (time === "instant"){
+    return defiInteraction ? DefiSettlementTime.INSTANT : TxSettlementTime.INSTANT;
   } else {
-    return TxSettlementTime.INSTANT;
+    return DefiSettlementTime.DEADLINE;
   }
 }
 

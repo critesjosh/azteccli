@@ -53,6 +53,11 @@ export const Flags = {
     options: ["next", "instant"],
     default: "next",
   }),
+  defiTime: flags.string({
+    description: "transaction time (next is slower + cheaper)",
+    options: ["deadline", "next", "instant"],
+    default: "deadline",
+  }),
   recipient: flags.build({
     char: "r",
     description: "Aztec Grumpkin address or registered alias",
@@ -62,11 +67,17 @@ export const Flags = {
   }),
   asset: flags.build({
     char: "a",
-    options: ["eth", "dai"],
+    options: ["eth", "dai", "wsteth"],
     default: "eth",
   }),
   logSdk: flags.boolean({
     description: "verbose Aztec SDK logging",
     default: false
-  })
+  }),
+  newSigningKey1: flags.string({
+    description: "New signing key to associated with a registered account."
+  }),
+  newSigningKey2: flags.string({
+    description: "New signing key to associated with a registered account."
+  }),
 };
