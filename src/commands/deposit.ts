@@ -1,4 +1,4 @@
-import { AssetValue, GrumpkinAddress, TxSettlementTime } from "@aztec/sdk";
+import { AssetValue } from "@aztec/sdk";
 // import { Flags } from "@oclif/core";
 import { Flags } from "../flags";
 import { BaseCommand } from "../base";
