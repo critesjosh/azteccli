@@ -43,9 +43,12 @@ export default class Deposit extends BaseCommand {
     const accountRegistered = await this.sdk.isAccountRegistered(
       accountKeys.publicKey
     );
+
     if (spendingKeyRequired === undefined && accountRegistered) {
       useSpendingAccount = true;
-    }
+    } 
+
+    this.log(`Depositing to spending account? ${useSpendingAccount}`)
 
     const tokenQuantity = BigInt((amount as number) * 10 ** 18);
 
