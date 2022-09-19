@@ -10,7 +10,7 @@ export default class Register extends BaseCommand {
   static description = "Register a new aztec account.";
 
   static examples = [
-    "azteccli register --alias testooor --deposit 0.1 --ttpPubKey 92b2dbc645eab72f3e3851a7d6dfb1bad170bdf444b5770644f6dd7def66ad31",
+    "azteccli register .1 --alias testooor --ttpPubKey 92b2dbc645eab72f3e3851a7d6dfb1bad170bdf444b5770644f6dd7def66ad31",
     "azteccli register --alias testooor -m 'custom account key derivation message'",
     "azteccli register --alias testooor --customAccountMessage 'custom account derivation message' --customSignerMessage 'custom signer derivation message'",
     "azteccli register --alias testooor --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9 --signingKey 0c5e934c191d9b0ad2bd07d5042414efc4a1523b465648918a678cbd6fb5b241",
@@ -86,7 +86,7 @@ export default class Register extends BaseCommand {
     const tokenQuantity = BigInt((deposit as number) * 10 ** 18);
     const assetId = this.sdk.getAssetIdBySymbol(asset.toUpperCase());
     const depositValue = { assetId, value: tokenQuantity };
-    const txFee = (await this.sdk.getRegisterFees(deposit))[settlementTime];
+    const txFee = (await this.sdk.getRegisterFees(assetId))[settlementTime];
 
     const controller = await this.sdk.createRegisterController(
       accountKeys.publicKey,
