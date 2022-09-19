@@ -40,23 +40,23 @@ export default class DefiBridge extends BaseCommand {
     const signer = await this.getSigner();
 
     // https://github.com/AztecProtocol/aztec-connect-bridges/blob/master/deployments/mainnet.json
-    const CurveStEthBridge = this.sdk.getBridgeAddressId(
-      EthAddress.fromString("0xe09801dA4C74e62fB42DFC8303a1C1BD68073D1a"),
-      250000
-    );
-    const ElementId = this.sdk.getBridgeAddressId(
-      EthAddress.fromString("0xC116ecc074040AbEdB2E11A4e84dEcDBA141F38f"),
-      250000
-    );
-    const ethToWstEth = new BridgeCallData(CurveStEthBridge, 0, 2); // IN: ETH (0), OUT: wstETH (2)
-    const WstEthToEth = new BridgeCallData(CurveStEthBridge, 2, 0); // IN: wstETH (2), OUT: ETH (0)
+    // const CurveStEthBridge = this.sdk.getBridgeAddressId(
+    //   EthAddress.fromString("0xe09801dA4C74e62fB42DFC8303a1C1BD68073D1a"),
+    //   250000
+    // );
+    // const ElementId = this.sdk.getBridgeAddressId(
+    //   EthAddress.fromString("0xC116ecc074040AbEdB2E11A4e84dEcDBA141F38f"),
+    //   250000
+    // );
+    const ethToWstEth = new BridgeCallData(5, 0, 2); // IN: ETH (0), OUT: wstETH (2)
+    const WstEthToEth = new BridgeCallData(5, 2, 0); // IN: wstETH (2), OUT: ETH (0)
 
-    const elementAdaptor = createElementAdaptor(
-      this.ethereumProvider,
-      "0x2266429abF6Ec8A1FC6712c2BbDc7262b40ba442",
-      "0xC116ecc074040AbEdB2E11A4e84dEcDBA141F38f",
-      false
-    );
+    // const elementAdaptor = createElementAdaptor(
+    //   this.ethereumProvider,
+    //   "0x2266429abF6Ec8A1FC6712c2BbDc7262b40ba442",
+    //   "0xC116ecc074040AbEdB2E11A4e84dEcDBA141F38f",
+    //   false
+    // );
 
     let bridge = ethToWstEth
 
