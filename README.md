@@ -70,9 +70,15 @@ Be careful with what information you save in this file, particularly account key
 TODO:
 
 - defi interactions
-- create new spending keys
 - migrate aztec account
 - recover aztec account
+
+## Development
+
+1. Clone the repo.
+2. Install dependencies. `yarn`
+2. Edit/add new commands in `./src/`
+3. Test your edits by running `./bin/dev [command] [args] [flags]`. (ie `./bin/dev deposit .01`)
 
 ## Commands
 
