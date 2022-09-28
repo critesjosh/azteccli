@@ -21,7 +21,7 @@ export default class AccountInfo extends BaseCommand {
   public async run(): Promise<{ publicKey: string }> {
     const accountKeys = await this.getAccountKeysAndSyncAccount();
 
-    const isRegistered = await this.sdk.isAccountRegistered(accountKeys.publicKey)
+    const isRegistered = await this.sdk.isAccountRegistered(accountKeys.publicKey, true)
 
     this.log(
       "Aztec account public key (GrumpkinAddress)",

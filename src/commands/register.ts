@@ -59,7 +59,7 @@ export default class Register extends BaseCommand {
 
     const accountKeys = await this.getAccountKeysAndSyncAccount();
 
-    if(await this.sdk.isAccountRegistered(accountKeys.publicKey)){
+    if(await this.sdk.isAccountRegistered(accountKeys.publicKey, true)){
       throw new CLIError("Account is already registered.")
     }
 

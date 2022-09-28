@@ -40,15 +40,17 @@ export default class Deposit extends BaseCommand {
     // defaults to the users account
     let to = await parseAztecRecipient(recipient, accountKeys, this.sdk);
 
-    const accountRegistered = await this.sdk.isAccountRegistered(
-      accountKeys.publicKey
+    const isRegistered = await this.sdk.isAccountRegistered(
+      accountKeys.publicKey,
+      true
     );
 
-    if (spendingKeyRequired === undefined && accountRegistered) {
+    if (spendingKeyRequired === undefined && isRegistered) {
       useSpendingAccount = true;
-    } 
+    }
 
-    this.log(`Depositing to spending account? ${useSpendingAccount}`)
+    // if useSpendingAccount === undefined, deposit will be to the base/root account
+    this.log(`Depositing to spending account? ${useSpendingAccount}`);
 
     const tokenQuantity = BigInt((amount as number) * 10 ** 18);
 
