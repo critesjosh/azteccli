@@ -31,6 +31,7 @@ export default class Register extends BaseCommand {
         "optional alternative ethereum depositor to pay fees if you're not paying with the account you're currently logged in with",
       required: false,
     }),
+    time: Flags.time,
     asset: Flags.asset(),
     customAccountMessage: Flags.customAccountMessage,
     accountKey: Flags.accountKey,
