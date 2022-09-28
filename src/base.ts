@@ -46,7 +46,7 @@ export abstract class BaseCommand extends Command {
   protected aztecAccount: AztecSdkUser | null = null;
 
   static flags = {
-    logSdk: Flags.logSdk,
+    logSdk: Flags.logSdk as any,
   };
 
   async init() {
