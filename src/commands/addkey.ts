@@ -11,6 +11,7 @@ export default class AddKey extends BaseCommand {
 
   static flags = {
     ...BaseCommand.flags,
+    time: Flags.time,
     customAccountMessage: Flags.customAccountMessage,
     accountKey: Flags.accountKey,
     useAccountKeySigner: Flags.useAccountKeySigner,

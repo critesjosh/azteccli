@@ -20,6 +20,7 @@ export default class Withdraw extends BaseCommand {
       required: true,
     }),
     asset: Flags.asset(),
+    time: Flags.time,
     customAccountMessage: Flags.customAccountMessage,
     accountKey: Flags.accountKey,
     useAccountKeySigner: Flags.useAccountKeySigner,
