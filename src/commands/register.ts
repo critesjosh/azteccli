@@ -1,4 +1,4 @@
-import { EthAddress, GrumpkinAddress, SchnorrSigner, TxSettlementTime } from "@aztec/sdk";
+import { EthAddress, GrumpkinAddress } from "@aztec/sdk";
 import { Flags } from "../flags";
 import { flags } from "@oclif/command";
 import { BaseCommand } from "../base";
@@ -59,8 +59,8 @@ export default class Register extends BaseCommand {
 
     const accountKeys = await this.getAccountKeysAndSyncAccount();
 
-    if(await this.sdk.isAccountRegistered(accountKeys.publicKey, true)){
-      throw new CLIError("Account is already registered.")
+    if (await this.sdk.isAccountRegistered(accountKeys.publicKey, true)) {
+      throw new CLIError("Account is already registered.");
     }
 
     const depositor = this.flags.depositor
@@ -98,10 +98,15 @@ export default class Register extends BaseCommand {
       depositValue,
       txFee,
       depositor // defaults to the logged in Ethereum accounts
-      // optional feePayer requires an Aztec Signer to pay the fee
     );
 
     if ((await controller.getPendingFunds()) < tokenQuantity) {
+      if (
+        asset === "dai" &&
+        (await controller.getPublicAllowance()) < depositValue.value
+      ) {
+        await controller.approve();
+      }
       await controller.depositFundsToContract();
       await controller.awaitDepositFundsToContract();
     }
@@ -110,6 +115,9 @@ export default class Register extends BaseCommand {
     await controller.sign();
     let txId = await controller.send();
 
-    this.log('View transaction on the block explorer', `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`)
+    this.log(
+      "View transaction on the block explorer",
+      `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`
+    );
   }
 }

@@ -78,6 +78,14 @@ export default class Deposit extends BaseCommand {
     if (
       (await tokenDepositController.getPendingFunds()) < tokenAssetValue.value
     ) {
+      if (
+        asset === "dai" &&
+        (await tokenDepositController.getPublicAllowance()) <
+          tokenAssetValue.value
+      ) {
+        await tokenDepositController.approve();
+      }
+
       await tokenDepositController.depositFundsToContract();
       await tokenDepositController.awaitDepositFundsToContract();
     }
