@@ -106,6 +106,7 @@ export default class Register extends BaseCommand {
         (await controller.getPublicAllowance()) < depositValue.value
       ) {
         await controller.approve();
+        await controller.awaitApprove();
       }
       await controller.depositFundsToContract();
       await controller.awaitDepositFundsToContract();

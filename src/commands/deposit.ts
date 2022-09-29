@@ -84,6 +84,7 @@ export default class Deposit extends BaseCommand {
           tokenAssetValue.value
       ) {
         await tokenDepositController.approve();
+        await tokenDepositController.awaitApprove();
       }
 
       await tokenDepositController.depositFundsToContract();
