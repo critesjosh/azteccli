@@ -1,6 +1,6 @@
 import { EthAddress, GrumpkinAddress } from "@aztec/sdk";
+import { Flags as flags } from "@oclif/core";
 import { Flags } from "../flags";
-import { flags } from "@oclif/command";
 import { BaseCommand } from "../base";
 import { CLIError } from "@oclif/core/lib/errors";
 import { parseTime } from "../utils";
