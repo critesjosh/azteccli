@@ -72,24 +72,23 @@ export default class Deposit extends BaseCommand {
       to,
       useSpendingAccount
     );
-    await tokenDepositController.createProof();
-    await tokenDepositController.sign();
 
     if (
       (await tokenDepositController.getPendingFunds()) < tokenAssetValue.value
     ) {
-      if (
-        asset === "dai" &&
-        (await tokenDepositController.getPublicAllowance()) <
-          tokenAssetValue.value
-      ) {
-        await tokenDepositController.approve();
-        await tokenDepositController.awaitApprove();
-      }
-
+      if (asset === "dai") {
+        if((await tokenDepositController.getPublicAllowance()) <
+        tokenAssetValue.value){
+          await tokenDepositController.approve();
+          await tokenDepositController.awaitApprove();
+        }
+      } 
       await tokenDepositController.depositFundsToContract();
       await tokenDepositController.awaitDepositFundsToContract();
     }
+
+    await tokenDepositController.createProof();
+    await tokenDepositController.sign();
     let txId = await tokenDepositController.send();
     this.log(
       "View transaction on the block explorer",
