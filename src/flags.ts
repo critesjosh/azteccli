@@ -1,15 +1,15 @@
-import { flags } from "@oclif/command";
-import { CLIError } from "@oclif/errors";
-import { ParseFn } from "@oclif/parser/lib/args";
+import { Flags as flags } from "@oclif/core";
+import { FlagParser } from "@oclif/core/lib/interfaces/parser";
+import { CLIError } from "@oclif/core/lib/errors";
 import { utils } from "ethers";
 
-const parseAddress: ParseFn<string> = (input: string) => {
-  if (utils.isAddress(input)) {
-    return input;
-  } else {
-    throw new CLIError(`${input} is not a valid address`);
-  }
-};
+// const parseAddress: FlagParser<string, any> = (input: string) => {
+//   if (utils.isAddress(input)) {
+//     return input;
+//   } else {
+//     throw new CLIError(`${input} is not a valid address`);
+//   }
+// };
 
 export const Flags = {
   customAccountMessage: flags.string({
@@ -43,7 +43,7 @@ export const Flags = {
       "Should the recipient be required to have a registered spending key?"
   }),
   ethAddress: flags.build({
-    parse: parseAddress,
+    // parse: parseAddress,
     description: "Account Address",
     helpValue: "0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d",
   }),

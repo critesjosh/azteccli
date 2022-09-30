@@ -209,9 +209,8 @@ export function mergeConfigWithFlags(config: any, flags: any) {
 
   configKeys.map((key) => {
     if (flags[key]) return;
-    const configValue = config.get(key);
-    if (configValue) {
-      flags[key] = configValue;
+    if (config[key]) {
+      flags[key] = config[key];
     }
   });
 

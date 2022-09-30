@@ -14,10 +14,8 @@ import {
 import { ethers } from "ethers";
 import { JsonRpcSigner } from "@ethersproject/providers";
 import { createWalletconnectProvider } from "./wallet_providers/walletconnect_provider";
-const Conf = require("conf");
-const config = new Conf({
-  projectName: 'azteccli'
-});
+import * as fs from "fs-extra";
+import * as path from "path";
 import networkConfig from "./network_config";
 import {
   createNewSignerFromMessage,
@@ -28,6 +26,7 @@ import {
 } from "./utils";
 import { CLIError } from "@oclif/core/lib/errors";
 import { Flags } from "./flags";
+require('dotenv').config()
 
 export type AztecAccountKeys = {
   publicKey: GrumpkinAddress;
@@ -51,14 +50,30 @@ export abstract class BaseCommand extends Command {
 
   async init() {
     const { args, flags } = await this.parse();
-    this.flags = mergeConfigWithFlags(config, flags);
     this.args = args;
 
-    let wallet = config.get("wallet")
+    // this setting controls where the config file is searched for
+    // DEV looks in the project root for a config
+    // anything else looks in the oclif default location, https://oclif.io/docs/config#custom-user-configuration
+    const configFile =
+      process.env.ENV === "DEV"
+        ? path.join(__dirname, "..", "config.json")
+        : path.join(this.config.configDir, "config.json");
 
-    if(!wallet){
-      wallet = (await CliUx.ux.prompt("Do you want to use Metamask or WalletConnect?") as string).toLowerCase()
-      this.log("You can save your wallet preference with the command 'azteccli conf wallet metamask|walletconnect'.")
+    const userConfig = await fs.readJSON(configFile);
+    this.flags = mergeConfigWithFlags(userConfig, flags);
+
+    let wallet = userConfig.wallet;
+
+    if (!wallet) {
+      wallet = (
+        (await CliUx.ux.prompt(
+          "Do you want to use Metamask or WalletConnect?"
+        )) as string
+      ).toLowerCase();
+      this.log(
+        "You can save your wallet preference with the command 'azteccli conf wallet metamask|walletconnect'."
+      );
     }
 
     if (wallet === "walletconnect") {
@@ -99,7 +114,7 @@ export abstract class BaseCommand extends Command {
     CliUx.ux.action.start("Setting up the SDK");
 
     let debug = this.flags.logSdk ? "bb:*" : "";
-    
+
     this.sdk = await createAztecSdk(this.ethereumProvider, {
       serverUrl: networkConfig[this.chainId].rollupProvider,
       pollInterval: 10000,
