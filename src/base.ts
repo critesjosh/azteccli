@@ -117,14 +117,16 @@ export abstract class BaseCommand extends Command {
 
     this.sdk = await createAztecSdk(this.ethereumProvider, {
       serverUrl: networkConfig[this.chainId].rollupProvider,
-      pollInterval: 10000,
-      // memoryDb: true,
+      pollInterval: 10000, // poll for updates every 10s
+      // memoryDb: true, // commented out means it will save data in ./data
       debug,
-      flavour: SdkFlavour.PLAIN,
-      minConfirmation: 1, // ETH block confirmations
+      flavour: SdkFlavour.PLAIN, // used in a Nodejs context
+      minConfirmation: 1,        // ETH block confirmations
     });
 
     await this.sdk.run();
+    await this.sdk.awaitSynchronised(); // wait for the SDK to sync before doing stuff to get latest data
+
     CliUx.ux.action.stop();
   }
 
