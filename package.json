@@ -1,7 +1,7 @@
 {
   "name": "azteccli",
   "description": "Command line tool for interacting with Aztec.",
-  "version": "0.0.19",
+  "version": "0.1.0",
   "author": "jc@joshcrites.com",
   "bin": {
     "azteccli": "./bin/run"
