@@ -9,4 +9,3 @@ node_modules
 oclif.manifest.json
 data/
 .gitsigners
-.env
