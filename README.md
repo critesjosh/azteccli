@@ -166,7 +166,7 @@ _See code: [dist/commands/addkey.ts](https://github.com/critesjosh/azteccli/blob
 
 ## `azteccli balance`
 
-Print total balance, spendable balance associated with the privacy account and spendable balance associated with spending keys.
+Print total zkETH balance, spendable balance associated with the privacy account and spendable balance associated with spending keys.
 
 ```
 USAGE
@@ -179,7 +179,7 @@ FLAGS
   --logSdk                            verbose Aztec SDK logging
 
 DESCRIPTION
-  Print total balance, spendable balance associated with the privacy account and spendable balance associated with
+  Print total zkETH balance, spendable balance associated with the privacy account and spendable balance associated with
   spending keys.
 
 EXAMPLES
