@@ -3,7 +3,7 @@ import { Flags } from "../flags";
 
 export default class Balance extends BaseCommand {
   static description =
-    "Print total balance, spendable balance associated with the privacy account and spendable balance associated with spending keys.";
+    "Print total zkETH balance, spendable balance associated with the privacy account and spendable balance associated with spending keys.";
 
   static flags = {
     ...BaseCommand.flags,
