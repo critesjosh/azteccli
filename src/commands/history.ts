@@ -55,7 +55,7 @@ export default class History extends BaseCommand {
       }
       if (tx instanceof UserDefiClaimTx) {
         this.log(pad("DefiTxId:"), tx.defiTxId.toString());
-        this.log("Bridge:");
+        this.log("Connector:");
         this.log(pad("Deposit value:"), tx.depositValue);
         this.log(pad("Success?:"), tx.success);
         this.log(pad("Output value A:"), tx.outputValueA);

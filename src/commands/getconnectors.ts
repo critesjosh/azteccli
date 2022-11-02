@@ -2,10 +2,10 @@ import { EthAddress } from "@aztec/sdk";
 import { BaseCommand } from "../base";
 import { DataProviderWrapper } from "@aztec/bridge-clients/client-dest/src/client/aztec/data-provider/DataProvider";
 
-export default class GetBridges extends BaseCommand {
-  static description = "Get the bridges on the current network";
+export default class GetConnectors extends BaseCommand {
+  static description = "Get the connectors on the current network";
 
-  static examples = ["aztec-cli getbridges"];
+  static examples = ["aztec-cli getconnectors"];
 
   static flags = {
     ...BaseCommand.flags,
@@ -19,10 +19,10 @@ export default class GetBridges extends BaseCommand {
       this.ethereumProvider,
       testnetAddress as any
     );
-    const bridges = await dataProvider.getBridges();
-    for (const bridge in bridges) {
-      const bridgeData = bridges[bridge];
-      this.log(`Bridge: ${bridge}`);
+    const connectors = await dataProvider.getBridges();
+    for (const connector in connectors) {
+      const bridgeData = connectors[connector];
+      this.log(`Connector: ${connector}`);
       for (const [key, value] of Object.entries(bridgeData)) {
         this.log(`${key}: ${value}`);
       }
