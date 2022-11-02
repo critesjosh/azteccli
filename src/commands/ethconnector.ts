@@ -1,4 +1,4 @@
-import { AssetValue, BridgeCallData, EthAddress } from "@aztec/sdk";
+import { AssetValue, BridgeCallData, EthAddress, virtualAssetIdPlaceholder } from "@aztec/sdk";
 import { BaseCommand } from "../base";
 import { createElementAdaptor } from "../defiAdaptors/elementAdaptor";
 import { createLidoAdaptor } from "../defiAdaptors/lidoAdaptor";
@@ -6,8 +6,8 @@ import { Flags } from "../flags";
 import networkConfig from "../network_config";
 import { parseTime } from "../utils";
 
-export default class DefiBridge extends BaseCommand {
-  static description = "Bridge assets to Ethereum base layer.";
+export default class EthConnector extends BaseCommand {
+  static description = "Relay assets to Ethereum base layer.";
 
   wstEthTokenAddress = EthAddress.fromString(
     "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0"
@@ -40,7 +40,7 @@ export default class DefiBridge extends BaseCommand {
     const signer = await this.getSigner();
 
     // https://github.com/AztecProtocol/aztec-connect-bridges/blob/master/deployments/mainnet.json
-    // const CurveStEthBridge = this.sdk.getBridgeAddressId(
+    // const CurveStEthConnector = this.sdk.getBridgeAddressId(
     //   EthAddress.fromString("0xe09801dA4C74e62fB42DFC8303a1C1BD68073D1a"),
     //   250000
     // );
@@ -50,6 +50,8 @@ export default class DefiBridge extends BaseCommand {
     // );
     const ethToWstEth = new BridgeCallData(5, 0, 2); // IN: ETH (0), OUT: wstETH (2)
     const WstEthToEth = new BridgeCallData(5, 2, 0); // IN: wstETH (2), OUT: ETH (0)
+    const nftConnector = new BridgeCallData(19, 0, virtualAssetIdPlaceholder, undefined, undefined, 0);
+
 
     // const elementAdaptor = createElementAdaptor(
     //   this.ethereumProvider,
@@ -58,7 +60,7 @@ export default class DefiBridge extends BaseCommand {
     //   false
     // );
 
-    let bridge = ethToWstEth
+    let connector = nftConnector
 
     const tokenAssetId = this.sdk!.getAssetIdBySymbol(asset.toUpperCase());
     const tokenQuantity = BigInt((amount as number) * 10 ** 18);
@@ -68,11 +70,11 @@ export default class DefiBridge extends BaseCommand {
       value: tokenQuantity,
     };
 
-    const fee = (await this.sdk.getDefiFees(bridge))[settlementTime];
+    const fee = (await this.sdk.getDefiFees(connector))[settlementTime];
     const controller = this.sdk.createDefiController(
       accountKeys.publicKey,
       signer,
-      bridge,
+      connector,
       tokenAssetValue,
       fee
     );
