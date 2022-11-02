@@ -77,9 +77,9 @@ TODO:
 * [`azteccli accountinfo`](#azteccli-accountinfo)
 * [`azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`](#azteccli-addkey-number-newsigningkeymessage1-newsigningkeymessage2)
 * [`azteccli balance`](#azteccli-balance)
-* [`azteccli defibridge AMOUNT`](#azteccli-defibridge-amount)
 * [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
-* [`azteccli getbridges`](#azteccli-getbridges)
+* [`azteccli ethconnector AMOUNT`](#azteccli-ethconnector-amount)
+* [`azteccli getconnectors`](#azteccli-getconnectors)
 * [`azteccli getfees`](#azteccli-getfees)
 * [`azteccli help [COMMAND]`](#azteccli-help-command)
 * [`azteccli history`](#azteccli-history)
@@ -192,38 +192,6 @@ EXAMPLES
 
 _See code: [dist/commands/balance.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/balance.ts)_
 
-## `azteccli defibridge AMOUNT`
-
-Bridge assets to Ethereum base layer.
-
-```
-USAGE
-  $ azteccli defibridge [AMOUNT] [--logSdk] [--time deadline|next|instant] [-a eth|dai|wsteth] [-m <value> | -k
-    <value>] [--useAccountKeySigner | --signingKey <value> | --customSignerMessage <value>] [--spendingKeyRequired]
-
-FLAGS
-  -a, --asset=<option>                [default: eth]
-                                      <options: eth|dai|wsteth>
-  -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
-                                      wallet.
-  -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
-  --customSignerMessage=<value>       Custom message to sign to derive an Aztec signing key.
-  --logSdk                            verbose Aztec SDK logging
-  --signingKey=<value>                An Aztec signing private key to use instead of deriving one from an Ethereum
-                                      wallet.
-  --spendingKeyRequired               Should the recipient be required to have a registered spending key?
-  --time=<option>                     [default: deadline] transaction time (next is slower + cheaper)
-                                      <options: deadline|next|instant>
-  --useAccountKeySigner               Create the Aztec signer from the account key and not a registered spending key.
-                                      Use this if you have funds associated with your account key and not a spending
-                                      key.
-
-DESCRIPTION
-  Bridge assets to Ethereum base layer.
-```
-
-_See code: [dist/commands/defibridge.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/defibridge.ts)_
-
 ## `azteccli deposit AMOUNT`
 
 Deposit funds to aztec.
@@ -264,25 +232,57 @@ EXAMPLES
 
 _See code: [dist/commands/deposit.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/deposit.ts)_
 
-## `azteccli getbridges`
+## `azteccli ethconnector AMOUNT`
 
-Get the bridges on the current network
+Relay assets to Ethereum base layer.
 
 ```
 USAGE
-  $ azteccli getbridges [--logSdk]
+  $ azteccli ethconnector [AMOUNT] [--logSdk] [--time deadline|next|instant] [-a eth|dai|wsteth] [-m <value> | -k
+    <value>] [--useAccountKeySigner | --signingKey <value> | --customSignerMessage <value>] [--spendingKeyRequired]
+
+FLAGS
+  -a, --asset=<option>                [default: eth]
+                                      <options: eth|dai|wsteth>
+  -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
+                                      wallet.
+  -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
+  --customSignerMessage=<value>       Custom message to sign to derive an Aztec signing key.
+  --logSdk                            verbose Aztec SDK logging
+  --signingKey=<value>                An Aztec signing private key to use instead of deriving one from an Ethereum
+                                      wallet.
+  --spendingKeyRequired               Should the recipient be required to have a registered spending key?
+  --time=<option>                     [default: deadline] transaction time (next is slower + cheaper)
+                                      <options: deadline|next|instant>
+  --useAccountKeySigner               Create the Aztec signer from the account key and not a registered spending key.
+                                      Use this if you have funds associated with your account key and not a spending
+                                      key.
+
+DESCRIPTION
+  Relay assets to Ethereum base layer.
+```
+
+_See code: [dist/commands/ethconnector.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/ethconnector.ts)_
+
+## `azteccli getconnectors`
+
+Get the connectors on the current network
+
+```
+USAGE
+  $ azteccli getconnectors [--logSdk]
 
 FLAGS
   --logSdk  verbose Aztec SDK logging
 
 DESCRIPTION
-  Get the bridges on the current network
+  Get the connectors on the current network
 
 EXAMPLES
-  aztec-cli getbridges
+  aztec-cli getconnectors
 ```
 
-_See code: [dist/commands/getbridges.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/getbridges.ts)_
+_See code: [dist/commands/getconnectors.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/getconnectors.ts)_
 
 ## `azteccli getfees`
 
