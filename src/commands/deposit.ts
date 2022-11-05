@@ -1,9 +1,9 @@
 import { AssetValue } from "@aztec/sdk";
 // import { Flags } from "@oclif/core";
-import { Flags } from "../flags";
-import { BaseCommand } from "../base";
-import { parseTime, parseAztecRecipient } from "../utils";
-import networkConfig from "../network_config";
+import { Flags } from "../flags.js";
+import { BaseCommand } from "../base.js";
+import { parseTime, parseAztecRecipient } from "../utils.js";
+import networkConfig from "../network_config.js";
 
 export default class Deposit extends BaseCommand {
   static description = "Deposit funds to aztec.";
@@ -77,12 +77,14 @@ export default class Deposit extends BaseCommand {
       (await tokenDepositController.getPendingFunds()) < tokenAssetValue.value
     ) {
       if (asset === "dai") {
-        if((await tokenDepositController.getPublicAllowance()) <
-        tokenAssetValue.value){
+        if (
+          (await tokenDepositController.getPublicAllowance()) <
+          tokenAssetValue.value
+        ) {
           await tokenDepositController.approve();
           await tokenDepositController.awaitApprove();
         }
-      } 
+      }
       await tokenDepositController.depositFundsToContract();
       await tokenDepositController.awaitDepositFundsToContract();
     }

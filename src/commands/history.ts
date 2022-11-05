@@ -1,12 +1,8 @@
-import {
-  UserDefiClaimTx,
-  UserDefiTx,
-  UserPaymentTx,
-} from "@aztec/sdk";
-import { BaseCommand } from "../base";
-import { Flags } from "../flags";
-import networkConfig from "../network_config";
-import { pad } from "../utils"
+import { UserDefiClaimTx, UserDefiTx, UserPaymentTx } from "@aztec/sdk";
+import { BaseCommand } from "../base.js";
+import { Flags } from "../flags.js";
+import networkConfig from "../network_config.js";
+import { pad } from "../utils.js";
 
 (BigInt.prototype as any).toJSON = function () {
   return this.toString();
@@ -38,11 +34,13 @@ export default class History extends BaseCommand {
     let txs = await this.sdk.getUserTxs(accountKeys!.publicKey);
 
     let txsWithUrl = txs.map((tx) => {
-      const url = `${networkConfig[this.chainId].explorerUrl}tx/${tx.txId?.toString()}`
+      const url = `${
+        networkConfig[this.chainId].explorerUrl
+      }tx/${tx.txId?.toString()}`;
       this.log("----------------");
       this.log(pad("Tx Type:"), tx.constructor.name);
       this.log(pad("Transaction Id:"), tx.txId?.toString());
-      this.log(pad("Explorer Url:"), url)
+      this.log(pad("Explorer Url:"), url);
       this.log(pad("Settled:"), tx.settled?.toUTCString());
       if (tx instanceof UserDefiTx) {
         this.log(pad("Deposit Value:"), tx.depositValue);
@@ -63,7 +61,7 @@ export default class History extends BaseCommand {
       }
       return {
         ...tx,
-        url
+        url,
       };
     });
 

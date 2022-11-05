@@ -1,6 +1,6 @@
 import { EthAddress } from "@aztec/sdk";
-import { BaseCommand } from "../base";
-import { DataProviderWrapper } from "@aztec/bridge-clients/client-dest/src/client/aztec/data-provider/DataProvider";
+import { BaseCommand } from "../base.js";
+import { DataProviderWrapper } from "@aztec/bridge-clients/client-dest/src/client/aztec/data-provider/DataProvider.js";
 
 export default class GetBridges extends BaseCommand {
   static description = "Get the bridges on the current network";

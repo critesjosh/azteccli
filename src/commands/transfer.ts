@@ -1,9 +1,9 @@
 import { AssetValue, GrumpkinAddress, TxSettlementTime } from "@aztec/sdk";
-import { BaseCommand } from "../base";
+import { BaseCommand } from "../base.js";
 // import { Flags} from "@oclif/core";
-import { Flags } from "../flags";
-import networkConfig from "../network_config";
-import { parseAztecRecipient, parseTime } from "../utils";
+import { Flags } from "../flags.js";
+import networkConfig from "../network_config.js";
+import { parseAztecRecipient, parseTime } from "../utils.js";
 
 export default class Transfer extends BaseCommand {
   static description = "Transfer funds on the Aztec network.";
@@ -33,25 +33,19 @@ export default class Transfer extends BaseCommand {
   static args = [{ name: "amount", required: true }];
 
   public async run(): Promise<void> {
-    const { time, recipient, asset, spendingKeyRequired } = this.flags
-    const { amount } = this.args
+    const { time, recipient, asset, spendingKeyRequired } = this.flags;
+    const { amount } = this.args;
 
     let settlementTime = parseTime(time);
 
     const accountKeys = await this.getAccountKeysAndSyncAccount();
 
-    let to = await parseAztecRecipient(
-      recipient,
-      accountKeys,
-      this.sdk
-    );
+    let to = await parseAztecRecipient(recipient, accountKeys, this.sdk);
 
     const signer = await this.getSigner();
 
     const tokenQuantity = BigInt((amount as number) * 10 ** 18);
-    const tokenAssetId = this.sdk.getAssetIdBySymbol(
-      asset.toUpperCase()
-    );
+    const tokenAssetId = this.sdk.getAssetIdBySymbol(asset.toUpperCase());
     const tokenTransferFee = (await this.sdk.getTransferFees(tokenAssetId))[
       settlementTime
     ];
@@ -69,8 +63,11 @@ export default class Transfer extends BaseCommand {
       spendingKeyRequired
     );
 
-    await tokenTransferController.createProof()
+    await tokenTransferController.createProof();
     let txId = await tokenTransferController.send();
-    this.log('View transaction on the block explorer', `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`)
+    this.log(
+      "View transaction on the block explorer",
+      `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`
+    );
   }
 }

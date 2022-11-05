@@ -1,5 +1,5 @@
 import { Flags as flags } from "@oclif/core";
-import { FlagParser } from "@oclif/core/lib/interfaces/parser";
+import { FlagParser } from "@oclif/core/lib/interfaces/parser.js";
 import { CLIError } from "@oclif/core/lib/errors";
 import { utils } from "ethers";
 
@@ -40,7 +40,7 @@ export const Flags = {
   }),
   spendingKeyRequired: flags.boolean({
     description:
-      "Should the recipient be required to have a registered spending key?"
+      "Should the recipient be required to have a registered spending key?",
   }),
   ethAddress: flags.build({
     // parse: parseAddress,
@@ -72,12 +72,12 @@ export const Flags = {
   }),
   logSdk: flags.boolean({
     description: "verbose Aztec SDK logging",
-    default: false
+    default: false,
   }),
   newSigningKey1: flags.string({
-    description: "New signing key to associated with a registered account."
+    description: "New signing key to associated with a registered account.",
   }),
   newSigningKey2: flags.string({
-    description: "New signing key to associated with a registered account."
+    description: "New signing key to associated with a registered account.",
   }),
 };

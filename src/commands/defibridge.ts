@@ -1,10 +1,10 @@
 import { AssetValue, BridgeCallData, EthAddress } from "@aztec/sdk";
-import { BaseCommand } from "../base";
-import { createElementAdaptor } from "../defiAdaptors/elementAdaptor";
-import { createLidoAdaptor } from "../defiAdaptors/lidoAdaptor";
-import { Flags } from "../flags";
-import networkConfig from "../network_config";
-import { parseTime } from "../utils";
+import { BaseCommand } from "../base.js";
+import { createElementAdaptor } from "../defiAdaptors/elementAdaptor.js";
+import { createLidoAdaptor } from "../defiAdaptors/lidoAdaptor.js";
+import { Flags } from "../flags.js";
+import networkConfig from "../network_config.js";
+import { parseTime } from "../utils.js";
 
 export default class DefiBridge extends BaseCommand {
   static description = "Bridge assets to Ethereum base layer.";
@@ -58,7 +58,7 @@ export default class DefiBridge extends BaseCommand {
     //   false
     // );
 
-    let bridge = ethToWstEth
+    let bridge = ethToWstEth;
 
     const tokenAssetId = this.sdk!.getAssetIdBySymbol(asset.toUpperCase());
     const tokenQuantity = BigInt((amount as number) * 10 ** 18);

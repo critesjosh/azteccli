@@ -8,7 +8,7 @@ import {
   SchnorrSigner,
   DefiSettlementTime,
 } from "@aztec/sdk";
-import { AztecAccountKeys } from "./base";
+import { AztecAccountKeys } from "./base.js";
 import { CliUx } from "@oclif/core";
 import { CLIError } from "@oclif/core/lib/errors";
 import { JsonRpcSigner } from "@ethersproject/providers";
