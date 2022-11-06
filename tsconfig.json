@@ -2,11 +2,11 @@
   "compilerOptions": {
     "declaration": true,
     "importHelpers": true,
-    "module": "commonjs",
+    "module": "node16",
     "outDir": "dist",
     "rootDir": "src",
     "strict": true,
-    "target": "es2020",
+    "target": "esnext",
     "esModuleInterop": true,
     "skipLibCheck": true
   },

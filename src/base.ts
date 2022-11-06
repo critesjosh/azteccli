@@ -60,7 +60,15 @@ export abstract class BaseCommand extends Command {
         ? path.join(__dirname, "..", "config.json")
         : path.join(this.config.configDir, "config.json");
 
-    const userConfig = await fs.readJSON(configFile);
+    let userConfig;
+    try {
+      userConfig = await fs.readJSON(configFile);
+    } catch {
+      this.log("No user config file found. Using Metamask.")
+      userConfig = {
+        wallet: "metamask"
+      }
+    }
     this.flags = mergeConfigWithFlags(userConfig, flags);
 
     let wallet = userConfig.wallet;
