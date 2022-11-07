@@ -26,7 +26,7 @@ import {
 } from "./utils";
 import { CLIError } from "@oclif/core/lib/errors";
 import { Flags } from "./flags";
-require('dotenv').config()
+require("dotenv").config();
 
 export type AztecAccountKeys = {
   publicKey: GrumpkinAddress;
@@ -64,7 +64,8 @@ export abstract class BaseCommand extends Command {
     try {
       userConfig = await fs.readJSON(configFile);
     } catch {
-      this.log("No user config file found.")
+      userConfig = {};
+      this.log("No user config file found.");
     }
 
     this.flags = mergeConfigWithFlags(userConfig, flags);
@@ -127,7 +128,7 @@ export abstract class BaseCommand extends Command {
       // memoryDb: true, // commented out means it will save data in ./data
       debug,
       flavour: SdkFlavour.PLAIN, // used in a Nodejs context
-      minConfirmation: 1,        // ETH block confirmations
+      minConfirmation: 1, // ETH block confirmations
     });
 
     await this.sdk.run();
