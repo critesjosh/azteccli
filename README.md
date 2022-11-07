@@ -27,11 +27,16 @@ Does not handle your keys--connects to [Metamask](https://metamask.io/) with [Tr
 
 You can save some account information that is passed to commands as flags in the config so you don't have to enter every time. These flags can be saved in the config:
 
-- `accountKey`
-- `signingKey`
-- `customAccountMessage`
-- `customSignerMessage`
-- `useAccountKeySigner`
+```js
+{
+    "wallet": "metamask",       // metamask or walletconnect
+    "customAccountMessage": "", // can be anything
+    "accountKey": "",           // private key
+    "useAccountKeySigner": "",  // true or false
+    "signingKey": "",           // private key
+    "customSignerMessage": ""   // can be anything
+}
+```
 
 Flag info overrides config info. So if information is passed to a command via a flag and there is corresponding information saved in the config file, the info passed via the flag will be used. For example, if accountKey `abc` is saved in the config and accountKey `123` is passed via a flag, accountKey `123` will be used.
 
@@ -73,27 +78,33 @@ TODO:
 ## Commands
 
   <!-- commands -->
-* [`azteccli accountinfo`](#azteccli-accountinfo)
-* [`azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`](#azteccli-addkey-number-newsigningkeymessage1-newsigningkeymessage2)
-* [`azteccli balance`](#azteccli-balance)
-* [`azteccli defibridge AMOUNT`](#azteccli-defibridge-amount)
-* [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
-* [`azteccli getbridges`](#azteccli-getbridges)
-* [`azteccli getfees`](#azteccli-getfees)
-* [`azteccli help [COMMAND]`](#azteccli-help-command)
-* [`azteccli history`](#azteccli-history)
-* [`azteccli plugins`](#azteccli-plugins)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
-* [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
-* [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
-* [`azteccli plugins:update`](#azteccli-pluginsupdate)
-* [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
-* [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
-* [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
+- [azteccli](#azteccli)
+  - [Getting started](#getting-started)
+  - [Config](#config)
+  - [Development](#development)
+  - [Capabilities](#capabilities)
+  - [Commands](#commands)
+  - [`azteccli accountinfo`](#azteccli-accountinfo)
+  - [`azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`](#azteccli-addkey-number-newsigningkeymessage1-newsigningkeymessage2)
+  - [`azteccli balance`](#azteccli-balance)
+  - [`azteccli defibridge AMOUNT`](#azteccli-defibridge-amount)
+  - [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
+  - [`azteccli getbridges`](#azteccli-getbridges)
+  - [`azteccli getfees`](#azteccli-getfees)
+  - [`azteccli help [COMMAND]`](#azteccli-help-command)
+  - [`azteccli history`](#azteccli-history)
+  - [`azteccli plugins`](#azteccli-plugins)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
+  - [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
+  - [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
+  - [`azteccli plugins:update`](#azteccli-pluginsupdate)
+  - [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
+  - [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
+  - [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
 
 ## `azteccli accountinfo`
 
