@@ -78,33 +78,27 @@ TODO:
 ## Commands
 
   <!-- commands -->
-- [azteccli](#azteccli)
-  - [Getting started](#getting-started)
-  - [Config](#config)
-  - [Development](#development)
-  - [Capabilities](#capabilities)
-  - [Commands](#commands)
-  - [`azteccli accountinfo`](#azteccli-accountinfo)
-  - [`azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`](#azteccli-addkey-number-newsigningkeymessage1-newsigningkeymessage2)
-  - [`azteccli balance`](#azteccli-balance)
-  - [`azteccli defibridge AMOUNT`](#azteccli-defibridge-amount)
-  - [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
-  - [`azteccli getbridges`](#azteccli-getbridges)
-  - [`azteccli getfees`](#azteccli-getfees)
-  - [`azteccli help [COMMAND]`](#azteccli-help-command)
-  - [`azteccli history`](#azteccli-history)
-  - [`azteccli plugins`](#azteccli-plugins)
-  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
-  - [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
-  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
-  - [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
-  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
-  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
-  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
-  - [`azteccli plugins:update`](#azteccli-pluginsupdate)
-  - [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
-  - [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
-  - [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
+* [`azteccli accountinfo`](#azteccli-accountinfo)
+* [`azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`](#azteccli-addkey-number-newsigningkeymessage1-newsigningkeymessage2)
+* [`azteccli balance`](#azteccli-balance)
+* [`azteccli defibridge AMOUNT`](#azteccli-defibridge-amount)
+* [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
+* [`azteccli getbridges`](#azteccli-getbridges)
+* [`azteccli getfees`](#azteccli-getfees)
+* [`azteccli help [COMMAND]`](#azteccli-help-command)
+* [`azteccli history`](#azteccli-history)
+* [`azteccli plugins`](#azteccli-plugins)
+* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
+* [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
+* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
+* [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
+* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
+* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
+* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
+* [`azteccli plugins:update`](#azteccli-pluginsupdate)
+* [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
+* [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
+* [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
 
 ## `azteccli accountinfo`
 
@@ -131,7 +125,7 @@ EXAMPLES
   $ azteccli accountinfo --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/accountinfo.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/accountinfo.ts)_
+_See code: [dist/commands/accountinfo.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/accountinfo.ts)_
 
 ## `azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`
 
@@ -169,7 +163,7 @@ DESCRIPTION
   Add up to two spending keys to a registered account.
 ```
 
-_See code: [dist/commands/addkey.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/addkey.ts)_
+_See code: [dist/commands/addkey.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/addkey.ts)_
 
 ## `azteccli balance`
 
@@ -197,7 +191,7 @@ EXAMPLES
   $ azteccli balance --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/balance.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/balance.ts)_
+_See code: [dist/commands/balance.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/balance.ts)_
 
 ## `azteccli defibridge AMOUNT`
 
@@ -229,7 +223,7 @@ DESCRIPTION
   Bridge assets to Ethereum base layer.
 ```
 
-_See code: [dist/commands/defibridge.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/defibridge.ts)_
+_See code: [dist/commands/defibridge.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/defibridge.ts)_
 
 ## `azteccli deposit AMOUNT`
 
@@ -269,7 +263,7 @@ EXAMPLES
   $ azteccli deposit 1 --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/deposit.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/deposit.ts)_
+_See code: [dist/commands/deposit.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/deposit.ts)_
 
 ## `azteccli getbridges`
 
@@ -289,7 +283,7 @@ EXAMPLES
   aztec-cli getbridges
 ```
 
-_See code: [dist/commands/getbridges.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/getbridges.ts)_
+_See code: [dist/commands/getbridges.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/getbridges.ts)_
 
 ## `azteccli getfees`
 
@@ -311,7 +305,7 @@ EXAMPLES
   aztec-cli getfees
 ```
 
-_See code: [dist/commands/getfees.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/getfees.ts)_
+_See code: [dist/commands/getfees.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/getfees.ts)_
 
 ## `azteccli help [COMMAND]`
 
@@ -358,7 +352,7 @@ EXAMPLES
   $ azteccli history --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/history.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/history.ts)_
+_See code: [dist/commands/history.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/history.ts)_
 
 ## `azteccli plugins`
 
@@ -647,7 +641,7 @@ EXAMPLES
   $ azteccli register --alias testooor --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9 --signingKey 0c5e934c191d9b0ad2bd07d5042414efc4a1523b465648918a678cbd6fb5b241
 ```
 
-_See code: [dist/commands/register.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/register.ts)_
+_See code: [dist/commands/register.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/register.ts)_
 
 ## `azteccli transfer AMOUNT`
 
@@ -689,7 +683,7 @@ EXAMPLES
   $ azteccli transfer 1 -r theiralias --asset dai --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9 --signingKey 0c5e934c191d9b0ad2bd07d5042414efc4a1523b465648918a678cbd6fb5b241
 ```
 
-_See code: [dist/commands/transfer.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/transfer.ts)_
+_See code: [dist/commands/transfer.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/transfer.ts)_
 
 ## `azteccli withdraw [AMOUNT]`
 
@@ -729,5 +723,5 @@ EXAMPLES
   $ azteccli withdraw 1 -r 0x2e782B05290A7fFfA137a81a2bad2446AD0DdFEB --customAccountMessage 'custom account derivation message' --customSignerMessage 'custom signer derivation message'
 ```
 
-_See code: [dist/commands/withdraw.ts](https://github.com/critesjosh/azteccli/blob/v0.2.3/dist/commands/withdraw.ts)_
+_See code: [dist/commands/withdraw.ts](https://github.com/critesjosh/azteccli/blob/v0.2.4/dist/commands/withdraw.ts)_
 <!-- commandsstop -->
