@@ -14,7 +14,7 @@ import {
 import { ethers } from "ethers";
 import { JsonRpcSigner } from "@ethersproject/providers";
 import { createWalletconnectProvider } from "./wallet_providers/walletconnect_provider.js";
-import * as fs from "fs-extra";
+import fs from "fs-extra";
 import * as path from "path";
 import networkConfig from "./network_config.js";
 import {
@@ -24,9 +24,9 @@ import {
   getDefaultSigner,
   mergeConfigWithFlags,
 } from "./utils.js";
-import { CLIError } from "@oclif/core/lib/errors";
+import { CLIError } from "@oclif/core/lib/errors/index.js";
 import { Flags } from "./flags.js";
-require("dotenv").config();
+// require("dotenv").config();
 
 export type AztecAccountKeys = {
   publicKey: GrumpkinAddress;
@@ -55,10 +55,10 @@ export abstract class BaseCommand extends Command {
     // this setting controls where the config file is searched for
     // DEV looks in the project root for a config
     // anything else looks in the oclif default location, https://oclif.io/docs/config#custom-user-configuration
-    const configFile =
-      process.env.ENV === "DEV"
-        ? path.join(__dirname, "..", "config.json")
-        : path.join(this.config.configDir, "config.json");
+    const configFile = "config.json";
+    // process.env.ENV === "DEV"
+    //   ? path.join(__dirname, "..", "config.json")
+    //   : path.join(this.config.configDir, "config.json");
 
     const userConfig = await fs.readJSON(configFile);
     this.flags = mergeConfigWithFlags(userConfig, flags);

@@ -10,7 +10,7 @@ import {
 } from "@aztec/sdk";
 import { AztecAccountKeys } from "./base.js";
 import { CliUx } from "@oclif/core";
-import { CLIError } from "@oclif/core/lib/errors";
+import { CLIError } from "@oclif/core/lib/errors/index.js";
 import { JsonRpcSigner } from "@ethersproject/providers";
 
 export async function getAccountKeysAndSyncAccount(
@@ -129,11 +129,18 @@ export async function getAndSyncAccount(
   return aztecAccount;
 }
 
-export function parseTime(time: string, defiInteraction: boolean = false): number {
+export function parseTime(
+  time: string,
+  defiInteraction: boolean = false
+): number {
   if (time === "next") {
-    return defiInteraction ? DefiSettlementTime.NEXT_ROLLUP : TxSettlementTime.NEXT_ROLLUP;
-  } else if (time === "instant"){
-    return defiInteraction ? DefiSettlementTime.INSTANT : TxSettlementTime.INSTANT;
+    return defiInteraction
+      ? DefiSettlementTime.NEXT_ROLLUP
+      : TxSettlementTime.NEXT_ROLLUP;
+  } else if (time === "instant") {
+    return defiInteraction
+      ? DefiSettlementTime.INSTANT
+      : TxSettlementTime.INSTANT;
   } else {
     return DefiSettlementTime.DEADLINE;
   }
@@ -145,14 +152,16 @@ export async function parseAztecRecipient(
   sdk: AztecSdk
 ): Promise<GrumpkinAddress> {
   if (input) {
-    try{
+    try {
       if (await sdk.isAliasRegistered(input)) {
         return (await sdk.getAccountPublicKey(input))!;
       } else {
         return GrumpkinAddress.fromString(input);
       }
     } catch {
-      throw new CLIError(`Recipient ${input} is not a recognized alias or public key.`)
+      throw new CLIError(
+        `Recipient ${input} is not a recognized alias or public key.`
+      );
     }
   } else {
     // default recipient is the users account

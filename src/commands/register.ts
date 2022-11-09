@@ -2,7 +2,7 @@ import { EthAddress, GrumpkinAddress } from "@aztec/sdk";
 import { Flags as flags } from "@oclif/core";
 import { Flags } from "../flags.js";
 import { BaseCommand } from "../base.js";
-import { CLIError } from "@oclif/core/lib/errors";
+import { CLIError } from "@oclif/core/lib/errors/index.js";
 import { parseTime } from "../utils.js";
 import networkConfig from "../network_config.js";
 

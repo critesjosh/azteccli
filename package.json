@@ -5,12 +5,12 @@
   "author": "jc@joshcrites.com",
   "type": "module",
   "bin": {
-    "azteccli": "./bin/run"
+    "azteccli": "./bin/run.js"
   },
   "bugs": "https://github.com/critesjosh/azteccli/issues",
   "dependencies": {
     "@aztec/bridge-clients": "0.1.63",
-    "@aztec/sdk": "2.1.0-testnet.64",
+    "@aztec/sdk": "2.1.0-testnet.66",
     "@oclif/core": "^1.16.4",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
@@ -72,5 +72,8 @@
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif readme && git add README.md"
   },
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "resolutions": {
+    "@aztec/bridge-clients": "0.1.63"
+  }
 }
