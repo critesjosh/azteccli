@@ -207,6 +207,7 @@ export async function getDefaultSigner(
 
 export function mergeConfigWithFlags(config: any, flags: any) {
   const configKeys = [
+    "wallet",
     "customAccountMessage",
     "accountKey",
     "useAccountKeySigner",
@@ -218,7 +219,7 @@ export function mergeConfigWithFlags(config: any, flags: any) {
 
   configKeys.map((key) => {
     if (flags[key]) return;
-    if (config[key]) {
+    if (config && config[key]) {
       flags[key] = config[key];
     }
   });

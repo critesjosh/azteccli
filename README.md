@@ -10,8 +10,6 @@ Quick intro on Youtube here:
 
 Does not handle your keys--connects to [Metamask](https://metamask.io/) with [Truffle Dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/) or to any wallet that supports [WalletConnect](https://docs.walletconnect.com/). **Metamask is the preferred wallet, this has not been tested extensively with wallet connect.**
 
-Uses [conf-cli](https://github.com/natzcam/conf-cli) for setting and getting the wallet config. Set wallet with `azteccli conf wallet metamask|walletconnect`.
-
 ## Getting started
 
 1. [Install Nodejs](https://nodejs.org/en/download/)
@@ -22,25 +20,31 @@ Uses [conf-cli](https://github.com/natzcam/conf-cli) for setting and getting the
    2. Add global yarn packages to your shell PATH.
       1. Run `yarn global bin` to see where the yarn global packages are located.
       2. Add the yarn global install location to your PATH if it isn't already. ie. Add `export PATH="/home/josh/.yarn/bin:$PATH"` to ~/.bashrc.
-5. Set metamask. `$ azteccli conf wallet metamask`.
-6. Start [Truffle dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/). `$ truffle dashboard`
-7. Run a command: (ie`$ azteccli history`)
+5. Start [Truffle dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/). `$ truffle dashboard`
+6. Run a command: (ie`$ azteccli history`)
 
 ## Config
 
 You can save some account information that is passed to commands as flags in the config so you don't have to enter every time. These flags can be saved in the config:
 
-- `accountKey`
-- `signingKey`
-- `customAccountMessage`
-- `customSignerMessage`
-- `useAccountKeySigner`
+```js
+{
+    "wallet": "metamask",       // metamask or walletconnect
+    "customAccountMessage": "", // can be anything
+    "accountKey": "",           // private key
+    "useAccountKeySigner": "",  // true or false
+    "signingKey": "",           // private key
+    "customSignerMessage": ""   // can be anything
+}
+```
 
 Flag info overrides config info. So if information is passed to a command via a flag and there is corresponding information saved in the config file, the info passed via the flag will be used. For example, if accountKey `abc` is saved in the config and accountKey `123` is passed via a flag, accountKey `123` will be used.
 
 Be careful with what information you save in this file, particularly account keys or signing keys. I recommend only saving private keys for testnet accounts.
 
-If you are running commands directly from this repo, the config file is located at `./config.json`. If you are running a published version of the cli that you got from npm, the config is located at the oclif default location (https://oclif.io/docs/config#custom-user-configuration).
+If you are running commands directly from this repo, the config file is located at `./config.json`.
+
+If you are running a published version of the cli that you got from npm, the config is located at the oclif default location (https://oclif.io/docs/config#custom-user-configuration). If a config file is not found, the CLI will use Metamask as the wallet by default.
 
 ## Development
 
@@ -109,16 +113,13 @@ Print Grumpkin address public key.
 
 ```
 USAGE
-  $ azteccli accountinfo [--logSdk] [-m <value> | -k <value>] [--json]
+  $ azteccli accountinfo [--logSdk] [-m <value> | -k <value>]
 
 FLAGS
   -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
                                       wallet.
   -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
   --logSdk                            verbose Aztec SDK logging
-
-GLOBAL FLAGS
-  --json  Format output as json.
 
 DESCRIPTION
   Print Grumpkin address public key.
@@ -131,7 +132,7 @@ EXAMPLES
   $ azteccli accountinfo --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/accountinfo.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/accountinfo.ts)_
+_See code: [dist/commands/accountinfo.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/accountinfo.ts)_
 
 ## `azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`
 
@@ -169,7 +170,7 @@ DESCRIPTION
   Add up to two spending keys to a registered account.
 ```
 
-_See code: [dist/commands/addkey.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/addkey.ts)_
+_See code: [dist/commands/addkey.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/addkey.ts)_
 
 ## `azteccli balance`
 
@@ -197,7 +198,7 @@ EXAMPLES
   $ azteccli balance --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/balance.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/balance.ts)_
+_See code: [dist/commands/balance.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/balance.ts)_
 
 ## `azteccli defibridge AMOUNT`
 
@@ -229,7 +230,7 @@ DESCRIPTION
   Bridge assets to Ethereum base layer.
 ```
 
-_See code: [dist/commands/defibridge.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/defibridge.ts)_
+_See code: [dist/commands/defibridge.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/defibridge.ts)_
 
 ## `azteccli deposit AMOUNT`
 
@@ -269,7 +270,7 @@ EXAMPLES
   $ azteccli deposit 1 --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/deposit.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/deposit.ts)_
+_See code: [dist/commands/deposit.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/deposit.ts)_
 
 ## `azteccli getbridges`
 
@@ -289,7 +290,7 @@ EXAMPLES
   aztec-cli getbridges
 ```
 
-_See code: [dist/commands/getbridges.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/getbridges.ts)_
+_See code: [dist/commands/getbridges.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/getbridges.ts)_
 
 ## `azteccli getfees`
 
@@ -311,7 +312,7 @@ EXAMPLES
   aztec-cli getfees
 ```
 
-_See code: [dist/commands/getfees.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/getfees.ts)_
+_See code: [dist/commands/getfees.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/getfees.ts)_
 
 ## `azteccli help [COMMAND]`
 
@@ -331,7 +332,7 @@ DESCRIPTION
   Display help for azteccli.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.14/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.17/src/commands/help.ts)_
 
 ## `azteccli history`
 
@@ -339,16 +340,13 @@ Get your Aztec tx history
 
 ```
 USAGE
-  $ azteccli history [--logSdk] [-m <value> | -k <value>] [--json]
+  $ azteccli history [--logSdk] [-m <value> | -k <value>]
 
 FLAGS
   -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
                                       wallet.
   -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
   --logSdk                            verbose Aztec SDK logging
-
-GLOBAL FLAGS
-  --json  Format output as json.
 
 DESCRIPTION
   Get your Aztec tx history
@@ -361,7 +359,7 @@ EXAMPLES
   $ azteccli history --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/history.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/history.ts)_
+_See code: [dist/commands/history.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/history.ts)_
 
 ## `azteccli plugins`
 
@@ -381,7 +379,7 @@ EXAMPLES
   $ azteccli plugins
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.1/src/commands/plugins/index.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.6/src/commands/plugins/index.ts)_
 
 ## `azteccli plugins:install PLUGIN...`
 
@@ -401,7 +399,6 @@ FLAGS
 
 DESCRIPTION
   Installs a plugin into the CLI.
-
   Can be installed from npm or a git url.
 
   Installation of a user-installed plugin will override a core plugin.
@@ -409,6 +406,7 @@ DESCRIPTION
   e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
   will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
   the CLI without the need to patch and update the whole CLI.
+
 
 ALIASES
   $ azteccli plugins:add
@@ -443,7 +441,7 @@ EXAMPLES
   $ azteccli plugins:inspect myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.1/src/commands/plugins/inspect.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.6/src/commands/plugins/inspect.ts)_
 
 ## `azteccli plugins:install PLUGIN...`
 
@@ -463,7 +461,6 @@ FLAGS
 
 DESCRIPTION
   Installs a plugin into the CLI.
-
   Can be installed from npm or a git url.
 
   Installation of a user-installed plugin will override a core plugin.
@@ -471,6 +468,7 @@ DESCRIPTION
   e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
   will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
   the CLI without the need to patch and update the whole CLI.
+
 
 ALIASES
   $ azteccli plugins:add
@@ -483,7 +481,7 @@ EXAMPLES
   $ azteccli plugins:install someuser/someplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.1/src/commands/plugins/install.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.6/src/commands/plugins/install.ts)_
 
 ## `azteccli plugins:link PLUGIN`
 
@@ -502,17 +500,17 @@ FLAGS
 
 DESCRIPTION
   Links a plugin into the CLI for development.
-
   Installation of a linked plugin will override a user-installed or core plugin.
 
   e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
   command will override the user-installed or core plugin implementation. This is useful for development work.
 
+
 EXAMPLES
   $ azteccli plugins:link myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.1/src/commands/plugins/link.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.6/src/commands/plugins/link.ts)_
 
 ## `azteccli plugins:uninstall PLUGIN...`
 
@@ -560,7 +558,7 @@ ALIASES
   $ azteccli plugins:remove
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.1/src/commands/plugins/uninstall.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.6/src/commands/plugins/uninstall.ts)_
 
 ## `azteccli plugins:uninstall PLUGIN...`
 
@@ -601,7 +599,7 @@ DESCRIPTION
   Update installed plugins.
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.1/src/commands/plugins/update.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.6/src/commands/plugins/update.ts)_
 
 ## `azteccli register [DEPOSIT]`
 
@@ -650,7 +648,7 @@ EXAMPLES
   $ azteccli register --alias testooor --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9 --signingKey 0c5e934c191d9b0ad2bd07d5042414efc4a1523b465648918a678cbd6fb5b241
 ```
 
-_See code: [dist/commands/register.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/register.ts)_
+_See code: [dist/commands/register.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/register.ts)_
 
 ## `azteccli transfer AMOUNT`
 
@@ -692,7 +690,7 @@ EXAMPLES
   $ azteccli transfer 1 -r theiralias --asset dai --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9 --signingKey 0c5e934c191d9b0ad2bd07d5042414efc4a1523b465648918a678cbd6fb5b241
 ```
 
-_See code: [dist/commands/transfer.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/transfer.ts)_
+_See code: [dist/commands/transfer.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/transfer.ts)_
 
 ## `azteccli withdraw [AMOUNT]`
 
@@ -732,5 +730,5 @@ EXAMPLES
   $ azteccli withdraw 1 -r 0x2e782B05290A7fFfA137a81a2bad2446AD0DdFEB --customAccountMessage 'custom account derivation message' --customSignerMessage 'custom signer derivation message'
 ```
 
-_See code: [dist/commands/withdraw.ts](https://github.com/critesjosh/azteccli/blob/v0.2.2/dist/commands/withdraw.ts)_
+_See code: [dist/commands/withdraw.ts](https://github.com/critesjosh/azteccli/blob/v0.2.5/dist/commands/withdraw.ts)_
 <!-- commandsstop -->

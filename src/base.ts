@@ -65,7 +65,14 @@ export abstract class BaseCommand extends Command {
         ? path.join(__dirname, "..", "config.json")
         : path.join(this.config.configDir, "config.json");
 
-    const userConfig = await fs.readJSON(configFile);
+    let userConfig;
+    try {
+      userConfig = await fs.readJSON(configFile);
+    } catch {
+      userConfig = {};
+      this.log("No user config file found.");
+    }
+
     this.flags = mergeConfigWithFlags(userConfig, flags);
 
     let wallet = userConfig.wallet;
@@ -77,7 +84,7 @@ export abstract class BaseCommand extends Command {
         )) as string
       ).toLowerCase();
       this.log(
-        "You can save your wallet preference with the command 'azteccli conf wallet metamask|walletconnect'."
+        "Refer to the project README to see how to save config settings."
       );
     }
 
