@@ -33,6 +33,9 @@
     "tslib": "^2.3.1",
     "typescript": "4.8.3"
   },
+  "resolutions": {
+    "@aztec/bridge-clients": "0.1.63"
+  },
   "engines": {
     "node": ">=12.0.0"
   },
@@ -72,8 +75,5 @@
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif readme && git add README.md"
   },
-  "types": "dist/index.d.ts",
-  "resolutions": {
-    "@aztec/bridge-clients": "0.1.63"
-  }
+  "types": "dist/index.d.ts"
 }
