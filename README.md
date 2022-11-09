@@ -47,7 +47,8 @@ If you are running commands directly from this repo, the config file is located 
 1. Clone the repo.
 2. Install dependencies. `yarn`
 2. Edit/add new commands in `./src/`
-3. Test your edits by running `./bin/dev [command] [args] [flags]`. (ie `./bin/dev deposit .01`)
+3. Build the project with `yarn build`
+4. Test your edits by running `./bin/run.cjs [command] [args] [flags]`. (ie `./bin/run.cjs deposit .01`)
 
 
 ## Capabilities
@@ -74,27 +75,33 @@ TODO:
 ## Commands
 
   <!-- commands -->
-* [`azteccli accountinfo`](#azteccli-accountinfo)
-* [`azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`](#azteccli-addkey-number-newsigningkeymessage1-newsigningkeymessage2)
-* [`azteccli balance`](#azteccli-balance)
-* [`azteccli defibridge AMOUNT`](#azteccli-defibridge-amount)
-* [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
-* [`azteccli getbridges`](#azteccli-getbridges)
-* [`azteccli getfees`](#azteccli-getfees)
-* [`azteccli help [COMMAND]`](#azteccli-help-command)
-* [`azteccli history`](#azteccli-history)
-* [`azteccli plugins`](#azteccli-plugins)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
-* [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
-* [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
-* [`azteccli plugins:update`](#azteccli-pluginsupdate)
-* [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
-* [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
-* [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
+- [azteccli](#azteccli)
+  - [Getting started](#getting-started)
+  - [Config](#config)
+  - [Development](#development)
+  - [Capabilities](#capabilities)
+  - [Commands](#commands)
+  - [`azteccli accountinfo`](#azteccli-accountinfo)
+  - [`azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`](#azteccli-addkey-number-newsigningkeymessage1-newsigningkeymessage2)
+  - [`azteccli balance`](#azteccli-balance)
+  - [`azteccli defibridge AMOUNT`](#azteccli-defibridge-amount)
+  - [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
+  - [`azteccli getbridges`](#azteccli-getbridges)
+  - [`azteccli getfees`](#azteccli-getfees)
+  - [`azteccli help [COMMAND]`](#azteccli-help-command)
+  - [`azteccli history`](#azteccli-history)
+  - [`azteccli plugins`](#azteccli-plugins)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
+  - [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
+  - [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
+  - [`azteccli plugins:update`](#azteccli-pluginsupdate)
+  - [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
+  - [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
+  - [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
 
 ## `azteccli accountinfo`
 
