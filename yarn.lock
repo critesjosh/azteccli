@@ -2,25 +2,6 @@
 # yarn lockfile v1
 
 
-"@aztec/barretenberg@2.1.0-testnet.66":
-  version "2.1.0-testnet.66"
-  resolved "https://registry.yarnpkg.com/@aztec/barretenberg/-/barretenberg-2.1.0-testnet.66.tgz#ac87d35e5aa44167fbd33ef9ad642b3d96a3dcab"
-  integrity sha512-ziGioceMtn5NoJeaP32g6c7jhmsvRAFXL6wURqGxfYlbLy3Trs9UnIWZ6yCgAnZ1JfKkddgHYGkyHfamAnqCNw==
-  dependencies:
-    "@types/levelup" "^4.3.0"
-    browserify-cipher "^1.0.1"
-    cross-fetch "^3.1.5"
-    debug "^4.3.4"
-    detect-node "^2.1.0"
-    fs-extra "10.0.0"
-    hash.js "^1.1.7"
-    levelup "^5.1.1"
-    memdown "^6.1.1"
-    promise-readable "^5.0.4"
-    sha3 "^2.1.3"
-    supports-color "7.2.0"
-    tslib "^2.0.0"
-
 "@aztec/barretenberg@2.1.37":
   version "2.1.37"
   resolved "https://registry.yarnpkg.com/@aztec/barretenberg/-/barretenberg-2.1.37.tgz#aa87d92ca90a062023ba95bfb0d04aeab67cd930"
@@ -41,13 +22,32 @@
     threads "1.7.0"
     tslib "^2.0.0"
 
-"@aztec/blockchain@2.1.0-testnet.66":
-  version "2.1.0-testnet.66"
-  resolved "https://registry.yarnpkg.com/@aztec/blockchain/-/blockchain-2.1.0-testnet.66.tgz#f555f8621b82abc1052d35523c7d577fcf17aa28"
-  integrity sha512-S0F9KeJrGXmt3somO53vVYpPG7vyug1myD/qUFl3cdLmEKrHCtqKbqHcoMC+rUa3m2MJIjkQE6YuQfvrtFFKsQ==
+"@aztec/barretenberg@2.1.50":
+  version "2.1.50"
+  resolved "https://registry.yarnpkg.com/@aztec/barretenberg/-/barretenberg-2.1.50.tgz#468ce91510507e86deb69433ea838a971fc1c1e5"
+  integrity sha512-WsUBSnPfyCnHpI2nG8VnXMrww6A/IKBPFmDnh9RrswKE3qnrpZcoZwFoUEZINtOSx6xvvlfySFV/QiANVofppA==
   dependencies:
-    "@aztec/barretenberg" "2.1.0-testnet.66"
-    "@aztec/bridge-clients" "2.1.0-testnet.66"
+    "@types/levelup" "^4.3.0"
+    browserify-cipher "^1.0.1"
+    cross-fetch "^3.1.5"
+    debug "^4.3.4"
+    detect-node "^2.1.0"
+    fs-extra "10.0.0"
+    hash.js "^1.1.7"
+    levelup "^5.1.1"
+    memdown "^6.1.1"
+    promise-readable "^5.0.4"
+    sha3 "^2.1.3"
+    supports-color "7.2.0"
+    tslib "^2.0.0"
+
+"@aztec/blockchain@2.1.50":
+  version "2.1.50"
+  resolved "https://registry.yarnpkg.com/@aztec/blockchain/-/blockchain-2.1.50.tgz#fdca4ec7752241fdcb66afaeedb0a71a9b00f2ed"
+  integrity sha512-CrOj6p4SHiawlu9Rcd3iuRdGg735KOT+9MEH1MkadTmznhpeuk82bE0F40zJluSODM84neoex1P2LNsBKyOaDg==
+  dependencies:
+    "@aztec/barretenberg" "2.1.50"
+    "@aztec/bridge-clients" "2.1.50"
     "@ethersproject/abstract-provider" "5.5.1"
     "@ethersproject/contracts" "5.5.0"
     "@ethersproject/experimental" "5.5.0"
@@ -62,7 +62,7 @@
     ethers "5.5.1"
     sha3 "^2.1.4"
 
-"@aztec/bridge-clients@0.1.63", "@aztec/bridge-clients@2.1.0-testnet.66":
+"@aztec/bridge-clients@0.1.63", "@aztec/bridge-clients@2.1.50":
   version "0.1.63"
   resolved "https://registry.yarnpkg.com/@aztec/bridge-clients/-/bridge-clients-0.1.63.tgz#bd840a1d1887095f9012cf93e4e70ed98d629da3"
   integrity sha512-hv/RrfBJaqBPm8OFCpFkSMKVLQNb4z1iP84MJMVeS4zX7yk2e4giksU129kVINSEx6CDxfd/xxuc05O9P/WOuw==
@@ -79,13 +79,13 @@
     typechain "^7.0.1"
     typescript "^4.7.4"
 
-"@aztec/sdk@2.1.0-testnet.66":
-  version "2.1.0-testnet.66"
-  resolved "https://registry.yarnpkg.com/@aztec/sdk/-/sdk-2.1.0-testnet.66.tgz#47369f55d0f806a5fead7bdc11bd63ec7d1066df"
-  integrity sha512-U4tfsawlVcUxIV5mnKyEuwZowlZAEZ8DbYZZvTEOfFh8zfH7FBHdm1VRz8uuYH5ky4sNzmJdI4m2j/i/iX7DBQ==
+"@aztec/sdk@2.1.50":
+  version "2.1.50"
+  resolved "https://registry.yarnpkg.com/@aztec/sdk/-/sdk-2.1.50.tgz#222adc7ecbcfdb28477a1ce7e593e9b25593df62"
+  integrity sha512-iO2RN4aG7FW+ZzioZZYuAdAm08uLqZ4UID/vWDYCUxNhmqKAxMy4y6MAH5wLrSxWfEVNoQrhHedLY4FAA58ElA==
   dependencies:
-    "@aztec/barretenberg" "2.1.0-testnet.66"
-    "@aztec/blockchain" "2.1.0-testnet.66"
+    "@aztec/barretenberg" "2.1.50"
+    "@aztec/blockchain" "2.1.50"
     detect-node "^2.1.0"
     dexie "3.0.1"
     events "^3.3.0"

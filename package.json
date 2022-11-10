@@ -10,7 +10,7 @@
   "bugs": "https://github.com/critesjosh/azteccli/issues",
   "dependencies": {
     "@aztec/bridge-clients": "0.1.63",
-    "@aztec/sdk": "2.1.0-testnet.66",
+    "@aztec/sdk": "2.1.50",
     "@oclif/core": "^1.16.4",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
