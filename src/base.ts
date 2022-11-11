@@ -13,20 +13,25 @@ import {
 } from "@aztec/sdk";
 import { ethers } from "ethers";
 import { JsonRpcSigner } from "@ethersproject/providers";
-import { createWalletconnectProvider } from "./wallet_providers/walletconnect_provider";
-import * as fs from "fs-extra";
+import { createWalletconnectProvider } from "./wallet_providers/walletconnect_provider.js";
+import fs from "fs-extra";
 import * as path from "path";
-import networkConfig from "./network_config";
+import { fileURLToPath } from "url";
+import networkConfig from "./network_config.js";
 import {
   createNewSignerFromMessage,
   getAccountKeys,
   getAndSyncAccount,
   getDefaultSigner,
   mergeConfigWithFlags,
-} from "./utils";
-import { CLIError } from "@oclif/core/lib/errors";
-import { Flags } from "./flags";
-require("dotenv").config();
+} from "./utils.js";
+import { CLIError } from "@oclif/core/lib/errors/index.js";
+import { Flags } from "./flags.js";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export type AztecAccountKeys = {
   publicKey: GrumpkinAddress;

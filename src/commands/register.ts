@@ -1,10 +1,10 @@
 import { EthAddress, GrumpkinAddress } from "@aztec/sdk";
 import { Flags as flags } from "@oclif/core";
-import { Flags } from "../flags";
-import { BaseCommand } from "../base";
-import { CLIError } from "@oclif/core/lib/errors";
-import { parseTime } from "../utils";
-import networkConfig from "../network_config";
+import { Flags } from "../flags.js";
+import { BaseCommand } from "../base.js";
+import { CLIError } from "@oclif/core/lib/errors/index.js";
+import { parseTime } from "../utils.js";
+import networkConfig from "../network_config.js";
 
 export default class Register extends BaseCommand {
   static description = "Register a new aztec account.";

@@ -3,12 +3,14 @@
   "description": "Command line tool for interacting with Aztec.",
   "version": "0.2.5",
   "author": "jc@joshcrites.com",
+  "type": "module",
   "bin": {
-    "azteccli": "./bin/run"
+    "azteccli": "./bin/run.js"
   },
   "bugs": "https://github.com/critesjosh/azteccli/issues",
   "dependencies": {
-    "@aztec/sdk": "2.1.45",
+    "@aztec/bridge-clients": "0.1.63",
+    "@aztec/sdk": "2.1.50",
     "@oclif/core": "^1.16.4",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
@@ -30,6 +32,9 @@
     "ts-node": "^10.2.1",
     "tslib": "^2.3.1",
     "typescript": "4.8.3"
+  },
+  "resolutions": {
+    "@aztec/bridge-clients": "0.1.63"
   },
   "engines": {
     "node": ">=12.0.0"

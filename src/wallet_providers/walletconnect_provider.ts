@@ -2,7 +2,7 @@ import { EthereumProvider } from "@aztec/sdk";
 import { Web3Provider } from "@ethersproject/providers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { utils } from "ethers";
-import { WalletProvider } from "./wallet_provider";
+import { WalletProvider } from "./wallet_provider.js";
 //@ts-ignore
 import * as qrcode from "qrcode-terminal";
 
@@ -233,7 +233,7 @@ export class WalletConnectEthereumProvider implements EthereumProvider {
 export class WalletconnectProvider implements WalletProvider {
   public ethereumProvider: EthereumProvider;
 
-  constructor(private provider: WalletConnectProvider) {
+  constructor(private provider: WalletConnectProvider.default) {
     this.ethereumProvider = new WalletConnectEthereumProvider(provider as any);
   }
 
@@ -259,21 +259,19 @@ export class WalletconnectProvider implements WalletProvider {
   }
 }
 
-export const createWalletconnectProvider = async (
-  infuraId: string
-) => {
-  const provider = new WalletConnectProvider({
+export const createWalletconnectProvider = async (infuraId: string) => {
+  const provider = new WalletConnectProvider.default({
     infuraId,
     rpc: {
-      677868: "https://mainnet-fork.aztec.network"
+      677868: "https://mainnet-fork.aztec.network",
     },
     qrcode: false,
     clientMeta: {
       description: "cli tool for interacting with Aztec",
       name: "Aztec CLI",
       url: "",
-      icons: []
-    }
+      icons: [],
+    },
   });
 
   provider.connector.on("display_uri", (err, payload) => {

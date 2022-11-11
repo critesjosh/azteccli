@@ -1,5 +1,5 @@
-import { BaseCommand } from "../base";
-import { Flags } from "../flags";
+import { BaseCommand } from "../base.js";
+import { Flags } from "../flags.js";
 
 export default class Balance extends BaseCommand {
   static description =

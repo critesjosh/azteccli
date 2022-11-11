@@ -1,10 +1,10 @@
 import { GrumpkinAddress } from "@aztec/sdk";
-import { CLIError } from "@oclif/core/lib/errors";
+import { CLIError } from "@oclif/core/lib/errors/index.js";
 import { CLIENT_RENEG_LIMIT } from "tls";
-import { BaseCommand } from "../base";
-import { Flags } from "../flags";
-import networkConfig from "../network_config";
-import { parseTime, deriveCustomAccountKeys } from "../utils";
+import { BaseCommand } from "../base.js";
+import { Flags } from "../flags.js";
+import networkConfig from "../network_config.js";
+import { parseTime, deriveCustomAccountKeys } from "../utils.js";
 
 export default class AddKey extends BaseCommand {
   static description = "Add up to two spending keys to a registered account.";
