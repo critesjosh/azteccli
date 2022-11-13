@@ -16,12 +16,14 @@ Does not handle your keys--connects to [Metamask](https://metamask.io/) with [Tr
 2. [Install Yarn](https://classic.yarnpkg.com/lang/en/docs/install)
 3. [Install Truffle](https://trufflesuite.com/docs/truffle/getting-started/installation/) or a wallet that supports [WalletConnect](https://walletconnect.com).
 4. Install azteccli. `$ yarn global add azteccli`.
-   1. You may be prompted to select an `@aztec/bridge-clients` version. Select the highest version number.
+   1. You may be prompted to select an `@aztec/bridge-clients` version. **You must select version `0.1.63` or it wont work!**
    2. Add global yarn packages to your shell PATH.
       1. Run `yarn global bin` to see where the yarn global packages are located.
       2. Add the yarn global install location to your PATH if it isn't already. ie. Add `export PATH="/home/josh/.yarn/bin:$PATH"` to ~/.bashrc.
 5. Start [Truffle dashboard](https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/). `$ truffle dashboard`
 6. Run a command: (ie`$ azteccli history`)
+
+If installed this a while ago and have not updated, you will likely run into errors. To update simply run `yarn global upgrade`.
 
 ## Config
 
@@ -78,27 +80,33 @@ TODO:
 ## Commands
 
   <!-- commands -->
-* [`azteccli accountinfo`](#azteccli-accountinfo)
-* [`azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`](#azteccli-addkey-number-newsigningkeymessage1-newsigningkeymessage2)
-* [`azteccli balance`](#azteccli-balance)
-* [`azteccli defibridge AMOUNT`](#azteccli-defibridge-amount)
-* [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
-* [`azteccli getbridges`](#azteccli-getbridges)
-* [`azteccli getfees`](#azteccli-getfees)
-* [`azteccli help [COMMAND]`](#azteccli-help-command)
-* [`azteccli history`](#azteccli-history)
-* [`azteccli plugins`](#azteccli-plugins)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
-* [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
-* [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
-* [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
-* [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
-* [`azteccli plugins:update`](#azteccli-pluginsupdate)
-* [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
-* [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
-* [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
+- [azteccli](#azteccli)
+  - [Getting started](#getting-started)
+  - [Config](#config)
+  - [Development](#development)
+  - [Capabilities](#capabilities)
+  - [Commands](#commands)
+  - [`azteccli accountinfo`](#azteccli-accountinfo)
+  - [`azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`](#azteccli-addkey-number-newsigningkeymessage1-newsigningkeymessage2)
+  - [`azteccli balance`](#azteccli-balance)
+  - [`azteccli defibridge AMOUNT`](#azteccli-defibridge-amount)
+  - [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
+  - [`azteccli getbridges`](#azteccli-getbridges)
+  - [`azteccli getfees`](#azteccli-getfees)
+  - [`azteccli help [COMMAND]`](#azteccli-help-command)
+  - [`azteccli history`](#azteccli-history)
+  - [`azteccli plugins`](#azteccli-plugins)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin)
+  - [`azteccli plugins:inspect PLUGIN...`](#azteccli-pluginsinspect-plugin)
+  - [`azteccli plugins:install PLUGIN...`](#azteccli-pluginsinstall-plugin-1)
+  - [`azteccli plugins:link PLUGIN`](#azteccli-pluginslink-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-1)
+  - [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
+  - [`azteccli plugins:update`](#azteccli-pluginsupdate)
+  - [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
+  - [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
+  - [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
 
 ## `azteccli accountinfo`
 
