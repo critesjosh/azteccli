@@ -22,10 +22,10 @@
     threads "1.7.0"
     tslib "^2.0.0"
 
-"@aztec/barretenberg@2.1.50":
-  version "2.1.50"
-  resolved "https://registry.yarnpkg.com/@aztec/barretenberg/-/barretenberg-2.1.50.tgz#468ce91510507e86deb69433ea838a971fc1c1e5"
-  integrity sha512-WsUBSnPfyCnHpI2nG8VnXMrww6A/IKBPFmDnh9RrswKE3qnrpZcoZwFoUEZINtOSx6xvvlfySFV/QiANVofppA==
+"@aztec/barretenberg@2.1.52":
+  version "2.1.52"
+  resolved "https://registry.yarnpkg.com/@aztec/barretenberg/-/barretenberg-2.1.52.tgz#0456d80e893535f0429d8d90d421797a2dedb250"
+  integrity sha512-kCrMBTyBtdsfQHcGQbjL4LoUZFikG/3gfqCGzRSx/dGZIl/1ktG7WachrMGcFliAVEYBloSVV3++6cd1broKnA==
   dependencies:
     "@types/levelup" "^4.3.0"
     browserify-cipher "^1.0.1"
@@ -34,6 +34,7 @@
     detect-node "^2.1.0"
     fs-extra "10.0.0"
     hash.js "^1.1.7"
+    leveldown "^6.1.1"
     levelup "^5.1.1"
     memdown "^6.1.1"
     promise-readable "^5.0.4"
@@ -41,13 +42,13 @@
     supports-color "7.2.0"
     tslib "^2.0.0"
 
-"@aztec/blockchain@2.1.50":
-  version "2.1.50"
-  resolved "https://registry.yarnpkg.com/@aztec/blockchain/-/blockchain-2.1.50.tgz#fdca4ec7752241fdcb66afaeedb0a71a9b00f2ed"
-  integrity sha512-CrOj6p4SHiawlu9Rcd3iuRdGg735KOT+9MEH1MkadTmznhpeuk82bE0F40zJluSODM84neoex1P2LNsBKyOaDg==
+"@aztec/blockchain@2.1.52":
+  version "2.1.52"
+  resolved "https://registry.yarnpkg.com/@aztec/blockchain/-/blockchain-2.1.52.tgz#2244191b7dccf0eb1b919dad20456e34baf6146d"
+  integrity sha512-5y6LcLmJB6k7i7Fb2CUrkdlFntU/NS6iDAcmkKPVP8cg3K4W3UvO08spT5nikrTFsNmIXeqTh/GcZsvdPABBZw==
   dependencies:
-    "@aztec/barretenberg" "2.1.50"
-    "@aztec/bridge-clients" "2.1.50"
+    "@aztec/barretenberg" "2.1.52"
+    "@aztec/bridge-clients" "2.1.52"
     "@ethersproject/abstract-provider" "5.5.1"
     "@ethersproject/contracts" "5.5.0"
     "@ethersproject/experimental" "5.5.0"
@@ -62,7 +63,7 @@
     ethers "5.5.1"
     sha3 "^2.1.4"
 
-"@aztec/bridge-clients@0.1.63", "@aztec/bridge-clients@2.1.50":
+"@aztec/bridge-clients@0.1.63", "@aztec/bridge-clients@2.1.52":
   version "0.1.63"
   resolved "https://registry.yarnpkg.com/@aztec/bridge-clients/-/bridge-clients-0.1.63.tgz#bd840a1d1887095f9012cf93e4e70ed98d629da3"
   integrity sha512-hv/RrfBJaqBPm8OFCpFkSMKVLQNb4z1iP84MJMVeS4zX7yk2e4giksU129kVINSEx6CDxfd/xxuc05O9P/WOuw==
@@ -79,13 +80,13 @@
     typechain "^7.0.1"
     typescript "^4.7.4"
 
-"@aztec/sdk@2.1.50":
-  version "2.1.50"
-  resolved "https://registry.yarnpkg.com/@aztec/sdk/-/sdk-2.1.50.tgz#222adc7ecbcfdb28477a1ce7e593e9b25593df62"
-  integrity sha512-iO2RN4aG7FW+ZzioZZYuAdAm08uLqZ4UID/vWDYCUxNhmqKAxMy4y6MAH5wLrSxWfEVNoQrhHedLY4FAA58ElA==
+"@aztec/sdk@2.1.52":
+  version "2.1.52"
+  resolved "https://registry.yarnpkg.com/@aztec/sdk/-/sdk-2.1.52.tgz#eb1d7c1e12551fd762d2884e477788ce2663d9e8"
+  integrity sha512-kbOcFo9GDb3zbMxmhoZwDAxo8zjhdncMQvPtJSUwtO6Z6P6zXUfx1HzMvJu3O2LeAjFhDgDkHwPW9sJc6CpBkQ==
   dependencies:
-    "@aztec/barretenberg" "2.1.50"
-    "@aztec/blockchain" "2.1.50"
+    "@aztec/barretenberg" "2.1.52"
+    "@aztec/blockchain" "2.1.52"
     detect-node "^2.1.0"
     dexie "3.0.1"
     events "^3.3.0"
@@ -1359,7 +1360,7 @@
     node-gyp "^8.2.0"
     read-package-json-fast "^2.0.1"
 
-"@oclif/color@^1.0.1":
+"@oclif/color@^1.0.1", "@oclif/color@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@oclif/color/-/color-1.0.2.tgz#fbb857251454d737033e1dcd6d19fe5ba1d61350"
   integrity sha512-HqTFeMjfLOZajxqffSkyDWFUB3YqsSLRcsvnvITGRzhO0Ip4Qwp0VHVwh+qe0TjJYEltmOgzoxsR1LZPQIHNBQ==
@@ -1370,7 +1371,7 @@
     supports-color "^8.1.1"
     tslib "^2"
 
-"@oclif/core@^1.16.4", "@oclif/core@^1.20.0", "@oclif/core@^1.20.2", "@oclif/core@^1.20.3":
+"@oclif/core@^1.16.4", "@oclif/core@^1.20.0", "@oclif/core@^1.20.3", "@oclif/core@^1.20.4":
   version "1.20.4"
   resolved "https://registry.yarnpkg.com/@oclif/core/-/core-1.20.4.tgz#7378b52e1f1b502e383ffb07f95dffc9fd8588ff"
   integrity sha512-giug32M4YhSYNYKQwE1L57/+k5gp1+Bq3/0vKNQmzAY1tizFGhvBJc6GIRZasHjU+xtZLutQvrVrJo7chX3hxg==
@@ -1410,18 +1411,18 @@
   integrity sha512-Ups2dShK52xXa8w6iBWLgcjPJWjais6KPJQq3gQ/88AY6BXoTX+MIGFPrWQO1KLMiQfoTpcLnUwloN4brrVUHw==
 
 "@oclif/plugin-help@^5", "@oclif/plugin-help@^5.1.16":
-  version "5.1.18"
-  resolved "https://registry.yarnpkg.com/@oclif/plugin-help/-/plugin-help-5.1.18.tgz#8f1d864f76ee151e840e3d20de5a05f00ed91a54"
-  integrity sha512-EICYITNwc155RHBiRnhUmvuc5oEuRE+9B+8rErw4OKKpPfZ5edvth38e4QOONfDRjb3MHfNu0sds1aB3i/BikA==
+  version "5.1.19"
+  resolved "https://registry.yarnpkg.com/@oclif/plugin-help/-/plugin-help-5.1.19.tgz#43051772fefafe9bfe8823e2298103feb351b9c7"
+  integrity sha512-eQVRCFJOwRj8Tbqz8Lzd9GN38egwLCg+ohJ0xfg12CoXml03WqkfcFiAWkVwSWmLVrZUlUVrxfXKKkmpUaXZHg==
   dependencies:
-    "@oclif/core" "^1.20.2"
+    "@oclif/core" "^1.20.4"
 
 "@oclif/plugin-not-found@^2.3.7":
-  version "2.3.8"
-  resolved "https://registry.yarnpkg.com/@oclif/plugin-not-found/-/plugin-not-found-2.3.8.tgz#eb3f8101cfa501ec7d748fd316240bb60c43e018"
-  integrity sha512-PfUVr67dHORFSeQthUwrPMJB/mRRNT4ENNdbafCOlL0HqC+WTuFy5nih+qnHBEli15RaOuMNoW3kR5MyBH82hA==
+  version "2.3.9"
+  resolved "https://registry.yarnpkg.com/@oclif/plugin-not-found/-/plugin-not-found-2.3.9.tgz#045277bf04c8fd6ee25e68d5355658985c21404a"
+  integrity sha512-FJXIa5KmNbCgO8kDVJ23C/SkRRuwMYaRTNs5jejwrwKAm5fPp+TnR1+4pBp64ik7FA806nioqMGlotiyEWfMJA==
   dependencies:
-    "@oclif/color" "^1.0.1"
+    "@oclif/color" "^1.0.2"
     "@oclif/core" "^1.20.3"
     fast-levenshtein "^3.0.0"
     lodash "^4.17.21"
@@ -1443,12 +1444,12 @@
     tslib "^2.4.1"
     yarn "^1.22.18"
 
-"@oclif/plugin-warn-if-update-available@^2.0.6":
-  version "2.0.13"
-  resolved "https://registry.yarnpkg.com/@oclif/plugin-warn-if-update-available/-/plugin-warn-if-update-available-2.0.13.tgz#4a3d39cbe200dc91d6bcf54f6845b8f2c457e5a5"
-  integrity sha512-mynTZhUr0Vcud27SoK6Wph9U4Umuxra0UD0tChn/uwN/+qXq9ckr+UazxvwNOdr14RbJyjKz0luU7cCECdjJxw==
+"@oclif/plugin-warn-if-update-available@^2.0.13":
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/@oclif/plugin-warn-if-update-available/-/plugin-warn-if-update-available-2.0.14.tgz#f9142095f13c5e8300705533165ae039daa0c5f8"
+  integrity sha512-gEgFZuNtFx3yPfSuxhAm9F8nLZ4+UnBJhbjTywY0Cvrqvd+OvKvo6PfwRm0lWmH4EgWwQEq39pfaks1fg+y1gw==
   dependencies:
-    "@oclif/core" "^1.20.3"
+    "@oclif/core" "^1.20.4"
     chalk "^4.1.0"
     debug "^4.1.0"
     fs-extra "^9.0.1"
@@ -1789,9 +1790,9 @@
     "@types/node" "*"
 
 "@types/lodash@*":
-  version "4.14.188"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.188.tgz#e4990c4c81f7c9b00c5ff8eae389c10f27980da5"
-  integrity sha512-zmEmF5OIM3rb7SbLCFYoQhO4dGt2FRM9AMkxvA3LaADOF1n8in/zGJlWji9fmafLoNyz+FoL6FE0SLtGIArD7w==
+  version "4.14.189"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.189.tgz#975ff8c38da5ae58b751127b19ad5e44b5b7f6d2"
+  integrity sha512-kb9/98N6X8gyME9Cf7YaqIMvYGnBSWqEci6tiettE6iJWH1XdJz/PO8LB0GtLCG7x8dU3KWhZT+lA1a35127tA==
 
 "@types/lru-cache@^5.1.0":
   version "5.1.1"
@@ -2461,9 +2462,9 @@ available-typed-arrays@^1.0.5:
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
 aws-sdk@^2.1231.0:
-  version "2.1251.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1251.0.tgz#6affcfc08181c86a513e9fb8923b0bf10158feae"
-  integrity sha512-E3gbCMTuhQCLnDv64J+gl6SNC3iLrvLDNWcV8BgA6ZVv3kWu9BPfHk4rvgWMlLUoiTbRiR9vsKZq9qn+taHeIw==
+  version "2.1256.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1256.0.tgz#4cac62e8bbd1f8a363cd506328103b3498bfa767"
+  integrity sha512-/Dh81PZdjqyZwA3BMBUO2PMUakv0hqjxCReE59sskIFdQJdSOW+26EQ4LcV07YP6umz3n5TKC28bEfx6l2kTJQ==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -3381,23 +3382,23 @@ cookiejar@^2.1.1:
   integrity sha512-JxbCBUdrfr6AQjOXrxoTvAMJO4HBTUIlBzslcJPAz+/KT8yk53fXun51u+RenNYvad/+Vc2DIz5o9UxlCDymFQ==
 
 copy-to-clipboard@^3.3.1:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/copy-to-clipboard/-/copy-to-clipboard-3.3.2.tgz#5b263ec2366224b100181dded7ce0579b340c107"
-  integrity sha512-Vme1Z6RUDzrb6xAI7EZlVZ5uvOk2F//GaxKUxajDqm9LhOVM1inxNAD2vy+UZDYsd0uyA9s7b3/FVZPSxqrCfg==
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/copy-to-clipboard/-/copy-to-clipboard-3.3.3.tgz#55ac43a1db8ae639a4bd99511c148cdd1b83a1b0"
+  integrity sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==
   dependencies:
     toggle-selection "^1.0.6"
 
 core-js-compat@^3.25.1:
-  version "3.26.0"
-  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.26.0.tgz#94e2cf8ba3e63800c4956ea298a6473bc9d62b44"
-  integrity sha512-piOX9Go+Z4f9ZiBFLnZ5VrOpBl0h7IGCkiFUN11QTe6LjAvOT3ifL/5TdoizMh99hcGy5SoLyWbapIY/PIb/3A==
+  version "3.26.1"
+  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.26.1.tgz#0e710b09ebf689d719545ac36e49041850f943df"
+  integrity sha512-622/KzTudvXCDLRw70iHW4KKs1aGpcRcowGWyYJr2DEBfRrd6hNJybxSWJFuZYD4ma86xhrwDDHxmDaIq4EA8A==
   dependencies:
     browserslist "^4.21.4"
 
 core-js@^3.6.1:
-  version "3.26.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.26.0.tgz#a516db0ed0811be10eac5d94f3b8463d03faccfe"
-  integrity sha512-+DkDrhoR4Y0PxDz6rurahuB+I45OsEUv8E1maPTB6OuHRohMMcznBq9TMpdpDMm/hUPob/mJJS3PqgbHpMTQgw==
+  version "3.26.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.26.1.tgz#7a9816dabd9ee846c1c0fe0e8fcad68f3709134e"
+  integrity sha512-21491RRQVzUn0GGM9Z1Jrpr6PNPxPi+Za8OM9q4tksTSnlbXXGKK1nXNg/QvwFYettXvSX6zWKCtHHfjN4puyA==
 
 core-util-is@1.0.2:
   version "1.0.2"
@@ -6419,14 +6420,14 @@ observable-fns@^0.6.1:
   integrity sha512-9gRK4+sRWzeN6AOewNBTLXir7Zl/i3GB6Yl26gK4flxz8BXVpD3kt8amREmWNb0mxYOGDotvE5a4N+PtGGKdkg==
 
 oclif@^3:
-  version "3.2.25"
-  resolved "https://registry.yarnpkg.com/oclif/-/oclif-3.2.25.tgz#a51a1a20daf45f37a3c9a0cb12693b5f7a40cd0c"
-  integrity sha512-1nwdWHOBW5DkMBBu3HNrwM+WIAL7kDLBeoM8BNJLbnE4hlxBmeubwQTF0oGzmv+0vUomWMiNSbQF7AfzFbwUwA==
+  version "3.2.27"
+  resolved "https://registry.yarnpkg.com/oclif/-/oclif-3.2.27.tgz#3028bc2bcd87aa8762779feec71ba74d5dd94f19"
+  integrity sha512-tMKEitC/fVki5mYx8D41qDuOymf24V/UGdkT04dTwtSkoMa/alGxERS2Oa/G/7Q0pfCGl9I5vi5WFuV2rY1ehQ==
   dependencies:
-    "@oclif/core" "^1.20.0"
+    "@oclif/core" "^1.20.4"
     "@oclif/plugin-help" "^5.1.16"
     "@oclif/plugin-not-found" "^2.3.7"
-    "@oclif/plugin-warn-if-update-available" "^2.0.6"
+    "@oclif/plugin-warn-if-update-available" "^2.0.13"
     aws-sdk "^2.1231.0"
     concurrently "^7.5.0"
     debug "^4.3.3"
@@ -7107,9 +7108,9 @@ reflect-metadata@^0.1.13:
   integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
 
 regenerator-runtime@^0.13.10:
-  version "0.13.10"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.10.tgz#ed07b19616bcbec5da6274ebc75ae95634bfc2ee"
-  integrity sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
+  integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
 
 registry-auth-token@3.3.2:
   version "3.3.2"
@@ -8197,9 +8198,9 @@ typescript@4.8.3:
   integrity sha512-goMHfm00nWPa8UvR/CPSvykqf6dVV8x/dp0c5mFTMTIu0u0FlGWRioyy7Nn0PGAdHxpJZnuO/ut+PpQ8UiHAig==
 
 typescript@^4.7.4:
-  version "4.8.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.4.tgz#c464abca159669597be5f96b8943500b238e60e6"
-  integrity sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==
+  version "4.9.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.3.tgz#3aea307c1746b8c384435d8ac36b8a2e580d85db"
+  integrity sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==
 
 typical@^4.0.0:
   version "4.0.0"
