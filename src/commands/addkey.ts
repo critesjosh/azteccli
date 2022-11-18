@@ -1,6 +1,5 @@
 import { GrumpkinAddress } from "@aztec/sdk";
 import { CLIError } from "@oclif/core/lib/errors/index.js";
-import { CLIENT_RENEG_LIMIT } from "tls";
 import { BaseCommand } from "../base.js";
 import { Flags } from "../flags.js";
 import networkConfig from "../network_config.js";
