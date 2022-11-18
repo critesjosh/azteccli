@@ -45,7 +45,7 @@ export default class StageRecoveryKey extends BaseCommand {
       throw new CLIError(`Specified alias, ${alias}, is not registered.`);
     }
 
-    let settlementTime = parseTime(time, true);
+    let settlementTime = parseTime(time, false);
     let accountKeys = await this.getAccountKeysAndSyncAccount();
     const signer = await this.getSigner();
 
