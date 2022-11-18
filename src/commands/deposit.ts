@@ -60,38 +60,38 @@ export default class Deposit extends BaseCommand {
       settlementTime
     ];
 
-    const tokenAssetValue: AssetValue = {
+    const deposit: AssetValue = {
       assetId: tokenAssetId,
       value: tokenQuantity,
     };
 
-    const tokenDepositController = this.sdk!.createDepositController(
+    const controller = this.sdk!.createDepositController(
       this.ethereumAccount!,
-      tokenAssetValue,
+      deposit,
       tokenDepositFee,
       to,
       useSpendingAccount
     );
 
     if (
-      (await tokenDepositController.getPendingFunds()) < tokenAssetValue.value
+      (await controller.getPendingFunds()) < deposit.value
     ) {
       if (asset === "dai") {
         if (
-          (await tokenDepositController.getPublicAllowance()) <
-          tokenAssetValue.value
+          (await controller.getPublicAllowance()) <
+          deposit.value
         ) {
-          await tokenDepositController.approve();
-          await tokenDepositController.awaitApprove();
+          await controller.approve();
+          await controller.awaitApprove();
         }
       }
-      await tokenDepositController.depositFundsToContract();
-      await tokenDepositController.awaitDepositFundsToContract();
+      await controller.depositFundsToContract();
+      await controller.awaitDepositFundsToContract();
     }
 
-    await tokenDepositController.createProof();
-    await tokenDepositController.sign();
-    let txId = await tokenDepositController.send();
+    await controller.createProof();
+    await controller.sign();
+    let txId = await controller.send();
     this.log(
       "View transaction on the block explorer",
       `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`
