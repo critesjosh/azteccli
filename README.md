@@ -82,6 +82,7 @@ TODO:
   <!-- commands -->
 * [`azteccli accountinfo`](#azteccli-accountinfo)
 * [`azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`](#azteccli-addkey-number-newsigningkeymessage1-newsigningkeymessage2)
+* [`azteccli addrecoverykey AMOUNT`](#azteccli-addrecoverykey-amount)
 * [`azteccli balance`](#azteccli-balance)
 * [`azteccli defibridge AMOUNT`](#azteccli-defibridge-amount)
 * [`azteccli deposit AMOUNT`](#azteccli-deposit-amount)
@@ -99,6 +100,7 @@ TODO:
 * [`azteccli plugins:uninstall PLUGIN...`](#azteccli-pluginsuninstall-plugin-2)
 * [`azteccli plugins:update`](#azteccli-pluginsupdate)
 * [`azteccli register [DEPOSIT]`](#azteccli-register-deposit)
+* [`azteccli stagerecoverykey TTPPUBKEY`](#azteccli-stagerecoverykey-ttppubkey)
 * [`azteccli transfer AMOUNT`](#azteccli-transfer-amount)
 * [`azteccli withdraw [AMOUNT]`](#azteccli-withdraw-amount)
 
@@ -127,7 +129,7 @@ EXAMPLES
   $ azteccli accountinfo --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/accountinfo.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/accountinfo.ts)_
+_See code: [dist/commands/accountinfo.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/accountinfo.ts)_
 
 ## `azteccli addkey NUMBER [NEWSIGNINGKEYMESSAGE1] [NEWSIGNINGKEYMESSAGE2]`
 
@@ -165,7 +167,37 @@ DESCRIPTION
   Add up to two spending keys to a registered account.
 ```
 
-_See code: [dist/commands/addkey.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/addkey.ts)_
+_See code: [dist/commands/addkey.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/addkey.ts)_
+
+## `azteccli addrecoverykey AMOUNT`
+
+Add a staged recovery account key to an Aztec account with the RecoveryPayload.
+
+```
+USAGE
+  $ azteccli addrecoverykey [AMOUNT] --payload <value> [--logSdk] [-a eth|dai|wsteth] [-t next|instant] [-m <value>
+    | -k <value>] [--spendingKeyRequired]
+
+FLAGS
+  -a, --asset=<option>                [default: eth]
+                                      <options: eth|dai|wsteth>
+  -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
+                                      wallet.
+  -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
+  -t, --time=<option>                 [default: next] transaction time (next is slower + cheaper)
+                                      <options: next|instant>
+  --logSdk                            verbose Aztec SDK logging
+  --payload=<value>                   (required) The recovery payload to add the recovery account as a spending key.
+  --spendingKeyRequired               Should the recipient be required to have a registered spending key?
+
+DESCRIPTION
+  Add a staged recovery account key to an Aztec account with the RecoveryPayload.
+
+EXAMPLES
+  $ azteccli addrecoverykey .01 --recoveryPayload 0x20e4fee0dace3d58b5d30a1fcd2ec682581e92ccd1b23f9a25b007097c86cd61033293008cb23cc99c07a6c9f6e7d9edd6a46373f7f01b9e7c2b67464690066f037027b6b72b4768ed5d189e05efecb506e08b05ab5aceb6942e20a974bac80a0208a5e2ee037d9cbf38607998cf48c2b4bc946906a990c20695e20412d1740b14574e6b3e1df8b4666eb1f478a42a1731bdde580a27fd9cea83c0ba6043e8be2bfc0e9a229a48a8e4244564622a119877b827b97cf9b66aca02c2a40df5cb031d4ac61d92c23186af8bfa59aecb5e98e7390757791924f94ef45d4b7de4306e35910daf67b99ad0d3f6e9261577b54ac90a5fc9280f5be5166cf5992185a7e5
+```
+
+_See code: [dist/commands/addrecoverykey.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/addrecoverykey.ts)_
 
 ## `azteccli balance`
 
@@ -193,7 +225,7 @@ EXAMPLES
   $ azteccli balance --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/balance.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/balance.ts)_
+_See code: [dist/commands/balance.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/balance.ts)_
 
 ## `azteccli defibridge AMOUNT`
 
@@ -225,7 +257,7 @@ DESCRIPTION
   Bridge assets to Ethereum base layer.
 ```
 
-_See code: [dist/commands/defibridge.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/defibridge.ts)_
+_See code: [dist/commands/defibridge.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/defibridge.ts)_
 
 ## `azteccli deposit AMOUNT`
 
@@ -265,7 +297,7 @@ EXAMPLES
   $ azteccli deposit 1 --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/deposit.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/deposit.ts)_
+_See code: [dist/commands/deposit.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/deposit.ts)_
 
 ## `azteccli getbridges`
 
@@ -285,7 +317,7 @@ EXAMPLES
   aztec-cli getbridges
 ```
 
-_See code: [dist/commands/getbridges.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/getbridges.ts)_
+_See code: [dist/commands/getbridges.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/getbridges.ts)_
 
 ## `azteccli getfees`
 
@@ -307,7 +339,7 @@ EXAMPLES
   aztec-cli getfees
 ```
 
-_See code: [dist/commands/getfees.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/getfees.ts)_
+_See code: [dist/commands/getfees.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/getfees.ts)_
 
 ## `azteccli help [COMMAND]`
 
@@ -354,7 +386,7 @@ EXAMPLES
   $ azteccli history --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9
 ```
 
-_See code: [dist/commands/history.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/history.ts)_
+_See code: [dist/commands/history.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/history.ts)_
 
 ## `azteccli plugins`
 
@@ -643,7 +675,44 @@ EXAMPLES
   $ azteccli register --alias testooor --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9 --signingKey 0c5e934c191d9b0ad2bd07d5042414efc4a1523b465648918a678cbd6fb5b241
 ```
 
-_See code: [dist/commands/register.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/register.ts)_
+_See code: [dist/commands/register.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/register.ts)_
+
+## `azteccli stagerecoverykey TTPPUBKEY`
+
+Stage a recovery key to your registered Aztec account and get the recovery payload.
+
+```
+USAGE
+  $ azteccli stagerecoverykey [TTPPUBKEY] --alias <value> [--logSdk] [-t next|instant] [-m <value> | -k <value>]
+    [--useAccountKeySigner | --signingKey <value> | --customSignerMessage <value>] [--spendingKeyRequired]
+
+ARGUMENTS
+  TTPPUBKEY  Aztec public key of the trusted third party that will help recover the account.
+
+FLAGS
+  -k, --accountKey=<value>            An Aztec account private key to use instead of deriving one from an Ethereum
+                                      wallet.
+  -m, --customAccountMessage=<value>  Custom message to sign to derive an Aztec account key
+  -t, --time=<option>                 [default: next] transaction time (next is slower + cheaper)
+                                      <options: next|instant>
+  --alias=<value>                     (required) Alias for the account to generate a recovery payload for.
+  --customSignerMessage=<value>       Custom message to sign to derive an Aztec signing key.
+  --logSdk                            verbose Aztec SDK logging
+  --signingKey=<value>                An Aztec signing private key to use instead of deriving one from an Ethereum
+                                      wallet.
+  --spendingKeyRequired               Should the recipient be required to have a registered spending key?
+  --useAccountKeySigner               Create the Aztec signer from the account key and not a registered spending key.
+                                      Use this if you have funds associated with your account key and not a spending
+                                      key.
+
+DESCRIPTION
+  Stage a recovery key to your registered Aztec account and get the recovery payload.
+
+EXAMPLES
+  $ azteccli stagerecoverykey 0x14574e6b3e1df8b4666eb1f478a42a1731bdde580a27fd9cea83c0ba6043e8be2bfc0e9a229a48a8e4244564622a119877b827b97cf9b66aca02c2a40df5cb03 --alias yourAlias
+```
+
+_See code: [dist/commands/stagerecoverykey.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/stagerecoverykey.ts)_
 
 ## `azteccli transfer AMOUNT`
 
@@ -685,7 +754,7 @@ EXAMPLES
   $ azteccli transfer 1 -r theiralias --asset dai --accountKey 23ffa7b774a1263e51d34f11b99cd78cbb3ad8de6f4203ea393c8de1a1be05d9 --signingKey 0c5e934c191d9b0ad2bd07d5042414efc4a1523b465648918a678cbd6fb5b241
 ```
 
-_See code: [dist/commands/transfer.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/transfer.ts)_
+_See code: [dist/commands/transfer.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/transfer.ts)_
 
 ## `azteccli withdraw [AMOUNT]`
 
@@ -725,5 +794,5 @@ EXAMPLES
   $ azteccli withdraw 1 -r 0x2e782B05290A7fFfA137a81a2bad2446AD0DdFEB --customAccountMessage 'custom account derivation message' --customSignerMessage 'custom signer derivation message'
 ```
 
-_See code: [dist/commands/withdraw.ts](https://github.com/critesjosh/azteccli/blob/v0.2.7/dist/commands/withdraw.ts)_
+_See code: [dist/commands/withdraw.ts](https://github.com/critesjosh/azteccli/blob/v0.2.8/dist/commands/withdraw.ts)_
 <!-- commandsstop -->
