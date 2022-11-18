@@ -17,7 +17,7 @@ export default class AddRecoveryKey extends BaseCommand {
     customAccountMessage: Flags.customAccountMessage,
     accountKey: Flags.accountKey,
     spendingKeyRequired: Flags.spendingKeyRequired,
-    recoveryPayload: flags.string({
+    payload: flags.string({
         required: true,
         description: "The recovery payload to add the recovery account as a spending key."
     })
@@ -26,7 +26,7 @@ export default class AddRecoveryKey extends BaseCommand {
   static args = [{ name: "amount", required: true }];
 
   public async run(): Promise<void> {
-    const { time, asset, recoveryPayload } = this.flags;
+    const { time, asset, payload } = this.flags;
     const { amount } = this.args;
 
     let accountKeys = await this.getAccountKeysAndSyncAccount();
@@ -42,6 +42,8 @@ export default class AddRecoveryKey extends BaseCommand {
       assetId: tokenAssetId,
       value: tokenQuantity,
     };
+
+    const recoveryPayload = RecoveryPayload.fromString(payload);
 
     const controller = this.sdk!.createRecoverAccountController(
       recoveryPayload,
