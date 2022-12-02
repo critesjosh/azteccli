@@ -1,4 +1,4 @@
-import { AssetValue } from "@aztec/sdk";
+import { AssetValue, GrumpkinAddress } from "@aztec/sdk";
 // import { Flags } from "@oclif/core";
 import { Flags } from "../flags.js";
 import { BaseCommand } from "../base.js";
@@ -40,12 +40,15 @@ export default class Deposit extends BaseCommand {
     // defaults to the users account
     let to = await parseAztecRecipient(recipient, accountKeys, this.sdk);
 
-    const isRegistered = await this.sdk.isAccountRegistered(
-      accountKeys.publicKey,
-      true
-    );
+    let recipientIsRegistered = async () => {
+      if (recipient) {
+        return await this.sdk.isAccountRegistered(to, true);
+      } else {
+        return await this.sdk.isAccountRegistered(accountKeys.publicKey, true);
+      }
+    };
 
-    if (spendingKeyRequired === undefined && isRegistered) {
+    if (spendingKeyRequired === undefined && (await recipientIsRegistered())) {
       useSpendingAccount = true;
     }
 
@@ -73,14 +76,9 @@ export default class Deposit extends BaseCommand {
       useSpendingAccount
     );
 
-    if (
-      (await controller.getPendingFunds()) < deposit.value
-    ) {
+    if ((await controller.getPendingFunds()) < deposit.value) {
       if (asset === "dai") {
-        if (
-          (await controller.getPublicAllowance()) <
-          deposit.value
-        ) {
+        if ((await controller.getPublicAllowance()) < deposit.value) {
           await controller.approve();
           await controller.awaitApprove();
         }
