@@ -38,6 +38,7 @@ export default class History extends BaseCommand {
         networkConfig[this.chainId].explorerUrl
       }tx/${tx.txId?.toString()}`;
       this.log("----------------");
+      this.log(pad("Aztec address:"), tx.userId.toString());
       this.log(pad("Tx Type:"), tx.constructor.name);
       this.log(pad("Transaction Id:"), tx.txId?.toString());
       this.log(pad("Explorer Url:"), url);
@@ -50,6 +51,18 @@ export default class History extends BaseCommand {
       if (tx instanceof UserPaymentTx) {
         this.log(pad("Value:"), tx.value);
         this.log(pad("Fee:"), tx.fee);
+        this.log(pad("Sender?:"), tx.isSender);
+        switch (tx.proofId) {
+          case 1:
+            this.log(pad("Tx Type:"), "Deposit");
+            break;
+          case 2:
+            this.log(pad("Tx Type:"), "Withdraw");
+            break;
+          case 3:
+            this.log(pad("Tx Type:"), "Send");
+            break;
+        }
       }
       if (tx instanceof UserDefiClaimTx) {
         this.log(pad("DefiTxId:"), tx.defiTxId.toString());
