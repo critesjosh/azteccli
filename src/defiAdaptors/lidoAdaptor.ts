@@ -1,5 +1,5 @@
-import { BridgeDataFieldGetters } from "@aztec/bridge-clients/client-dest/src/client/bridge-data.js";
-import { LidoBridgeData } from "@aztec/bridge-clients/client-dest/src/client/lido/lido-bridge-data.js";
+import { BridgeDataFieldGetters } from "../bridge-clients/client/bridge-data.js";
+import { LidoBridgeData } from "../bridge-clients/client/lido/lido-bridge-data.js";
 import { EthAddress } from "@aztec/sdk";
 
 export const createLidoAdaptor = (provider: any): BridgeDataFieldGetters => {
