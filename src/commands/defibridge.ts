@@ -50,15 +50,9 @@ export default class DefiBridge extends BaseCommand {
     // );
     const ethToWstEth = new BridgeCallData(5, 0, 2); // IN: ETH (0), OUT: wstETH (2)
     const WstEthToEth = new BridgeCallData(5, 2, 0); // IN: wstETH (2), OUT: ETH (0)
+    const donationBridge = new BridgeCallData(17, 0, 0);
 
-    // const elementAdaptor = createElementAdaptor(
-    //   this.ethereumProvider,
-    //   "0x2266429abF6Ec8A1FC6712c2BbDc7262b40ba442",
-    //   "0xC116ecc074040AbEdB2E11A4e84dEcDBA141F38f",
-    //   false
-    // );
-
-    let bridge = ethToWstEth;
+    let bridge = donationBridge;
 
     const tokenAssetId = this.sdk!.getAssetIdBySymbol(asset.toUpperCase());
     const tokenQuantity = BigInt((amount as number) * 10 ** 18);
