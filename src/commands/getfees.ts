@@ -1,4 +1,4 @@
-import { AssetValue } from "@aztec/sdk";
+import { AssetValue, BridgeCallData, TxSettlementTime } from "@aztec/sdk";
 import { Flags } from "../flags.js";
 import { BaseCommand } from "../base.js";
 
@@ -21,9 +21,17 @@ export default class GetFees extends BaseCommand {
 
     const depositFees = await this.sdk.getDepositFees(tokenAssetId);
     const withdrawFees = await this.sdk.getWithdrawFees(tokenAssetId);
+    const transferFees = await this.sdk.getTransferFees(tokenAssetId);
+    
+    // const bridge =  new BridgeCallData(17, 0, 0);
+    // const fee = (await this.sdk.getDefiFees(bridge))[TxSettlementTime.NEXT_ROLLUP];
+    // this.log("bridge fee", fee)
+
+    // this.log("register fee", (await this.sdk.getRegisterFees(0))[TxSettlementTime.NEXT_ROLLUP])
 
     this.logFees("deposit", this.flags.asset, depositFees);
     this.logFees("withdraw", this.flags.asset, withdrawFees);
+    this.logFees("transfer", this.flags.asset, transferFees);
   }
 
   public async logFees(action: string, asset: string, fees: AssetValue[]) {
