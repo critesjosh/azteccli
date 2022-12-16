@@ -18,6 +18,8 @@ export default class Balance extends BaseCommand {
   ];
 
   public async run(): Promise<void> {
+    const padding = 50;
+
     let accountKeys = await this.getAccountKeysAndSyncAccount();
 
     let balance = this.sdk.fromBaseUnits(
@@ -37,6 +39,18 @@ export default class Balance extends BaseCommand {
       value: await this.sdk.getSpendableSum(accountKeys!.publicKey, 0, true),
     });
 
+    let values = await this.sdk.getBalances(accountKeys!.publicKey);
+    values.map(async (assetValue) => {
+      let asset = await this.sdk.getAssetInfo(assetValue.assetId);
+      let bigintamount = assetValue.value / BigInt(10 ** (asset.decimals / 2));
+      let amount = Number(bigintamount) / 10 ** (asset.decimals / 2);
+
+      this.log("Asset:".padEnd(padding, " "), asset.name);
+      this.log("Asset Id:".padEnd(padding, " "), assetValue.assetId);
+      this.log("Amount:".padEnd(padding, " "), amount);
+      this.log("".padEnd(padding, "="));
+    });
+
     let pendingSpendingKeySum = this.sdk.fromBaseUnits({
       assetId: 0,
       value: await this.sdk.getSpendableSum(
@@ -46,8 +60,6 @@ export default class Balance extends BaseCommand {
         false
       ),
     });
-
-    const padding = 50;
 
     this.log(`Total zkETH Balance:`.padEnd(padding, " "), balance);
     this.log(
