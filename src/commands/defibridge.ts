@@ -52,22 +52,30 @@ export default class DefiBridge extends BaseCommand {
     const WstEthToEth = new BridgeCallData(5, 2, 0); // IN: wstETH (2), OUT: ETH (0)
     const donationBridge = new BridgeCallData(17, 0, 0);
 
-    let bridge = donationBridge;
+    let bridge = WstEthToEth;
 
     const tokenAssetId = this.sdk!.getAssetIdBySymbol(asset.toUpperCase());
     const tokenQuantity = BigInt((amount as number) * 10 ** 18);
 
-    const tokenAssetValue: AssetValue = {
+    const assetValue: AssetValue = {
       assetId: tokenAssetId,
       value: tokenQuantity,
     };
 
-    const fee = (await this.sdk.getDefiFees(bridge))[settlementTime];
+    let bridgeFeeOptions = {
+      assetValue,
+      userId: accountKeys.publicKey,
+      // userSpendingKeyRequired?: boolean;
+      // excludePendingNotes?: boolean;
+      // feeSignificantFigures?: number;    
+    }
+
+    const fee = (await this.sdk.getDefiFees(bridge, bridgeFeeOptions))[settlementTime];
     const controller = this.sdk.createDefiController(
       accountKeys.publicKey,
       signer,
       bridge,
-      tokenAssetValue,
+      assetValue,
       fee
     );
     await controller.createProof();
