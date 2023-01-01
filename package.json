@@ -21,7 +21,7 @@
     "@types/chai": "^4",
     "@types/fs-extra": "^9.0.13",
     "@types/mocha": "^9.0.0",
-    "@types/node": "^16.9.4",
+    "@types/node": "^18.11.18",
     "chai": "^4",
     "dotenv": "^16.0.3",
     "globby": "^11",

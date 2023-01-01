@@ -13,6 +13,17 @@ import { CliUx } from "@oclif/core";
 import { CLIError } from "@oclif/core/lib/errors/index.js";
 import { JsonRpcSigner } from "@ethersproject/providers";
 
+function bufferFromHexString(hexString: string): Buffer {
+  let str = hexString.replace(/^0x/, '');
+  if (str.length != 64) throw new Error("Expecting 32 bytes.")
+  return Buffer.from(str, "hex");
+}
+
+function sliceHexStringSig(hexString: string): string {
+  // take first 32 bytes of signature
+  return hexString.slice(0, 64);
+}
+
 export async function getAccountKeysAndSyncAccount(
   flags: any,
   sdk: AztecSdk,
@@ -40,9 +51,9 @@ export async function getAccountKeys(
 ): Promise<AztecAccountKeys> {
   if (flags.accountKey) {
     try {
-      const privateKey = Buffer.from(flags.accountKey);
+      const privateKey = bufferFromHexString(flags.accountKey);
       const publicKey = await sdk.derivePublicKey(
-        Buffer.from(flags.accountKey)
+        privateKey
       );
       return {
         publicKey,
@@ -77,7 +88,7 @@ export async function deriveCustomAccountKeys(
     ethereumProvider,
     ethereumAccount
   );
-  let privateKey = Buffer.from(signature.slice(0, 32));
+  let privateKey = bufferFromHexString(sliceHexStringSig(signature));
   let publicKey = await sdk.derivePublicKey(privateKey);
   return { publicKey, privateKey };
 }
@@ -182,7 +193,7 @@ export async function createNewSignerFromMessage(
     ethereumProvider,
     ethereumAccount
   );
-  const privateKey = Buffer.from(signature.slice(0, 32));
+  const privateKey = bufferFromHexString(sliceHexStringSig(signature));
   return await sdk.createSchnorrSigner(privateKey);
 }
 
