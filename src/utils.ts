@@ -19,6 +19,11 @@ function bufferFromHexString(hexString: string): Buffer {
   return Buffer.from(str, "hex");
 }
 
+function sliceHexStringSig(hexString: string): string {
+  // take first 32 bytes of signature
+  return hexString.slice(0, 64);
+}
+
 export async function getAccountKeysAndSyncAccount(
   flags: any,
   sdk: AztecSdk,
@@ -83,7 +88,7 @@ export async function deriveCustomAccountKeys(
     ethereumProvider,
     ethereumAccount
   );
-  let privateKey = bufferFromHexString(signature.slice(0, 32));
+  let privateKey = bufferFromHexString(sliceHexStringSig(signature));
   let publicKey = await sdk.derivePublicKey(privateKey);
   return { publicKey, privateKey };
 }
@@ -188,7 +193,7 @@ export async function createNewSignerFromMessage(
     ethereumProvider,
     ethereumAccount
   );
-  const privateKey = bufferFromHexString(signature.slice(0, 32));
+  const privateKey = bufferFromHexString(sliceHexStringSig(signature));
   return await sdk.createSchnorrSigner(privateKey);
 }
 
