@@ -13,17 +13,6 @@ import { CliUx } from "@oclif/core";
 import { CLIError } from "@oclif/core/lib/errors/index.js";
 import { JsonRpcSigner } from "@ethersproject/providers";
 
-function bufferFromHexString(hexString: string): Buffer {
-  let str = hexString.replace(/^0x/, '');
-  if (str.length != 64) throw new Error("Expecting 32 bytes.")
-  return Buffer.from(str, "hex");
-}
-
-function sliceHexStringSig(hexString: string): string {
-  // take first 32 bytes of signature
-  return hexString.slice(0, 64);
-}
-
 export async function getAccountKeysAndSyncAccount(
   flags: any,
   sdk: AztecSdk,
@@ -240,4 +229,15 @@ export function mergeConfigWithFlags(config: any, flags: any) {
 
 export function pad(text: string) {
   return text.padEnd(20, " ");
+}
+
+function bufferFromHexString(hexString: string): Buffer {
+  let str = hexString.replace(/^0x/, '');
+  if (str.length != 64) throw new Error("Expecting 32 bytes.")
+  return Buffer.from(str, "hex");
+}
+
+function sliceHexStringSig(hexString: string): string {
+  // take first 32 bytes of signature
+  return hexString.slice(0, 64);
 }
