@@ -1,6 +1,6 @@
 {
   "name": "azteccli",
-  "description": "Command line tool for interacting with Aztec.",
+  "description": "Experimental command line tool for interacting with Aztec.",
   "version": "0.2.9",
   "author": "jc@joshcrites.com",
   "type": "module",
@@ -9,7 +9,7 @@
   },
   "bugs": "https://github.com/critesjosh/azteccli/issues",
   "dependencies": {
-    "@aztec/sdk": "2.1.56",
+    "@aztec/sdk": "2.1.71",
     "@oclif/core": "^1.16.4",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
