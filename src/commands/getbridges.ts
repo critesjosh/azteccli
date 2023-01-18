@@ -13,7 +13,7 @@ export default class GetBridges extends BaseCommand {
 
   public async run(): Promise<void> {
     const testnetAddress = EthAddress.fromString(
-      "0x5b2989bc33f19bfac4bcaad4e1795e2501edd5a3" // address of the data provider
+      "0xD1760AA0FCD9e64bA4ea43399Ad789CFd63C7809" // address of the data provider
     );
     const dataProvider = DataProviderWrapper.create(
       this.ethereumProvider,

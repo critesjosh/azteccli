@@ -66,9 +66,9 @@ export default class DefiBridge extends BaseCommand {
     );
     await controller.createProof();
     const txId = await controller.send();
-    this.log(
-      "View transaction on the block explorer",
-      `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`
-    );
+    // this.log(
+    //   "View transaction on the block explorer",
+    //   `${networkConfig[this.chainId].explorerUrl}tx/${txId.toString()}`
+    // );
   }
 }
