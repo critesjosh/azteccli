@@ -9,13 +9,6 @@ import { parseTime } from "../utils.js";
 export default class DefiBridge extends BaseCommand {
   static description = "Bridge assets to Ethereum base layer.";
 
-  wstEthTokenAddress = EthAddress.fromString(
-    "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0"
-  );
-  daiTokenAddress = EthAddress.fromString(
-    "0x6B175474E89094C44Da98b954EedeAC495271d0F"
-  );
-
   static flags = {
     ...BaseCommand.flags,
     time: Flags.defiTime,
@@ -39,20 +32,12 @@ export default class DefiBridge extends BaseCommand {
     let accountKeys = await this.getAccountKeysAndSyncAccount();
     const signer = await this.getSigner();
 
-    // https://github.com/AztecProtocol/aztec-connect-bridges/blob/master/deployments/mainnet.json
-    // const CurveStEthBridge = this.sdk.getBridgeAddressId(
-    //   EthAddress.fromString("0xe09801dA4C74e62fB42DFC8303a1C1BD68073D1a"),
-    //   250000
-    // );
-    // const ElementId = this.sdk.getBridgeAddressId(
-    //   EthAddress.fromString("0xC116ecc074040AbEdB2E11A4e84dEcDBA141F38f"),
-    //   250000
-    // );
     const ethToWstEth = new BridgeCallData(5, 0, 2); // IN: ETH (0), OUT: wstETH (2)
     const WstEthToEth = new BridgeCallData(5, 2, 0); // IN: wstETH (2), OUT: ETH (0)
-    const donationBridge = new BridgeCallData(17, 0, 0);
+    
+    const donationBridge = new BridgeCallData(14, 0, 0, undefined, undefined, BigInt(1));
 
-    let bridge = WstEthToEth;
+    let bridge = donationBridge;
 
     const tokenAssetId = this.sdk!.getAssetIdBySymbol(asset.toUpperCase());
     const tokenQuantity = BigInt((amount as number) * 10 ** 18);
@@ -71,6 +56,7 @@ export default class DefiBridge extends BaseCommand {
     }
 
     const fee = (await this.sdk.getDefiFees(bridge, bridgeFeeOptions))[settlementTime];
+
     const controller = this.sdk.createDefiController(
       accountKeys.publicKey,
       signer,
