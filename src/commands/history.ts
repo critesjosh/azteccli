@@ -52,6 +52,7 @@ export default class History extends BaseCommand {
         this.log(pad("Value:"), tx.value);
         this.log(pad("Fee:"), tx.fee);
         this.log(pad("Sender?:"), tx.isSender);
+        this.log(pad("EthAddress:"), tx.publicOwner?.toString());
         switch (tx.proofId) {
           case 1:
             this.log(pad("Tx Type:"), "Deposit");
