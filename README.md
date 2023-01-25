@@ -54,7 +54,8 @@ If you are running a published version of the cli that you got from npm, the con
 2. Install dependencies. `yarn`
 3. Edit/add new commands in `./src/`
 4. Build the project with `yarn build`
-5. Test your edits by running `./bin/run.cjs [command] [args] [flags]`. (ie `./bin/run.cjs deposit .01`)
+5. Start `truffle dashboard`. [link](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/)
+6. Test your edits by running `./bin/run.cjs [command] [args] [flags]`. (ie `./bin/run.cjs deposit .01`)
 
 ## Capabilities
 
