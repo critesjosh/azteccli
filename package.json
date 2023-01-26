@@ -9,7 +9,7 @@
   },
   "bugs": "https://github.com/critesjosh/azteccli/issues",
   "dependencies": {
-    "@aztec/sdk": "2.1.76",
+    "@aztec/sdk": "2.1.81",
     "@oclif/core": "^1.16.4",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
