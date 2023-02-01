@@ -20,7 +20,7 @@ let networkConfig: Config = {
     rollupProvider: "http://localhost:8081",
     explorerUrl: "",
   },
-  31337: {
+  1337: {
     rollupProvider: "http://localhost:8081",
     explorerUrl: ""
   },
