@@ -4,6 +4,7 @@ import { BaseCommand } from "../base.js";
 import { Flags } from "../flags.js";
 import networkConfig from "../network_config.js";
 import { parseAztecRecipient, parseTime } from "../utils.js";
+import GetFees from "./getfees.js";
 
 export default class Transfer extends BaseCommand {
   static description = "Transfer funds on the Aztec network.";
@@ -46,13 +47,23 @@ export default class Transfer extends BaseCommand {
 
     const tokenQuantity = BigInt((amount as number) * 10 ** 18);
     const tokenAssetId = this.sdk.getAssetIdBySymbol(asset.toUpperCase());
-    const tokenTransferFee = (await this.sdk.getTransferFees(tokenAssetId))[
-      settlementTime
-    ];
+
     const tokenAssetValue: AssetValue = {
       assetId: tokenAssetId,
       value: tokenQuantity,
     };
+
+    const feeOptions = {
+      userId: accountKeys.publicKey,
+      userSpendingKeyRequired: true,
+      excludePendingNotes: true,
+      feeSignificantFigures: 2,
+      assetValue: tokenAssetValue
+    }
+
+    const tokenTransferFee = (await this.sdk.getTransferFees(tokenAssetId, feeOptions))[
+      settlementTime
+    ];
 
     const tokenTransferController = this.sdk.createTransferController(
       accountKeys.publicKey,
